@@ -108,23 +108,35 @@ literal
     | NULL_LITERAL
     ;
 
-
 methodCall
     : IDENTIFIER '(' (expr (',' expr)*)* ')'
     ;
 
+memberVarAccess
+    : '.' IDENTIFIER
+    ;
+
+memberMethodAccess
+    : '.' methodCall
+    ;
+
+idExpr
+    : THIS // point to current object
+    | IDENTIFIER // variables
+    ;
+
 expr
 	:   literal
-	|   methodCall //function call
-	|	IDENTIFIER  //variables
-	|   '.' IDENTIFIER //var member access
-	|   '.' methodCall //method member access
-	|	'(' expr ')'  //grouping with parentheses
-	|	('+' | '-') expr	//unary plus/minus
-	|	expr ('/' | '*') expr	//explicit division/multiplication
-	|	expr ('+' | '-') expr	//addition/subtraction
-	|
-	;
+	|   idExpr
+    |   methodCall //function call
+    |   memberVarAccess //var member access
+    |   memberMethodAccess //method member access
+    |   expr '.' (IDENTIFIER|methodCall)
+    |	'(' expr ')'  //grouping with parentheses
+    |	('+' | '-') expr	//unary plus/minus
+    |	expr ('/' | '*'| '%') expr	//explicit division/multiplication
+    |	expr ('+' | '-') expr	//addition/subtraction
+    ;
 
 // parser rule
 
@@ -152,7 +164,7 @@ globalScopeStatement
     ;
 
 entryPoint
-    : STATIC 'go' '(' ')'  AS VOID anonScopeStatement
+    : STATIC 'go' '(' ')'  AS VOID
     ;
 
 lineStatement
@@ -261,3 +273,4 @@ inLoopStatement
 
 forLoop
     : 'for' '(' IDENTIFIER '=' expr ';' expr ';' expr ')' '{' inLoopStatement* '}'
+    ;
