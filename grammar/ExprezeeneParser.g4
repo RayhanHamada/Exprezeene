@@ -1,5 +1,7 @@
 grammar ExprezeeneParser;
 
+TO_SKIP     : ([\r\t\n] | ' ') -> skip
+            ;
 
 
 //keywords
@@ -11,6 +13,8 @@ IMPORT      : 'import';
 CLASS       : 'class';
 AS          : 'as';
 THIS        : 'this';
+NEW         : 'new';
+INHERIT     : 'inherit';
 
 PUBLIC      : 'public';
 PRIVATE     : 'private';
@@ -23,6 +27,7 @@ FLOAT       : 'float';
 DOUBLE      : 'double';
 LONG        : 'long';
 BOOLEAN     : 'bool';
+CHAR        : 'char';
 
 IF          : 'if';
 ELSE        : 'else';
@@ -36,12 +41,10 @@ GO          : 'go';
 
 //token
 IDENTIFIER
-    : [A-Za-z] [\w]+
+    : [A-Za-z] [A-Za-z0-9_]*
     ;
 
-
 // literal
-
 DECIMAL_LITERAL     : DecDigit ([0-9_]* DecDigit)?
                     ;
 
@@ -145,14 +148,36 @@ accmod
     ;
 
 modifier
-    : accmod? STATIC? CONSTANT?
+    : accmod STATIC? CONSTANT?
+    ;
+
+type
+    : primitiveType
+    | referenceType
+    ;
+
+primitiveType
+    : INT
+    | FLOAT
+    | BOOLEAN
+    | DOUBLE
+    | LONG
+    | CHAR
+    ;
+
+referenceType
+    : userDefinedType
+    ;
+
+userDefinedType
+    : IDENTIFIER
     ;
 
 program
-    : globalScopeStatement
-    | entryPoint globalScopeStatement
-    | globalScopeStatement entryPoint
-    | entryPoint
+    : globalScopeStatement+
+//    | entryPoint globalScopeStatement
+//    | globalScopeStatement entryPoint
+//    | entryPoint
     ;
 
 globalScopeStatement
@@ -177,11 +202,11 @@ lineStatement
     ;
 
 importStatement
-    : 'import' IDENTIFIER (AS IDENTIFIER)? ( ',' IDENTIFIER (AS IDENTIFIER)?)*
+    : IMPORT IDENTIFIER (AS IDENTIFIER)? ( ',' IDENTIFIER (AS IDENTIFIER)?)*
     ;
 
 varDeclStatement
-    : modifier IDENTIFIER (',' IDENTIFIER)* AS IDENTIFIER
+    : modifier IDENTIFIER (',' IDENTIFIER)* AS type
     ;
 
 varInitStatement
@@ -193,7 +218,7 @@ varAssignStatement
     ;
 
 objInstStatement
-    : 'new' IDENTIFIER '(' (expr (',' expr)*)* ')'
+    : NEW IDENTIFIER '(' (expr (',' expr)*)* ')'
     ;
 
 blockStatement
@@ -201,18 +226,17 @@ blockStatement
     | methodDefStatement
     | condStatement
     | loopStatement
-    | anonScopeStatement
     ;
 
 classDefStatement
-    : 'class' IDENTIFIER  ('inherit' IDENTIFIER)? '{' inClassStatement+ '}'
+    : modifier CLASS IDENTIFIER  (INHERIT IDENTIFIER)? '{' inClassStatement* '}'
     ;
 
 inClassStatement
     : classDefStatement
     | methodDefStatement
-    | varDeclStatement
-    | varInitStatement
+    | varDeclStatement ';'
+    | varInitStatement ';'
     ;
 
 inMethodStatement
@@ -222,10 +246,11 @@ inMethodStatement
     | methodCall ';'
     | condStatement
     | loopStatement
+    | '{' inMethodStatement '}'
     ;
 
 methodDefStatement
-    : modifier IDENTIFIER '(' inMethodStatement* ')' AS IDENTIFIER '{' inMethodStatement* '}'
+    : modifier IDENTIFIER '(' (IDENTIFIER AS type ( ',' IDENTIFIER AS type)*)* ')' AS IDENTIFIER '{' inMethodStatement* '}'
     ;
 
 condStatement
@@ -235,31 +260,43 @@ condStatement
     ;
 
 ifStatement
-    : 'if' '(' expr ')' '{' inIfStatement* '}'
+    : IF '(' expr ')' '{' inIfStatement* '}'
+    ;
+
+elseIfStatement
+    : ELSE IF '(' expr ')' '{' inIfStatement* '}'
+    ;
+
+elseStatement
+    : ELSE '{' inIfStatement* '}'
     ;
 
 inIfStatement
     : methodCall ';'
     ;
 
-elseIfStatement
-    : 'else' 'if' '(' expr ')' '{' inIfStatement* '}'
-    ;
-
-elseStatement
-    : 'else' '{' inIfStatement* '}'
-    ;
-
 loopStatement
     : whileLoop
     | forLoop
     | foreachLoop
-    | dowhileLoop
+    | doWhileLoop
     ;
 
 
 whileLoop
-    : 'while' '(' expr ')' '{' inLoopStatement* '}'
+    : WHILE '(' expr ')' '{' inLoopStatement* '}'
+    ;
+
+forLoop
+    : FOR '(' IDENTIFIER '=' expr ';' expr ';' expr ')' '{' inLoopStatement* '}'
+    ;
+
+foreachLoop
+    : FOR '(' IDENTIFIER AS IDENTIFIER IN IDENTIFIER ')' '{' inLoopStatement '}'
+    ;
+
+doWhileLoop
+    : DO '{' inLoopStatement '}' 'while' '(' expr ')' ';'
     ;
 
 inLoopStatement
@@ -271,6 +308,4 @@ inLoopStatement
     | loopStatement ';'
     ;
 
-forLoop
-    : 'for' '(' IDENTIFIER '=' expr ';' expr ';' expr ')' '{' inLoopStatement* '}'
-    ;
+
