@@ -91,6 +91,8 @@ fragment OctDigit
     : [0-7]
     ;
 
+// parser rule
+
 integerLiteral
     : DECIMAL_LITERAL
     | OCTAL_LITERAL
@@ -141,14 +143,21 @@ expr
     |	expr ('+' | '-') expr	//addition/subtraction
     ;
 
-// parser rule
+parameter
+    : '(' (expr( ',' expr)*)* ')'
+    ;
+
+arguments
+    : '('
+    ;
+
 
 accmod
     : PUBLIC|PRIVATE|PROTECTED
     ;
 
 modifier
-    : accmod STATIC? CONSTANT?
+    : accmod? STATIC? CONSTANT?
     ;
 
 type
@@ -181,15 +190,26 @@ program
     ;
 
 globalScopeStatement
-    : importStatement
-    | varDeclStatement
-    | varInitStatement
+    : importStatement ';'
+    | varDeclStatement ';'
+    | varInitStatement ';'
     | classDefStatement
     | methodDefStatement
     ;
 
 entryPoint
-    : STATIC 'go' '(' ')'  AS VOID
+    : accmod? STATIC 'go' '(' ')'  (AS VOID)? '{' allowedEntryPointStatement '}'
+    ;
+
+allowedEntryPointStatement
+    : varDeclStatement ';'
+    | varInitStatement ';'
+    | varAssignStatement ';'
+    | methodCall ';'
+    | condStatement
+    | loopStatement
+    | objInstStatement ';'
+    | '{' allowedEntryPointStatement '}'
     ;
 
 lineStatement
@@ -292,11 +312,11 @@ forLoop
     ;
 
 foreachLoop
-    : FOR '(' IDENTIFIER AS IDENTIFIER IN IDENTIFIER ')' '{' inLoopStatement '}'
+    : FOR '(' IDENTIFIER AS IDENTIFIER IN IDENTIFIER ')' '{' inLoopStatement* '}'
     ;
 
 doWhileLoop
-    : DO '{' inLoopStatement '}' 'while' '(' expr ')' ';'
+    : DO '{' inLoopStatement* '}' 'while' '(' expr ')' ';'
     ;
 
 inLoopStatement
