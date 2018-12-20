@@ -74,23 +74,25 @@ literal
     ;
 
 
+OR  : 'or';
+AND : 'and';
+PIPE: '||';
+ANDSYMB: '&&';
+EQUAL: '==';
+NOTEQUAL: '!=';
+LESS: '<';
+GREATER: '>';
+PLUS: '+';
+MINUS: '-';
+STAR: '*';
+SLASH: '/';
+NEW: 'new';
+LPAREN: '(';
+RPAREN: ')';
+NOT: '!';
+
 methodCall
-    : IDENTIFIER '(' ')'
-    ;
+    : IDENTIFIER '(' ')';
 
-
-expr
-	:   literal
-	|   methodCall //function call
-	|	IDENTIFIER  //variables
-	|   '.' IDENTIFIER //var member access
-	|   '.' methodCall //method member access
-	|	'(' expr ')'  //grouping with parentheses
-	|	('+' | '-') expr	//unary plus/minus
-	|	expr ('/' | '*'| '%') expr	//explicit division/multiplication
-	|	expr ('+' | '-') expr	//addition/subtraction
-	;
-
-stat
-    : expr+
-    ;
+expression
+    :

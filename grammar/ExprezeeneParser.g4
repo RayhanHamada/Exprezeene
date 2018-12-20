@@ -3,9 +3,7 @@ grammar ExprezeeneParser;
 TO_SKIP     : ([\r\t\n] | ' ') -> skip
             ;
 
-
 //keywords
-
 DEFINE      : 'define';
 ALIAS       : 'alias';
 NAMESPACE   : 'namespace';
@@ -36,7 +34,6 @@ WHILE       : 'while';
 FOR         : 'for';
 DO          : 'do';
 IN          : 'in';
-
 GO          : 'go';
 
 //token
@@ -125,32 +122,68 @@ memberMethodAccess
     : '.' methodCall
     ;
 
-idExpr
+statemenableMemberAccess
+    : methodCall
+    | IDENTIFIER
+    | '.' statemenableMemberAccess
+    ;
+
+//arithmeticExpression
+//    :
+
+
+primary
     : THIS // point to current object
     | IDENTIFIER // variables
+    | '(' expr ')'
     ;
+
+member
+    : IDENTIFIER
+    | methodCall
+    ;
+
+unaryExpr
+    : ('+' | '-') expr
+    ;
+
+incdec
+    : '++'
+    | '--'
+    ;
+
+subscript
+    : IDENTIFIER '['
+
+op2
+    : op3 ((incdec | methodCall) op3)*
+    ;
+
+
+
 
 expr
 	:   literal
-	|   idExpr
+	|   primary
     |   methodCall //function call
-    |   memberVarAccess //var member access
-    |   memberMethodAccess //method member access
-    |   expr '.' (IDENTIFIER|methodCall)
-    |	'(' expr ')'  //grouping with parentheses
-    |	('+' | '-') expr	//unary plus/minus
+    |   expr '.' member
+    |	unaryExpr	//unary plus/minus
     |	expr ('/' | '*'| '%') expr	//explicit division/multiplication
     |	expr ('+' | '-') expr	//addition/subtraction
+
     ;
 
 parameter
-    : '(' (expr( ',' expr)*)* ')'
+    : '(' (IDENTIFIER AS type defaultValueParameter?( ',' IDENTIFIER AS type defaultValueParameter?)*)*  ')'
+    ;
+
+defaultValueParameter
+    : '=' expr
     ;
 
 arguments
-    : '('
+    : '(' (expr (',' expr)*)* ')'
     ;
-
 
 accmod
     : PUBLIC|PRIVATE|PROTECTED
@@ -198,7 +231,7 @@ globalScopeStatement
     ;
 
 entryPoint
-    : accmod? STATIC 'go' '(' ')'  (AS VOID)? '{' allowedEntryPointStatement '}'
+    : accmod? STATIC 'go' parameter  (AS VOID)? '{' allowedEntryPointStatement '}'
     ;
 
 allowedEntryPointStatement
@@ -222,15 +255,15 @@ lineStatement
     ;
 
 importStatement
-    : IMPORT IDENTIFIER (AS IDENTIFIER)? ( ',' IDENTIFIER (AS IDENTIFIER)?)*
+    : IMPORT IDENTIFIER (AS type)? ( ',' IDENTIFIER (AS type)?)*
     ;
 
 varDeclStatement
-    : modifier IDENTIFIER (',' IDENTIFIER)* AS type
+    : modifier 'var' IDENTIFIER (',' IDENTIFIER)* AS type
     ;
 
 varInitStatement
-    : modifier IDENTIFIER '=' (expr|objInstStatement) (',' IDENTIFIER '=' (expr|objInstStatement))*
+    : modifier 'var' IDENTIFIER '=' (expr|objInstStatement) (',' IDENTIFIER '=' (expr|objInstStatement))*
     ;
 
 varAssignStatement
@@ -238,7 +271,7 @@ varAssignStatement
     ;
 
 objInstStatement
-    : NEW IDENTIFIER '(' (expr (',' expr)*)* ')'
+    : NEW IDENTIFIER parameter
     ;
 
 blockStatement
@@ -249,7 +282,7 @@ blockStatement
     ;
 
 classDefStatement
-    : modifier CLASS IDENTIFIER  (INHERIT IDENTIFIER)? '{' inClassStatement* '}'
+    : modifier CLASS IDENTIFIER  (INHERIT type)? '{' inClassStatement* '}'
     ;
 
 inClassStatement
@@ -257,6 +290,10 @@ inClassStatement
     | methodDefStatement
     | varDeclStatement ';'
     | varInitStatement ';'
+    ;
+
+methodDefStatement
+    : modifier IDENTIFIER parameter AS type '{' inMethodStatement* '}'
     ;
 
 inMethodStatement
@@ -267,10 +304,6 @@ inMethodStatement
     | condStatement
     | loopStatement
     | '{' inMethodStatement '}'
-    ;
-
-methodDefStatement
-    : modifier IDENTIFIER '(' (IDENTIFIER AS type ( ',' IDENTIFIER AS type)*)* ')' AS IDENTIFIER '{' inMethodStatement* '}'
     ;
 
 condStatement
@@ -293,6 +326,12 @@ elseStatement
 
 inIfStatement
     : methodCall ';'
+    | varDeclStatement
+    | varInitStatement
+    | varAssignStatement
+    | loopStatement
+    | condStatement
+    | '{' inIfStatement* '}'
     ;
 
 loopStatement
