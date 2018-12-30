@@ -9,6 +9,7 @@ ALIAS       : 'alias';
 NAMESPACE   : 'namespace';
 IMPORT      : 'import';
 CLASS       : 'class';
+FUNCTION    : 'func';
 AS          : 'as';
 THIS        : 'this';
 NEW         : 'new';
@@ -114,63 +115,32 @@ methodCall
     : IDENTIFIER '(' (expr (',' expr)*)* ')'
     ;
 
-memberVarAccess
-    : '.' IDENTIFIER
+expr
+    : primary
+    | expr operator='.' (IDENTIFIER|methodCall)
+    | expr '[' expr ']'
+    | methodCall
+    | objInstStatement
+    | expr postfix=('++' | '--')
+    | prefix=('+'|'-'|'++'|'--') expr
+    | prefix=('~'|'!') expr
+    | expr op=('*'|'/'|'%') expr
+    | expr op=('+'|'-') expr
+    | expr ('<' '<' | '>' '>' '>' | '>' '>') expr
+    | expr op=('<=' | '>=' | '>' | '<') expr
+    | expr op=('==' | '!=') expr
+    | expr op='&' expr
+    | expr op='^' expr
+    | expr op='|' expr
+    | expr op='&&' expr
+    | expr op='||' expr
+    | <assoc=right> expr op=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
     ;
-
-memberMethodAccess
-    : '.' methodCall
-    ;
-
-statemenableMemberAccess
-    : methodCall
-    | IDENTIFIER
-    | '.' statemenableMemberAccess
-    ;
-
-//arithmeticExpression
-//    :
-
 
 primary
-    : THIS // point to current object
-    | IDENTIFIER // variables
+    : literal
+    | IDENTIFIER
     | '(' expr ')'
-    ;
-
-member
-    : IDENTIFIER
-    | methodCall
-    ;
-
-unaryExpr
-    : ('+' | '-') expr
-    ;
-
-incdec
-    : '++'
-    | '--'
-    ;
-
-subscript
-    : IDENTIFIER '['
-
-op2
-    : op3 ((incdec | methodCall) op3)*
-    ;
-
-
-
-
-expr
-	:   literal
-	|   primary
-    |   methodCall //function call
-    |   expr '.' member
-    |	unaryExpr	//unary plus/minus
-    |	expr ('/' | '*'| '%') expr	//explicit division/multiplication
-    |	expr ('+' | '-') expr	//addition/subtraction
-
     ;
 
 parameter
@@ -217,9 +187,6 @@ userDefinedType
 
 program
     : globalScopeStatement+
-//    | entryPoint globalScopeStatement
-//    | globalScopeStatement entryPoint
-//    | entryPoint
     ;
 
 globalScopeStatement
@@ -231,7 +198,7 @@ globalScopeStatement
     ;
 
 entryPoint
-    : accmod? STATIC 'go' parameter  (AS VOID)? '{' allowedEntryPointStatement '}'
+    : accmod? STATIC 'go' parameter  (AS )? '{' allowedEntryPointStatement '}'
     ;
 
 allowedEntryPointStatement
@@ -243,15 +210,6 @@ allowedEntryPointStatement
     | loopStatement
     | objInstStatement ';'
     | '{' allowedEntryPointStatement '}'
-    ;
-
-lineStatement
-    : importStatement
-    | varDeclStatement
-    | varInitStatement
-    | varAssignStatement
-    | objInstStatement
-    | methodCall
     ;
 
 importStatement
@@ -267,18 +225,11 @@ varInitStatement
     ;
 
 varAssignStatement
-    : IDENTIFIER '=' (expr|objInstStatement)
+    : <assoc=right> expr op=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
     ;
 
 objInstStatement
     : NEW IDENTIFIER parameter
-    ;
-
-blockStatement
-    : classDefStatement
-    | methodDefStatement
-    | condStatement
-    | loopStatement
     ;
 
 classDefStatement
@@ -293,12 +244,13 @@ inClassStatement
     ;
 
 methodDefStatement
-    : modifier IDENTIFIER parameter AS type '{' inMethodStatement* '}'
+    : modifier FUNCTION IDENTIFIER parameter (AS type)? '{' inMethodStatement* '}'
     ;
 
 inMethodStatement
     : varDeclStatement ';'
     | varInitStatement ';'
+    | varAssignStatement ';'
     | objInstStatement ';'
     | methodCall ';'
     | condStatement
@@ -355,7 +307,7 @@ foreachLoop
     ;
 
 doWhileLoop
-    : DO '{' inLoopStatement* '}' 'while' '(' expr ')' ';'
+    : DO '{' inLoopStatement* '}' WHILE '(' expr ')' ';'
     ;
 
 inLoopStatement
@@ -363,8 +315,9 @@ inLoopStatement
     | varAssignStatement ';'
     | varDeclStatement ';'
     | varInitStatement ';'
-    | condStatement ';'
-    | loopStatement ';'
+    | condStatement
+    | loopStatement
+    | '{' inLoopStatement* '}'
     ;
 
 

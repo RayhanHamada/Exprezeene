@@ -8,11 +8,12 @@ public class Test
 
 
 
+    static float a = 2.53f;
 
 
     public static void main(String...args)
     {
-        System.out.println();
+       int a = 2;
 
     }
 
