@@ -1,4 +1,4 @@
-grammar ExprezeeneParser;
+grammar Exprezeene;
 
 TO_SKIP     : ([\r\t\n] | ' ') -> skip
             ;
@@ -117,24 +117,24 @@ methodCall
 
 expr
     : primary
-    | expr operator='.' (IDENTIFIER|methodCall)
+    | expr operatorerator='.' (IDENTIFIER|methodCall)
     | expr '[' expr ']'
     | methodCall
     | objInstStatement
     | expr postfix=('++' | '--')
     | prefix=('+'|'-'|'++'|'--') expr
     | prefix=('~'|'!') expr
-    | expr op=('*'|'/'|'%') expr
-    | expr op=('+'|'-') expr
+    | expr operator=('*'|'/'|'%') expr
+    | expr operator=('+'|'-') expr
     | expr ('<' '<' | '>' '>' '>' | '>' '>') expr
-    | expr op=('<=' | '>=' | '>' | '<') expr
-    | expr op=('==' | '!=') expr
-    | expr op='&' expr
-    | expr op='^' expr
-    | expr op='|' expr
-    | expr op='&&' expr
-    | expr op='||' expr
-    | <assoc=right> expr op=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
+    | expr operator=('<=' | '>=' | '>' | '<') expr
+    | expr operator=('==' | '!=') expr
+    | expr operator='&' expr
+    | expr operator='^' expr
+    | expr operator='|' expr
+    | expr operator='&&' expr
+    | expr operator='||' expr
+    | <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
     ;
 
 primary
@@ -186,7 +186,7 @@ userDefinedType
     ;
 
 program
-    : globalScopeStatement+
+    : globalScopeStatement+ entryPoint
     ;
 
 globalScopeStatement
@@ -207,7 +207,7 @@ allowedEntryPointStatement
     | varAssignStatement ';'
     | methodCall ';'
     | condStatement
-    | loopStatement
+    | looperatorStatement
     | objInstStatement ';'
     | '{' allowedEntryPointStatement '}'
     ;
@@ -225,7 +225,7 @@ varInitStatement
     ;
 
 varAssignStatement
-    : <assoc=right> expr op=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
+    : <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
     ;
 
 objInstStatement
@@ -254,7 +254,7 @@ inMethodStatement
     | objInstStatement ';'
     | methodCall ';'
     | condStatement
-    | loopStatement
+    | looperatorStatement
     | '{' inMethodStatement '}'
     ;
 
@@ -281,43 +281,43 @@ inIfStatement
     | varDeclStatement
     | varInitStatement
     | varAssignStatement
-    | loopStatement
+    | looperatorStatement
     | condStatement
     | '{' inIfStatement* '}'
     ;
 
-loopStatement
-    : whileLoop
-    | forLoop
-    | foreachLoop
-    | doWhileLoop
+looperatorStatement
+    : whileLooperator
+    | forLooperator
+    | foreachLooperator
+    | doWhileLooperator
     ;
 
 
-whileLoop
-    : WHILE '(' expr ')' '{' inLoopStatement* '}'
+whileLooperator
+    : WHILE '(' expr ')' '{' inLooperatorStatement* '}'
     ;
 
-forLoop
-    : FOR '(' IDENTIFIER '=' expr ';' expr ';' expr ')' '{' inLoopStatement* '}'
+forLooperator
+    : FOR '(' IDENTIFIER '=' expr ';' expr ';' expr ')' '{' inLooperatorStatement* '}'
     ;
 
-foreachLoop
-    : FOR '(' IDENTIFIER AS IDENTIFIER IN IDENTIFIER ')' '{' inLoopStatement* '}'
+foreachLooperator
+    : FOR '(' IDENTIFIER AS IDENTIFIER IN IDENTIFIER ')' '{' inLooperatorStatement* '}'
     ;
 
-doWhileLoop
-    : DO '{' inLoopStatement* '}' WHILE '(' expr ')' ';'
+doWhileLooperator
+    : DO '{' inLooperatorStatement* '}' WHILE '(' expr ')' ';'
     ;
 
-inLoopStatement
+inLooperatorStatement
     : methodCall ';'
     | varAssignStatement ';'
     | varDeclStatement ';'
     | varInitStatement ';'
     | condStatement
-    | loopStatement
-    | '{' inLoopStatement* '}'
+    | looperatorStatement
+    | '{' inLooperatorStatement* '}'
     ;
 
 
