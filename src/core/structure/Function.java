@@ -3,7 +3,7 @@ package core.structure;
 import core.datatype.DataType;
 import core.datatype.DataTypeType;
 
-public class Function {
+public class Function extends Scope {
 
     private String identifier;
     private Parameter[] param;
@@ -13,6 +13,7 @@ public class Function {
 
     public Function(String identifier, Parameter[] param, AccessModifier accmod, DataTypeType typeType, DataType type)
     {
+        super(identifier, ScopeType.FUNCTION);
         this.identifier = identifier;
         this.param = param;
 

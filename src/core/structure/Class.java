@@ -1,22 +1,18 @@
 package core.structure;
 
-public class Class {
+public class Class extends Scope {
 
     private String identifier;
     private boolean _static;
     private AccessModifier accmod;
-    private Scope scope;
 
-
-    public Class(){}
-
-    public Class(String identifier, boolean _static, AccessModifier accmod, Scope scope)
+    public Class(String identifier, boolean _static, AccessModifier accmod)
     {
+        super(identifier, ScopeType.CLASS);
         this.identifier = identifier;
         this._static = _static;
         if (accmod.equals(null))this.accmod = AccessModifier.PRIVATE;
         else this.accmod = accmod;
-        this.scope = scope;
     }
 
     public String getIdentifier()
@@ -33,12 +29,5 @@ public class Class {
     {
         return accmod;
     }
-
-    public Scope getScope()
-    {
-        return scope;
-    }
-
-
 
 }

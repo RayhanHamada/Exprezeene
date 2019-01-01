@@ -1,23 +1,19 @@
 package core;
 
-import core.parserlexer.ExprezeeneListener;
-import core.parserlexer.ExprezeeneParser;
-import core.structure.Class;
-import core.structure.Function;
-import core.structure.Variable;
+import core.listener.ExprezeeneListener;
+import core.listener.ExprezeeneParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class BaseListener implements ExprezeeneListener {
+public class BaseListener extends ListenerPreparator implements ExprezeeneListener{
 
-
-    private ArrayList<Class> classes = new ArrayList<>();
-    private ArrayList<Function> functions = new ArrayList<>();
-    private ArrayList<Variable> variables = new ArrayList<>();
+    public BaseListener()
+    {
+        this.scopes = new ArrayList<>();
+    }
 
     public void enterIntegerLiteral(ExprezeeneParser.IntegerLiteralContext ctx) {
 
