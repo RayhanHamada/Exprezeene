@@ -6,14 +6,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.util.ArrayList;
-
-public class BaseListener extends ListenerPreparator implements ExprezeeneListener{
-
-    public BaseListener()
-    {
-        this.scopes = new ArrayList<>();
-    }
+public class BaseListener implements ExprezeeneListener{
 
     public void enterIntegerLiteral(ExprezeeneParser.IntegerLiteralContext ctx) {
 
@@ -152,11 +145,11 @@ public class BaseListener extends ListenerPreparator implements ExprezeeneListen
     }
 
     public void enterEntryPoint(ExprezeeneParser.EntryPointContext ctx) {
-
+        System.out.println("Entering entry Point");
     }
 
     public void exitEntryPoint(ExprezeeneParser.EntryPointContext ctx) {
-
+        System.out.println("Out from entry point");
     }
 
     public void enterAllowedEntryPointStatement(ExprezeeneParser.AllowedEntryPointStatementContext ctx) {

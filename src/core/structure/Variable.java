@@ -10,8 +10,10 @@ public class Variable {
     private boolean _static, _const;
     private DataTypeType typetype;
     private DataType type;
+    private Value value;
+    private int state; // 0 for declared, 1 for initialized
 
-    public Variable(String identifier, AccessModifier accmod, boolean _static, boolean _const, DataTypeType typeType, DataType type)
+    public Variable(String identifier, AccessModifier accmod, boolean _static, boolean _const, DataTypeType typeType, DataType type, Value value, int state)
     {
         this.identifier = identifier;
         if (accmod.equals(null)) this.accmod = AccessModifier.PRIVATE;
@@ -20,6 +22,8 @@ public class Variable {
         this._const = _const;
         this.typetype = typeType;
         this.type = type;
+        this.value = value;
+        this.state = state;
     }
 
     public String getIdentifier()

@@ -1,0 +1,11 @@
+
+func setAngka()
+{
+var angka = 2;
+}
+
+
+go()
+{
+    setAngka();
+}

@@ -198,7 +198,7 @@ globalScopeStatement
     ;
 
 entryPoint
-    : accmod? STATIC 'go' parameter  (AS )? '{' allowedEntryPointStatement '}'
+    : accmod? 'go' parameter  (AS )? '{' allowedEntryPointStatement* '}'
     ;
 
 allowedEntryPointStatement
@@ -221,7 +221,7 @@ varDeclStatement
     ;
 
 varInitStatement
-    : modifier 'var' IDENTIFIER '=' (expr|objInstStatement) (',' IDENTIFIER '=' (expr|objInstStatement))*
+    : modifier 'var' IDENTIFIER '=' (expr|objInstStatement)
     ;
 
 varAssignStatement
