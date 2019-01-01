@@ -112,12 +112,12 @@ literal
     ;
 
 methodCall
-    : IDENTIFIER '(' (expr (',' expr)*)* ')'
+    : IDENTIFIER arguments
     ;
 
 expr
     : primary
-    | expr operatorerator='.' (IDENTIFIER|methodCall)
+    | expr operator='.' (IDENTIFIER|methodCall)
     | expr '[' expr ']'
     | methodCall
     | objInstStatement
@@ -186,7 +186,7 @@ userDefinedType
     ;
 
 program
-    : globalScopeStatement+ entryPoint
+    : globalScopeStatement* entryPoint
     ;
 
 globalScopeStatement
@@ -292,7 +292,6 @@ looperatorStatement
     | foreachLooperator
     | doWhileLooperator
     ;
-
 
 whileLooperator
     : WHILE '(' expr ')' '{' inLooperatorStatement* '}'
