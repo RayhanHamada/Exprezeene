@@ -1,11 +1,7 @@
-
-func setAngka()
-{
-var angka = 2;
-}
+var a as int;
 
 
 go()
 {
-    setAngka();
+
 }

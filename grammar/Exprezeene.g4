@@ -20,6 +20,7 @@ PRIVATE     : 'private';
 PROTECTED   : 'protected';
 STATIC      : 'static';
 CONSTANT    : 'const';
+VAR         : 'var';
 
 INT         : 'int';
 FLOAT       : 'float';
@@ -116,25 +117,25 @@ methodCall
     ;
 
 expr
-    : primary
-    | expr operator='.' (IDENTIFIER|methodCall)
-    | expr '[' expr ']'
-    | methodCall
-    | objInstStatement
-    | expr postfix=('++' | '--')
-    | prefix=('+'|'-'|'++'|'--') expr
-    | prefix=('~'|'!') expr
-    | expr operator=('*'|'/'|'%') expr
-    | expr operator=('+'|'-') expr
-    | expr ('<' '<' | '>' '>' '>' | '>' '>') expr
-    | expr operator=('<=' | '>=' | '>' | '<') expr
-    | expr operator=('==' | '!=') expr
-    | expr operator='&' expr
-    | expr operator='^' expr
-    | expr operator='|' expr
-    | expr operator='&&' expr
-    | expr operator='||' expr
-    | <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
+    : primary                                       #primaryExpr
+    | expr operator='.' (IDENTIFIER|methodCall)     #memberAccessExpr
+    | expr '[' expr ']'                             #arrayAccessExpr
+    | methodCall                                    #methodCallExpr
+    | objInstStatement                              #objInstExpr
+    | expr postfix=('++' | '--')                    #postFixExpr
+    | prefix=('+'|'-'|'++'|'--') expr               #preFixExpr
+    | prefix=('~'|'!') expr                         #preFixExpr
+    | expr operator=('*'|'/'|'%') expr              #multExpr
+    | expr operator=('+'|'-') expr                  #addExpr
+    | expr ('<' '<' | '>' '>' '>' | '>' '>') expr   #bitShiftExpr
+    | expr operator=('<=' | '>=' | '>' | '<') expr  #relationalExpr
+    | expr operator=('==' | '!=') expr              #relationalExpr
+    | expr operator='&' expr                        #andBitWiseExpr
+    | expr operator='^' expr                        #xorBitWiseExpr
+    | expr operator='|' expr                        #orBitWiseExpr
+    | expr operator='&&' expr                       #andLogicExpr
+    | expr operator='||' expr                       #orLogicExpr
+    | <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr #assignmentExpr
     ;
 
 primary
@@ -144,7 +145,11 @@ primary
     ;
 
 parameter
-    : '(' (IDENTIFIER AS type defaultValueParameter?( ',' IDENTIFIER AS type defaultValueParameter?)*)*  ')'
+    : '(' (parameterVar( ',' parameterVar)*)*  ')'
+    ;
+
+parameterVar
+    : IDENTIFIER AS type defaultValueParameter?
     ;
 
 defaultValueParameter
@@ -160,7 +165,7 @@ accmod
     ;
 
 modifier
-    : accmod? STATIC? CONSTANT?
+    : accmod? STATIC?
     ;
 
 type
@@ -207,7 +212,7 @@ allowedEntryPointStatement
     | varAssignStatement ';'
     | methodCall ';'
     | condStatement
-    | looperatorStatement
+    | loopStatement
     | objInstStatement ';'
     | '{' allowedEntryPointStatement '}'
     ;
@@ -217,11 +222,16 @@ importStatement
     ;
 
 varDeclStatement
-    : modifier 'var' IDENTIFIER (',' IDENTIFIER)* AS type
+    : modifier VAR IDENTIFIER (',' IDENTIFIER)* AS type
     ;
 
 varInitStatement
-    : modifier 'var' IDENTIFIER '=' (expr|objInstStatement)
+    : modifier varConst IDENTIFIER '=' (expr|objInstStatement)
+    ;
+
+varConst
+    : VAR
+    | CONSTANT
     ;
 
 varAssignStatement
@@ -254,7 +264,7 @@ inMethodStatement
     | objInstStatement ';'
     | methodCall ';'
     | condStatement
-    | looperatorStatement
+    | loopStatement
     | '{' inMethodStatement '}'
     ;
 
@@ -281,42 +291,42 @@ inIfStatement
     | varDeclStatement
     | varInitStatement
     | varAssignStatement
-    | looperatorStatement
+    | loopStatement
     | condStatement
     | '{' inIfStatement* '}'
     ;
 
-looperatorStatement
-    : whileLooperator
-    | forLooperator
-    | foreachLooperator
-    | doWhileLooperator
+loopStatement
+    : whileloop
+    | forloop
+    | foreachloop
+    | doWhileloop
     ;
 
-whileLooperator
-    : WHILE '(' expr ')' '{' inLooperatorStatement* '}'
+whileloop
+    : WHILE '(' expr ')' '{' inloopStatement* '}'
     ;
 
-forLooperator
-    : FOR '(' IDENTIFIER '=' expr ';' expr ';' expr ')' '{' inLooperatorStatement* '}'
+forloop
+    : FOR '(' IDENTIFIER '=' expr ';' expr ';' expr ')' '{' inloopStatement* '}'
     ;
 
-foreachLooperator
-    : FOR '(' IDENTIFIER AS IDENTIFIER IN IDENTIFIER ')' '{' inLooperatorStatement* '}'
+foreachloop
+    : FOR '(' IDENTIFIER AS IDENTIFIER IN IDENTIFIER ')' '{' inloopStatement* '}'
     ;
 
-doWhileLooperator
-    : DO '{' inLooperatorStatement* '}' WHILE '(' expr ')' ';'
+doWhileloop
+    : DO '{' inloopStatement* '}' WHILE '(' expr ')' ';'
     ;
 
-inLooperatorStatement
+inloopStatement
     : methodCall ';'
     | varAssignStatement ';'
     | varDeclStatement ';'
     | varInitStatement ';'
     | condStatement
-    | looperatorStatement
-    | '{' inLooperatorStatement* '}'
+    | loopStatement
+    | '{' inloopStatement* '}'
     ;
 
 

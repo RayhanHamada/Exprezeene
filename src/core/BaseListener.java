@@ -2,11 +2,43 @@ package core;
 
 import core.listener.ExprezeeneListener;
 import core.listener.ExprezeeneParser;
+import core.structures.AccessModifier;
+import core.structures.Type;
+import core.structures.Value;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class BaseListener implements ExprezeeneListener{
+
+    private String scopeName = "GLOBAL";
+
+    //for current Variable
+    private String varIdentifier;
+    private AccessModifier varAccessModifier = AccessModifier.PRIVATE;
+    private Type type = null;
+    private boolean _staticVariable = false, _constVariable = false;
+    private Value varValue = null;
+
+    //for current method
+    private AccessModifier methodAccessModifier = null;
+    private boolean _staticMethod = false;
+    private Type returnType = null;
+
+    public void resetVariable()
+    {
+        this.varAccessModifier = AccessModifier.PRIVATE;
+        this._staticVariable = false;
+        this._constVariable = false;
+        this.varValue = null;
+    }
+
+    public void resetMethod()
+    {
+        this.methodAccessModifier = AccessModifier.PRIVATE;
+        this._staticMethod= false;
+        this.returnType = null;
+    }
 
     public void enterIntegerLiteral(ExprezeeneParser.IntegerLiteralContext ctx) {
 
@@ -40,11 +72,139 @@ public class BaseListener implements ExprezeeneListener{
 
     }
 
-    public void enterExpr(ExprezeeneParser.ExprContext ctx) {
+    public void enterAssignmentExpr(ExprezeeneParser.AssignmentExprContext ctx) {
 
     }
 
-    public void exitExpr(ExprezeeneParser.ExprContext ctx) {
+    public void exitAssignmentExpr(ExprezeeneParser.AssignmentExprContext ctx) {
+
+    }
+
+    public void enterPostFixExpr(ExprezeeneParser.PostFixExprContext ctx) {
+
+    }
+
+    public void exitPostFixExpr(ExprezeeneParser.PostFixExprContext ctx) {
+
+    }
+
+    public void enterOrLogicExpr(ExprezeeneParser.OrLogicExprContext ctx) {
+
+    }
+
+    public void exitOrLogicExpr(ExprezeeneParser.OrLogicExprContext ctx) {
+
+    }
+
+    public void enterOrBitWiseExpr(ExprezeeneParser.OrBitWiseExprContext ctx) {
+
+    }
+
+    public void exitOrBitWiseExpr(ExprezeeneParser.OrBitWiseExprContext ctx) {
+
+    }
+
+    public void enterAndLogicExpr(ExprezeeneParser.AndLogicExprContext ctx) {
+
+    }
+
+    public void exitAndLogicExpr(ExprezeeneParser.AndLogicExprContext ctx) {
+
+    }
+
+    public void enterPreFixExpr(ExprezeeneParser.PreFixExprContext ctx) {
+
+    }
+
+    public void exitPreFixExpr(ExprezeeneParser.PreFixExprContext ctx) {
+
+    }
+
+    public void enterBitShiftExpr(ExprezeeneParser.BitShiftExprContext ctx) {
+
+    }
+
+    public void exitBitShiftExpr(ExprezeeneParser.BitShiftExprContext ctx) {
+
+    }
+
+    public void enterRelationalExpr(ExprezeeneParser.RelationalExprContext ctx) {
+
+    }
+
+    public void exitRelationalExpr(ExprezeeneParser.RelationalExprContext ctx) {
+
+    }
+
+    public void enterMultExpr(ExprezeeneParser.MultExprContext ctx) {
+
+    }
+
+    public void exitMultExpr(ExprezeeneParser.MultExprContext ctx) {
+
+    }
+
+    public void enterMethodCallExpr(ExprezeeneParser.MethodCallExprContext ctx) {
+
+    }
+
+    public void exitMethodCallExpr(ExprezeeneParser.MethodCallExprContext ctx) {
+
+    }
+
+    public void enterObjInstExpr(ExprezeeneParser.ObjInstExprContext ctx) {
+
+    }
+
+    public void exitObjInstExpr(ExprezeeneParser.ObjInstExprContext ctx) {
+
+    }
+
+    public void enterArrayAccessExpr(ExprezeeneParser.ArrayAccessExprContext ctx) {
+
+    }
+
+    public void exitArrayAccessExpr(ExprezeeneParser.ArrayAccessExprContext ctx) {
+
+    }
+
+    public void enterPrimaryExpr(ExprezeeneParser.PrimaryExprContext ctx) {
+
+    }
+
+    public void exitPrimaryExpr(ExprezeeneParser.PrimaryExprContext ctx) {
+
+    }
+
+    public void enterAddExpr(ExprezeeneParser.AddExprContext ctx) {
+
+    }
+
+    public void exitAddExpr(ExprezeeneParser.AddExprContext ctx) {
+
+    }
+
+    public void enterXorBitWiseExpr(ExprezeeneParser.XorBitWiseExprContext ctx) {
+
+    }
+
+    public void exitXorBitWiseExpr(ExprezeeneParser.XorBitWiseExprContext ctx) {
+
+    }
+
+    public void enterMemberAccessExpr(ExprezeeneParser.MemberAccessExprContext ctx) {
+
+    }
+
+    public void exitMemberAccessExpr(ExprezeeneParser.MemberAccessExprContext ctx) {
+
+    }
+
+    public void enterAndBitWiseExpr(ExprezeeneParser.AndBitWiseExprContext ctx) {
+
+    }
+
+    public void exitAndBitWiseExpr(ExprezeeneParser.AndBitWiseExprContext ctx) {
 
     }
 
@@ -61,6 +221,16 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitParameter(ExprezeeneParser.ParameterContext ctx) {
+
+    }
+
+    @Override
+    public void enterParameterVar(ExprezeeneParser.ParameterVarContext ctx) {
+
+    }
+
+    @Override
+    public void exitParameterVar(ExprezeeneParser.ParameterVarContext ctx) {
 
     }
 
@@ -145,11 +315,11 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void enterEntryPoint(ExprezeeneParser.EntryPointContext ctx) {
-        System.out.println("Entering entry Point");
+
     }
 
     public void exitEntryPoint(ExprezeeneParser.EntryPointContext ctx) {
-        System.out.println("Out from entry point");
+
     }
 
     public void enterAllowedEntryPointStatement(ExprezeeneParser.AllowedEntryPointStatementContext ctx) {
@@ -170,9 +340,28 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
 
+
     }
 
     public void exitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
+        System.out.println("ketemu vardecl");
+        try {
+            if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
+            else if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
+            else varAccessModifier = AccessModifier.PROTECTED;
+        } catch (NullPointerException e)
+        {
+            varAccessModifier = AccessModifier.PRIVATE;
+        }
+
+        try {
+            if (ctx.modifier().STATIC().getText().equals("static")) _staticVariable = true;
+        } catch (NullPointerException e)
+        {
+            _staticVariable = false;
+        }
+
+        varIdentifier = ctx.IDENTIFIER().get(0).getText();
 
     }
 
@@ -181,6 +370,14 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx) {
+
+    }
+
+    public void enterVarConst(ExprezeeneParser.VarConstContext ctx) {
+
+    }
+
+    public void exitVarConst(ExprezeeneParser.VarConstContext ctx) {
 
     }
 
@@ -272,51 +469,51 @@ public class BaseListener implements ExprezeeneListener{
 
     }
 
-    public void enterLooperatorStatement(ExprezeeneParser.LooperatorStatementContext ctx) {
+    public void enterLoopStatement(ExprezeeneParser.LoopStatementContext ctx) {
 
     }
 
-    public void exitLooperatorStatement(ExprezeeneParser.LooperatorStatementContext ctx) {
+    public void exitLoopStatement(ExprezeeneParser.LoopStatementContext ctx) {
 
     }
 
-    public void enterWhileLooperator(ExprezeeneParser.WhileLooperatorContext ctx) {
+    public void enterWhileloop(ExprezeeneParser.WhileloopContext ctx) {
 
     }
 
-    public void exitWhileLooperator(ExprezeeneParser.WhileLooperatorContext ctx) {
+    public void exitWhileloop(ExprezeeneParser.WhileloopContext ctx) {
 
     }
 
-    public void enterForLooperator(ExprezeeneParser.ForLooperatorContext ctx) {
+    public void enterForloop(ExprezeeneParser.ForloopContext ctx) {
 
     }
 
-    public void exitForLooperator(ExprezeeneParser.ForLooperatorContext ctx) {
+    public void exitForloop(ExprezeeneParser.ForloopContext ctx) {
 
     }
 
-    public void enterForeachLooperator(ExprezeeneParser.ForeachLooperatorContext ctx) {
+    public void enterForeachloop(ExprezeeneParser.ForeachloopContext ctx) {
 
     }
 
-    public void exitForeachLooperator(ExprezeeneParser.ForeachLooperatorContext ctx) {
+    public void exitForeachloop(ExprezeeneParser.ForeachloopContext ctx) {
 
     }
 
-    public void enterDoWhileLooperator(ExprezeeneParser.DoWhileLooperatorContext ctx) {
+    public void enterDoWhileloop(ExprezeeneParser.DoWhileloopContext ctx) {
 
     }
 
-    public void exitDoWhileLooperator(ExprezeeneParser.DoWhileLooperatorContext ctx) {
+    public void exitDoWhileloop(ExprezeeneParser.DoWhileloopContext ctx) {
 
     }
 
-    public void enterInLooperatorStatement(ExprezeeneParser.InLooperatorStatementContext ctx) {
+    public void enterInloopStatement(ExprezeeneParser.InloopStatementContext ctx) {
 
     }
 
-    public void exitInLooperatorStatement(ExprezeeneParser.InLooperatorStatementContext ctx) {
+    public void exitInloopStatement(ExprezeeneParser.InloopStatementContext ctx) {
 
     }
 

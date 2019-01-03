@@ -8,6 +8,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 public class MainTester {
 
+    final int a = 3;
+
     public static void main(String[] args) throws Exception {
 
         CharStream input = CharStreams.fromFileName("teks.txt");
