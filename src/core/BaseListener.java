@@ -3,8 +3,9 @@ package core;
 import core.listener.ExprezeeneListener;
 import core.listener.ExprezeeneParser;
 import core.structures.AccessModifier;
-import core.structures.Type;
-import core.structures.Value;
+import core.structures.DataHandler;
+import core.structures.ExceptionHandler;
+import core.structures.Variable;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -12,32 +13,31 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 public class BaseListener implements ExprezeeneListener{
 
     private String scopeName = "GLOBAL";
+    private boolean canRun = true;
 
     //for current Variable
     private String varIdentifier;
     private AccessModifier varAccessModifier = AccessModifier.PRIVATE;
-    private Type type = null;
+    private String dataType = null;
     private boolean _staticVariable = false, _constVariable = false;
-    private Value varValue = null;
 
     //for current method
     private AccessModifier methodAccessModifier = null;
     private boolean _staticMethod = false;
-    private Type returnType = null;
+    private String returnDataType = null;
 
     public void resetVariable()
     {
         this.varAccessModifier = AccessModifier.PRIVATE;
         this._staticVariable = false;
         this._constVariable = false;
-        this.varValue = null;
     }
 
     public void resetMethod()
     {
         this.methodAccessModifier = AccessModifier.PRIVATE;
         this._staticMethod= false;
-        this.returnType = null;
+        this.returnDataType = null;
     }
 
     public void enterIntegerLiteral(ExprezeeneParser.IntegerLiteralContext ctx) {
@@ -315,10 +315,20 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void enterEntryPoint(ExprezeeneParser.EntryPointContext ctx) {
+        if (canRun)
+        {
+            //run the non-Excepted code here
 
+        }
+        else
+        {
+            //not running the Excepted code, display error message
+
+        }
     }
 
     public void exitEntryPoint(ExprezeeneParser.EntryPointContext ctx) {
+
 
     }
 
@@ -344,6 +354,7 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
+
         System.out.println("ketemu vardecl");
         try {
             if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
@@ -361,7 +372,18 @@ public class BaseListener implements ExprezeeneListener{
             _staticVariable = false;
         }
 
-        varIdentifier = ctx.IDENTIFIER().get(0).getText();
+        varIdentifier = ctx.IDENTIFIER().toString();
+        // check w
+        for (Variable i : DataHandler.getVariables())
+        {
+            if (i.getIdentifier().equals(varIdentifier) && i.getScope().equals(DataHandler.getLocation()))
+            {
+                canRun = false;
+                ExceptionHandler.reportException("Multiple variable with same identifier detected at");
+            }
+        }
+
+
 
     }
 

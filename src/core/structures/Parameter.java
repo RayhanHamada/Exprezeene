@@ -3,12 +3,20 @@ package core.structures;
 public class Parameter {
 
     private String identifier;
-    private Type type;
+    private String dataType;
+    private String value;
 
-    public Parameter(String identifier, Type type)
+    public Parameter(String identifier, String dataType)
     {
         this.identifier = identifier;
-        this.type = type;
+        this.dataType = dataType;
+    }
+
+    // for default value parameter (valued parameter)
+    public Parameter(String identifier, String dataType, String value)
+    {
+        this(identifier, dataType);
+        this.value = value;
     }
 
     public String getIdentifier()
@@ -16,9 +24,14 @@ public class Parameter {
         return identifier;
     }
 
-    public Type getType()
+    public String getDataType()
     {
-        return type;
+        return dataType;
+    }
+
+    public String getValue()
+    {
+        return value;
     }
 
 }

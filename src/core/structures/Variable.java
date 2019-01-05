@@ -4,18 +4,20 @@ public class Variable {
 
     private String identifier;
     private AccessModifier accessModifier;
-    private Type type;
+    private String dataType;
     private boolean _static, _const;
-    private Value value;
+    private String value;
     private boolean state; //false for declared, true for initialized
     private String scope;
+    private int refCount;
 
-    //for declared
-    public Variable(String identifier, AccessModifier accessModifier, Type type, boolean _static, boolean _const, String scope)
+
+    //for declared variable
+    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String scope)
     {
         this.identifier = identifier;
         this.accessModifier = accessModifier;
-        this.type = type;
+        this.dataType = dataType;
         this._static = _static;
         this._const = _const;
         this.value = null;
@@ -24,11 +26,19 @@ public class Variable {
     }
 
     //for initialized
-    public Variable(String identifier, AccessModifier accessModifier, Type type, boolean _static, boolean _const, String scope, Value value)
+    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String scope, String value)
     {
-        this(identifier, accessModifier, type, _static, _const, scope);
+        this(identifier, accessModifier, dataType, _static, _const, scope);
         this.value = value;
         this.state = true;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getScope() {
+        return scope;
     }
 
     public String getIdentifier() {
@@ -39,8 +49,8 @@ public class Variable {
         return accessModifier;
     }
 
-    public Type getType() {
-        return type;
+    public String getDataType() {
+        return dataType;
     }
 
     public boolean is_static() {

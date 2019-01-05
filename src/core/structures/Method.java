@@ -6,15 +6,16 @@ public class Method {
     private Parameter[] param;
     private AccessModifier accessModifier;
     private String scopeName;
-    private Type returnType;
+    private String returnDataType;
 
-    public Method(String identifier, Parameter[] param, AccessModifier accessModifier, String scopeName, Type returnType)
+
+    public Method(String identifier, Parameter[] param, AccessModifier accessModifier, String scopeName, String returnDataType)
     {
         this.identifier = identifier;
         this.param = param;
         this.accessModifier = accessModifier;
         this.scopeName = scopeName;
-        this.returnType = returnType;
+        this.returnDataType = returnDataType;
     }
 
     public String getIdentifier() {
@@ -33,8 +34,8 @@ public class Method {
         return scopeName;
     }
 
-    public Type getReturnType() {
-        return returnType;
+    public String getReturnDataType() {
+        return returnDataType;
     }
 
 

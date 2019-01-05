@@ -149,7 +149,7 @@ parameter
     ;
 
 parameterVar
-    : IDENTIFIER AS type defaultValueParameter?
+    : IDENTIFIER AS dataType defaultValueParameter?
     ;
 
 defaultValueParameter
@@ -168,7 +168,7 @@ modifier
     : accmod? STATIC?
     ;
 
-type
+dataType
     : primitiveType
     | referenceType
     ;
@@ -218,11 +218,11 @@ allowedEntryPointStatement
     ;
 
 importStatement
-    : IMPORT IDENTIFIER (AS type)? ( ',' IDENTIFIER (AS type)?)*
+    : IMPORT IDENTIFIER (AS dataType)? ( ',' IDENTIFIER (AS dataType)?)*
     ;
 
 varDeclStatement
-    : modifier VAR IDENTIFIER (',' IDENTIFIER)* AS type
+    : modifier VAR IDENTIFIER (',' IDENTIFIER)* AS dataType
     ;
 
 varInitStatement
@@ -243,7 +243,7 @@ objInstStatement
     ;
 
 classDefStatement
-    : modifier CLASS IDENTIFIER  (INHERIT type)? '{' inClassStatement* '}'
+    : modifier CLASS IDENTIFIER  (INHERIT dataType)? '{' inClassStatement* '}'
     ;
 
 inClassStatement
@@ -254,7 +254,7 @@ inClassStatement
     ;
 
 methodDefStatement
-    : modifier FUNCTION IDENTIFIER parameter (AS type)? '{' inMethodStatement* '}'
+    : modifier FUNCTION IDENTIFIER parameter (AS dataType)? '{' inMethodStatement* '}'
     ;
 
 inMethodStatement
