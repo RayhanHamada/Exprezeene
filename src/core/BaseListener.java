@@ -1,44 +1,72 @@
 package core;
 
+import com.sun.xml.internal.fastinfoset.util.StringArray;
 import core.listener.ExprezeeneListener;
 import core.listener.ExprezeeneParser;
-import core.structures.AccessModifier;
-import core.structures.DataHandler;
-import core.structures.ExceptionHandler;
-import core.structures.Variable;
+import core.structures.*;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import javax.xml.crypto.Data;
+import java.util.Arrays;
+
 public class BaseListener implements ExprezeeneListener{
 
-    private String scopeName = "GLOBAL";
-    private boolean canRun = true;
+    private static String location = "GLOBAL";
+    private static boolean canRun = true;
 
     //for current Variable
-    private String varIdentifier;
-    private AccessModifier varAccessModifier = AccessModifier.PRIVATE;
-    private String dataType = null;
-    private boolean _staticVariable = false, _constVariable = false;
+    private static String varIdentifier = null;
+    private static AccessModifier varAccessModifier = AccessModifier.PRIVATE;
+    private static String varDataType = null;
+    private static boolean _staticVariable = false, _constVariable = false;
+    private static String varValue = null;
 
     //for current method
-    private AccessModifier methodAccessModifier = null;
-    private boolean _staticMethod = false;
-    private String returnDataType = null;
+    private static String methodIdentifier = null;
+    private static AccessModifier methodAccessModifier = AccessModifier.PRIVATE;
+    private static String methodReturnType = null;
+    private static boolean _staticMethod = false;
+    private static Parameter[] methodParam = null;
+
+    // state for entering class and function scope
+    private static boolean isEnterMethodDef = false;
+    private static boolean isEnterClassDef = false;
 
     public void resetVariable()
     {
-        this.varAccessModifier = AccessModifier.PRIVATE;
-        this._staticVariable = false;
-        this._constVariable = false;
+        varIdentifier = null;
+        varAccessModifier = AccessModifier.PRIVATE;
+        varDataType = null;
+        _staticVariable = false;
+        _constVariable = false;
+        varValue = null;
+
+
     }
 
     public void resetMethod()
     {
-        this.methodAccessModifier = AccessModifier.PRIVATE;
-        this._staticMethod= false;
-        this.returnDataType = null;
+        methodIdentifier = null;
+        methodAccessModifier = AccessModifier.PRIVATE;
+        methodReturnType = null;
+        _staticMethod= false;
+        methodParam = null;
     }
+
+    public static boolean checkIfFunction(String location)
+    {
+        for (Method method : DataHandler.getMethods())
+        {
+            if (method.getScopeName().equals(location))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void enterIntegerLiteral(ExprezeeneParser.IntegerLiteralContext ctx) {
 
@@ -355,36 +383,65 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
 
-        System.out.println("ketemu vardecl");
-        try {
-            if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
-            else if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
-            else varAccessModifier = AccessModifier.PROTECTED;
-        } catch (NullPointerException e)
-        {
-            varAccessModifier = AccessModifier.PRIVATE;
-        }
-
-        try {
-            if (ctx.modifier().STATIC().getText().equals("static")) _staticVariable = true;
-        } catch (NullPointerException e)
-        {
-            _staticVariable = false;
-        }
-
-        varIdentifier = ctx.IDENTIFIER().toString();
-        // check w
-        for (Variable i : DataHandler.getVariables())
-        {
-            if (i.getIdentifier().equals(varIdentifier) && i.getScope().equals(DataHandler.getLocation()))
-            {
-                canRun = false;
-                ExceptionHandler.reportException("Multiple variable with same identifier detected at");
+        if (canRun) {
+            System.out.println("ketemu vardecl");
+            try {
+                if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
+                else if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
+                else varAccessModifier = AccessModifier.PROTECTED;
+            } catch (NullPointerException e) {
+                varAccessModifier = AccessModifier.PRIVATE;
             }
+
+            try {
+                if (ctx.modifier().STATIC().getText().equals("static")) _staticVariable = true;
+            } catch (NullPointerException e) {
+                _staticVariable = false;
+            }
+
+            varIdentifier = ctx.IDENTIFIER().toString();
+
+            /*
+            checking if there's variable(s) declaration or initialization with same identifier in some scope.
+             */
+            int locationScopeLevel = location.split("\\.").length;
+            for (Variable variable : DataHandler.getVariables())
+            {
+                int variableScopeLevel = location.split("\\.").length;
+                boolean isSameIdentifier = variable.getIdentifier().equals(varIdentifier);
+                boolean isSameScopeDirection = variable.getScope().equals(location.substring(0, variable.getScope().length()));
+
+                if (variableScopeLevel < locationScopeLevel)
+                {
+                    /*
+                    checking if other variable with same identifier is exist in outer scope of an anonymous scope of a function
+                    checking not going checking beyond function scope, so class variable or global variable wouldn't be marked as duplicate.
+                    (applied for global method and in-class method).
+                    below for in-class method.
+                     */
+                    if (isEnterMethodDef && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.FUNCTION_SCOPE))
+                    {
+                        canRun = false;
+                        ExceptionHandler.reportException("A local variable declaration with same identifier as previous declared or initialized variable is detected");
+                        return;
+                    }
+
+                }
+                else if(variableScopeLevel == locationScopeLevel)
+                {
+
+                }
+
+            }
+
+
+
+
+//            DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType));
+        } else
+        {
+            // skip and print error message
         }
-
-
-
     }
 
     public void enterVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx) {
@@ -393,6 +450,15 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx) {
 
+        if (canRun)
+        {
+
+
+        }
+        else
+        {
+            // if an error occurred, then the program would not run and outputting error message
+        }
     }
 
     public void enterVarConst(ExprezeeneParser.VarConstContext ctx) {
@@ -436,11 +502,12 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void enterMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
-
+        isEnterMethodDef = true;
     }
 
     public void exitMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
 
+        isEnterMethodDef= false;
     }
 
     public void enterInMethodStatement(ExprezeeneParser.InMethodStatementContext ctx) {

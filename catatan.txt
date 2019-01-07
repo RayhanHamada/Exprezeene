@@ -1,0 +1,27 @@
+
+
+var a; : GLOBAL.MyClass
+
+var a; : GLOBAL.MyClass.getAngka //
+
+3. var a; : GLOBAL.CLASS:MyClass.FUNCTION:getAngka.0$0
+
+4. var a; : GLOBAL.CLASS:MyClass.FUNCTION:getAngka.0$0.0$1
+
+
+
+
+
+class MyClass
+{
+    func getAngka()
+    {
+        var a;
+        {
+            var a;
+            {
+                var a;
+            }
+        }
+    }
+}

@@ -1,0 +1,3 @@
+identifier variabel, fungsi, atau class(user defined dataType) harus bersifat unik terhadap primitive dataType dan identifier variable, fungsi, ataupun class (user
+defined dataType atau built-in) yang telah terdefinisi atau ter deklarasi sebelumnya.
+

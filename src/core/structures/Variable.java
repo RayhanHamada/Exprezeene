@@ -9,11 +9,12 @@ public class Variable {
     private String value;
     private boolean state; //false for declared, true for initialized
     private String scope;
+    private ScopeType scopeType;
     private int refCount;
 
 
     //for declared variable
-    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String scope)
+    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String scope, ScopeType scopeType)
     {
         this.identifier = identifier;
         this.accessModifier = accessModifier;
@@ -23,12 +24,13 @@ public class Variable {
         this.value = null;
         this.state = false;
         this.scope = scope;
+        this.refCount = 0;
     }
 
     //for initialized
-    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String scope, String value)
+    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String scope, ScopeType scopeType, String value)
     {
-        this(identifier, accessModifier, dataType, _static, _const, scope);
+        this(identifier, accessModifier, dataType, _static, _const, scope, scopeType);
         this.value = value;
         this.state = true;
     }
@@ -63,5 +65,13 @@ public class Variable {
 
     public boolean isState() {
         return state;
+    }
+
+    public ScopeType getScopeType() {
+        return scopeType;
+    }
+
+    public int getRefCount() {
+        return refCount;
     }
 }
