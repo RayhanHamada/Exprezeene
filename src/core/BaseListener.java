@@ -7,6 +7,7 @@ import core.structures.*;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import sun.reflect.generics.scope.Scope;
 
 import javax.xml.crypto.Data;
 import java.util.Arrays;
@@ -383,8 +384,28 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
 
+        System.out.println(ctx.getText());
         if (canRun) {
             System.out.println("ketemu vardecl");
+
+            ScopeType scopeType;
+            if (isEnterMethodDef)
+            {
+                scopeType = ScopeType.FUNCTION_SCOPE;
+                System.out.println("function scope");
+            }
+            else if (isEnterClassDef && !isEnterMethodDef)
+            {
+                scopeType = ScopeType.CLASS_SCOPE;
+                System.out.println("class scope");
+            }
+            else
+            {
+                scopeType = ScopeType.GLOBAL_SCOPE;
+                System.out.println("global scope");
+            }
+
+
             try {
                 if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
                 else if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
@@ -399,45 +420,41 @@ public class BaseListener implements ExprezeeneListener{
                 _staticVariable = false;
             }
 
-            varIdentifier = ctx.IDENTIFIER().toString();
+            varIdentifier = ctx.IDENTIFIER().get(0).getText();
 
             /*
             checking if there's variable(s) declaration or initialization with same identifier in some scope.
              */
-            int locationScopeLevel = location.split("\\.").length;
             for (Variable variable : DataHandler.getVariables())
             {
-                int variableScopeLevel = location.split("\\.").length;
                 boolean isSameIdentifier = variable.getIdentifier().equals(varIdentifier);
                 boolean isSameScopeDirection = variable.getScope().equals(location.substring(0, variable.getScope().length()));
-
-                if (variableScopeLevel < locationScopeLevel)
+                /*
+                checking if other variable with same identifier is exist in outer scope of an anonymous scope of a function
+                checking not going checking beyond function scope, so class variable or global variable wouldn't be marked as duplicate.
+                (applied for global method and in-class method).
+                below for in-class method.
+                */
+                if (isEnterMethodDef && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.FUNCTION_SCOPE))
                 {
-                    /*
-                    checking if other variable with same identifier is exist in outer scope of an anonymous scope of a function
-                    checking not going checking beyond function scope, so class variable or global variable wouldn't be marked as duplicate.
-                    (applied for global method and in-class method).
-                    below for in-class method.
-                     */
-                    if (isEnterMethodDef && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.FUNCTION_SCOPE))
-                    {
-                        canRun = false;
-                        ExceptionHandler.reportException("A local variable declaration with same identifier as previous declared or initialized variable is detected");
-                        return;
-                    }
-
+                    canRun = false;
+                    ExceptionHandler.reportException("A local variable declaration with same identifier as previous declared or initialized variable is detected.");
+                    return;
                 }
-                else if(variableScopeLevel == locationScopeLevel)
+                else if (isEnterClassDef && isSameIdentifier && isSameScopeDirection )
                 {
-
+                    canRun = false;
+                    ExceptionHandler.reportException("A class variable declaration with same identifier as previous declared or initialized variable is detected.");
+                    return;
                 }
 
             }
 
+//            for ()
 
-
-
-//            DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType));
+            varDataType = ctx.type().getText();
+            DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, location, scopeType));
+            System.out.println("this operation success");
         } else
         {
             // skip and print error message
@@ -487,10 +504,11 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
 
+        isEnterClassDef = true;
     }
 
     public void exitClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
-
+        isEnterClassDef = false;
     }
 
     public void enterInClassStatement(ExprezeeneParser.InClassStatementContext ctx) {

@@ -1,4 +1,8 @@
-var a as int;
+class a
+{
+    var a as int;
+    var a as int;
+}
 
 
 go()

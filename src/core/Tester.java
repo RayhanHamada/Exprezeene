@@ -7,33 +7,24 @@ import core.structures.Class;
 public class Tester {
 
     int a =3;
-    int angka = 4;
+    static int angka = 5;
 
-    private static String scopeName = "GLOBAL.Orang.func.$0_$0";
+    private static String scopeName = "GLOBAL.Orang.func";
     private static String iScopeName = "GLOBAL.Orang.func";
+
+    public static int angka()
+    {
+        return 4;
+    }
 
     public static void main(String[] args) {
 
         int scopeLen = scopeName.length();
         int iScopeLen = iScopeName.length();
 
-        System.out.println(scopeName.substring(0, iScopeLen));
+        System.out.println(angka());
 
-        {
-            {
-                int a;
-            }
-        }
 
-        {
-            int a;
-        }
-        int a;
-
-    }
-
-    public void angka()
-    {
 
     }
 
