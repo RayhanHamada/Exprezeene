@@ -8,13 +8,13 @@ public class Variable {
     private boolean _static, _const;
     private String value;
     private boolean state; //false for declared, true for initialized
-    private String scope;
+    private String location;
     private ScopeType scopeType;
     private int refCount;
 
 
     //for declared variable
-    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String scope, ScopeType scopeType)
+    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String location, ScopeType scopeType)
     {
         this.identifier = identifier;
         this.accessModifier = accessModifier;
@@ -23,14 +23,15 @@ public class Variable {
         this._const = _const;
         this.value = null;
         this.state = false;
-        this.scope = scope;
+        this.location = location;
         this.refCount = 0;
+        this.scopeType = scopeType;
     }
 
     //for initialized
-    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String scope, ScopeType scopeType, String value)
+    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, String location, ScopeType scopeType, String value)
     {
-        this(identifier, accessModifier, dataType, _static, _const, scope, scopeType);
+        this(identifier, accessModifier, dataType, _static, _const, location, scopeType);
         this.value = value;
         this.state = true;
     }
@@ -39,8 +40,8 @@ public class Variable {
         return value;
     }
 
-    public String getScope() {
-        return scope;
+    public String getLocation() {
+        return location;
     }
 
     public String getIdentifier() {

@@ -9,6 +9,8 @@ public class Tester {
     int a =3;
     static int angka = 5;
 
+
+
     private static String scopeName = "GLOBAL.Orang.func";
     private static String iScopeName = "GLOBAL.Orang.func";
 
@@ -19,10 +21,9 @@ public class Tester {
 
     public static void main(String[] args) {
 
-        int scopeLen = scopeName.length();
-        int iScopeLen = iScopeName.length();
+        String a = "rayhan";
 
-        System.out.println(angka());
+        System.out.println(a.hashCode() == a.hashCode());
 
 
 

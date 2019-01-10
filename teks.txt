@@ -1,9 +1,13 @@
-class a
+public var a as int;
+var b as char;
+
+func getAngka()
 {
-    var a as int;
-    var a as int;
+var a as int;
+var g as int;
 }
 
+var g as int;
 
 go()
 {

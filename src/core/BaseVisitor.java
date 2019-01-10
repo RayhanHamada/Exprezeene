@@ -121,7 +121,7 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
-    public Object visitType(ExprezeeneParser.TypeContext ctx) {
+    public Object visitDataType(ExprezeeneParser.DataTypeContext ctx) {
         return null;
     }
 
