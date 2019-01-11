@@ -30,7 +30,7 @@ public class BaseListener implements ExprezeeneListener{
     // state for entering class and function scope
     private static boolean inMethodScope = false;
     private static boolean inClassScope = false;
-    private static boolean inGlobalScope = true;
+    private static boolean inClassMethod = false;
 
     /*
     check if the outer scope of the class is a class or not a class
@@ -395,18 +395,22 @@ public class BaseListener implements ExprezeeneListener{
         if (canRun) {
             System.out.println("ketemu vardecl");
 
-            ScopeType scopeType;
-            if (inMethodScope)
+            ScopeType currentVarScopeType;
+            if (!inClassScope && inMethodScope)
             {
-                scopeType = ScopeType.METHOD_SCOPE;
+                currentVarScopeType = ScopeType.METHOD_SCOPE;
             }
             else if (inClassScope && !inMethodScope)
             {
-                scopeType = ScopeType.CLASS_SCOPE;
+                currentVarScopeType = ScopeType.CLASS_SCOPE;
+            }
+            else if (inClassScope && inClassScope)
+            {
+                currentVarScopeType = ScopeType.CLASS_METHOD_SCOPE;
             }
             else
             {
-                scopeType = ScopeType.GLOBAL_SCOPE;
+                currentVarScopeType = ScopeType.GLOBAL_SCOPE;
             }
 
 
@@ -437,31 +441,41 @@ public class BaseListener implements ExprezeeneListener{
                 checking if other variable with same identifier is exist in outer scope of an anonymous scope of a function
                 checking not going checking beyond function scope, so class variable or global variable wouldn't be marked as duplicate.
                 (applied for global method and in-class method).
-                below for in-class/global scope method.
+                below for global scope
                 */
 
-                if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.METHOD_SCOPE))
+                if (!inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("A local variable declaration with same identifier as previous declared or initialized variable is detected.");
+                    ExceptionHandler.reportException("2 or more identical variable exist in global scope.");
                     return;
                 }
                 /*
-                for in-class-scope variable.
+                for global method scope
                  */
-                else if (inClassScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.CLASS_SCOPE))
+                else if (!inClassScope && inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.METHOD_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("A class variable declaration with same identifier as previous declared or initialized variable is detected.");
+                    ExceptionHandler.reportException("2 identical variable exist in global method scope.");
                     return;
                 }
                 /*
-                for global scope variable
+                for in-class variable
                  */
-                else if (!inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.GLOBAL_SCOPE))
+                else if (inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.CLASS_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("A global variable declaration with same identifier as previous declared or initialized variable is detected.");
+                    ExceptionHandler.reportException("2 identical variable exist in class scope");
+                    return;
+                }
+                /*
+                for in-class function variable
+                 */
+                else if (inClassScope && inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.CLASS_METHOD_SCOPE))
+                {
+                    canRun = false;
+                    ExceptionHandler.reportException("2 identical variable exist in class method scope");
+                    return;
                 }
 
             }
@@ -499,7 +513,7 @@ public class BaseListener implements ExprezeeneListener{
                 return;
             }
 
-            DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, location, scopeType));
+            DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, location, currentVarScopeType));
             resetVariable();
 
         } else
@@ -516,24 +530,24 @@ public class BaseListener implements ExprezeeneListener{
 
         if (canRun)
         {
-            System.out.println("ketemu var init");
-
-            ScopeType scopeType;
-            if (inMethodScope)
+            ScopeType currentVarScopeType;
+            if (!inClassScope && inMethodScope)
             {
-                scopeType = ScopeType.METHOD_SCOPE;
+                currentVarScopeType = ScopeType.METHOD_SCOPE;
             }
             else if (inClassScope && !inMethodScope)
             {
-                scopeType = ScopeType.CLASS_SCOPE;
+                currentVarScopeType = ScopeType.CLASS_SCOPE;
+            }
+            else if (inClassScope && inClassScope)
+            {
+                currentVarScopeType = ScopeType.CLASS_METHOD_SCOPE;
             }
             else
             {
-                scopeType = ScopeType.GLOBAL_SCOPE;
+                currentVarScopeType = ScopeType.GLOBAL_SCOPE;
             }
 
-            if (ctx.varConst().getText().equals("var")) _constVariable = false;
-            else _constVariable = true;
 
             try {
                 if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
@@ -550,8 +564,9 @@ public class BaseListener implements ExprezeeneListener{
             }
 
             varIdentifier = ctx.IDENTIFIER().getText();
+
             /*
-            checking if there's variable(s) initialization with same identifier in some scope.
+            checking if there's variable(s) declaration or initialization with same identifier in some scope.
              */
             for (Variable variable : DataHandler.getVariables())
             {
@@ -561,38 +576,44 @@ public class BaseListener implements ExprezeeneListener{
                 checking if other variable with same identifier is exist in outer scope of an anonymous scope of a function
                 checking not going checking beyond function scope, so class variable or global variable wouldn't be marked as duplicate.
                 (applied for global method and in-class method).
-                below for in-class/global scope method.
+                below for global scope
                 */
-                if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.METHOD_SCOPE))
+
+                if (!inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("A local variable initialization with same identifier as previous declared or initialized variable is detected.");
+                    ExceptionHandler.reportException("2 or more identical variable exist in global scope.");
                     return;
                 }
                 /*
-                for in-class-scope variable.
+                for global method scope
                  */
-                else if (inClassScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.CLASS_SCOPE))
+                else if (!inClassScope && inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.METHOD_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("A class variable initialization with same identifier as previous declared or initialized variable is detected.");
+                    ExceptionHandler.reportException("2 identical variable exist in global method scope.");
                     return;
                 }
                 /*
-                for global scope variable
+                for in-class variable
                  */
-                else if (!inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.GLOBAL_SCOPE))
+                else if (inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.CLASS_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("A global variable initialization with same identifier as previous declared or initialized variable is detected.");
+                    ExceptionHandler.reportException("2 identical variable exist in class scope");
+                    return;
+                }
+                /*
+                for in-class function variable
+                 */
+                else if (inClassScope && inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.CLASS_METHOD_SCOPE))
+                {
+                    canRun = false;
+                    ExceptionHandler.reportException("2 identical variable exist in class method scope");
+                    return;
                 }
 
             }
-
-            String expr = ctx.expr().getText();
-
-
-
         }
         else
         {
@@ -626,7 +647,6 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
 
-        inGlobalScope = false;
         inClassScope = true;
     }
 
@@ -636,7 +656,6 @@ public class BaseListener implements ExprezeeneListener{
             if (!isStillClassScope())
             {
                 inClassScope = false;
-                inGlobalScope = true;
             }
         }
         else
@@ -655,14 +674,12 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
 
-        inGlobalScope = false;
         inMethodScope = true;
     }
 
     public void exitMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
 
         inMethodScope = false;
-        if (!inClassScope) inGlobalScope = true;
     }
 
     public void enterInMethodStatement(ExprezeeneParser.InMethodStatementContext ctx) {

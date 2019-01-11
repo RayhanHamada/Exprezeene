@@ -4,89 +4,11 @@
     <list default="true" id="da66eab6-7753-401c-8b32-9b06fa9e94ec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/BaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/BaseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/BaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/BaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneLexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneLexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AccmodContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AccmodContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AddExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AddExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AllowedEntryPointStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AllowedEntryPointStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AndBitWiseExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AndBitWiseExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AndLogicExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AndLogicExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ArgumentsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ArgumentsContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ArrayAccessExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ArrayAccessExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AssignmentExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AssignmentExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$BitShiftExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$BitShiftExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ClassDefStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ClassDefStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$CondStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$CondStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DefaultValueParameterContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DefaultValueParameterContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DoWhileloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DoWhileloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseIfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseIfStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$EntryPointContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$EntryPointContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$FloatLiteralContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$FloatLiteralContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForeachloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForeachloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$GlobalScopeStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$GlobalScopeStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IfStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ImportStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ImportStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InClassStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InClassStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InIfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InIfStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InMethodStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InMethodStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InloopStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InloopStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IntegerLiteralContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IntegerLiteralContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LiteralContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LiteralContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LoopStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LoopStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MemberAccessExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MemberAccessExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodCallContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodCallContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodCallExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodCallExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodDefStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodDefStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ModifierContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ModifierContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MultExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MultExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$OrBitWiseExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$OrBitWiseExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$OrLogicExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$OrLogicExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ParameterContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ParameterContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ParameterVarContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ParameterVarContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PostFixExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PostFixExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PreFixExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PreFixExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimaryContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimaryContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimaryExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimaryExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimitiveTypeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimitiveTypeContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ProgramContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ProgramContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ReferenceTypeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ReferenceTypeContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$RelationalExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$RelationalExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$TypeContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$UserDefinedTypeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$UserDefinedTypeContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarAssignStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarAssignStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarConstContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarConstContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarDeclStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarDeclStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarInitStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarInitStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$WhileloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$WhileloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$XorBitWiseExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$XorBitWiseExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/structures/Class.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/structures/Class.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/structures/Method.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/structures/Method.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/MainTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/MainTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/Tester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/Tester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/structures/Variable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/structures/Variable.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/BaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/BaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/BaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/BaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/MainTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/MainTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Tester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/Exprezeene.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/structures/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/Class.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/structures/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/Method.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/structures/ScopeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/ScopeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/structures/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/Variable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/teks.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -101,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/BaseListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="591" column="47" selection-start-line="591" selection-start-column="47" selection-end-line="591" selection-end-column="47" />
+            <state relative-caret-position="17">
+              <caret line="522" column="5" lean-forward="true" selection-start-line="522" selection-start-column="5" selection-end-line="522" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -113,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/structures/ScopeType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+            <state relative-caret-position="119">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -122,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grammar/Exprezeene.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="223" column="6" selection-start-line="223" selection-end-line="223" selection-end-column="6" />
+            <state relative-caret-position="403">
+              <caret line="135" column="65" selection-start-line="135" selection-start-column="61" selection-end-line="135" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -131,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/teks.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+            <state relative-caret-position="204">
+              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -152,11 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/MainTester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -175,7 +94,6 @@
     <findStrings>
       <find>program</find>
       <find>entryPoint</find>
-      <find>expr</find>
       <find>varInitStatement</find>
       <find>class VarInit</find>
       <find>looperator</find>
@@ -195,10 +113,14 @@
       <find>isEnter</find>
       <find>enterMethodDe</find>
       <find>enterClass</find>
-      <find>exitVar</find>
       <find>isStill</find>
       <find>varDec</find>
       <find>exitVarInit</find>
+      <find>GLOBAL_SCOPE</find>
+      <find>inGlobalScope</find>
+      <find>enterMEthod</find>
+      <find>expr</find>
+      <find>exitVar</find>
     </findStrings>
     <replaceStrings>
       <replace>loop</replace>
@@ -255,13 +177,13 @@
         <option value="$PROJECT_DIR$/src/core/BaseVisitor.java" />
         <option value="$PROJECT_DIR$/grammar/Exprezeene.g4" />
         <option value="$PROJECT_DIR$/src/core/MainTester.java" />
-        <option value="$PROJECT_DIR$/src/core/structures/ScopeType.java" />
         <option value="$PROJECT_DIR$/src/core/structures/Variable.java" />
         <option value="$PROJECT_DIR$/catatan.txt" />
         <option value="$PROJECT_DIR$/src/core/structures/Class.java" />
-        <option value="$PROJECT_DIR$/teks.txt" />
         <option value="$PROJECT_DIR$/src/core/structures/Method.java" />
         <option value="$PROJECT_DIR$/src/core/Tester.java" />
+        <option value="$PROJECT_DIR$/src/core/structures/ScopeType.java" />
+        <option value="$PROJECT_DIR$/teks.txt" />
         <option value="$PROJECT_DIR$/src/core/BaseListener.java" />
       </list>
     </option>
@@ -286,6 +208,49 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
+              <item name="grammar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Exprezeene" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Exprezeene" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Exprezeene" type="616d4139:PackageViewModuleNode" />
+              <item name="core" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -320,49 +285,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Exprezeene" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Exprezeene" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Exprezeene" type="616d4139:PackageViewModuleNode" />
-              <item name="core" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
-              <item name="grammar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -371,7 +293,7 @@
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/gen-visitor" value="true" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/output-dir" value="C:\Users\RayhanHamada\IdeaProjects\Exprezeene\src" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/package" value="core.listener" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547133924185" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547222236898" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last.edited.regexp" value="GLOBAL.wow.IniClass" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
@@ -392,7 +314,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Tester">
+  <component name="RunManager" selected="Application.MainTester">
     <configuration name="MainTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="core.MainTester" />
       <module name="Exprezeene" />
@@ -421,8 +343,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Tester" />
         <item itemvalue="Application.MainTester" />
+        <item itemvalue="Application.Tester" />
       </list>
     </recent_temporary>
   </component>
@@ -472,14 +394,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547077444976</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="working on varInitStatement">
+      <created>1547134388183</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1547134388183</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1295302" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1328859" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -545,7 +474,8 @@
     <MESSAGE value="still working on structure" />
     <MESSAGE value="start working on BaseListener" />
     <MESSAGE value="working on exitVarDecl context" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on exitVarDecl context" />
+    <MESSAGE value="working on varInitStatement" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on varInitStatement" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.java">
@@ -653,34 +583,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/structures/ScopeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/MainTester.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catatan.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/teks.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -723,10 +629,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/structures/ScopeType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/grammar/Exprezeene.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="223" column="6" selection-start-line="223" selection-end-line="223" selection-end-column="6" />
+        <state relative-caret-position="403">
+          <caret line="135" column="65" selection-start-line="135" selection-start-column="61" selection-end-line="135" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teks.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/MainTester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -742,8 +669,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/BaseListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="591" column="47" selection-start-line="591" selection-start-column="47" selection-end-line="591" selection-end-column="47" />
+        <state relative-caret-position="17">
+          <caret line="522" column="5" lean-forward="true" selection-start-line="522" selection-start-column="5" selection-end-line="522" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -1,13 +1,19 @@
-public var a as int;
-var b as char;
-
-func getAngka()
+class Orang
 {
-var a as int;
-var g as int;
+    var g as int;
+
+
+    func getAngka()
+    {
+        var g as int;
+        var a as int;
+    }
+
+    var g as int;
+    var a as int;
 }
 
-var g as int;
+
 
 go()
 {
