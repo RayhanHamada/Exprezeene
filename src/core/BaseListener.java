@@ -7,6 +7,7 @@ import core.structures.Class;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import sun.reflect.generics.scope.Scope;
 
 public class BaseListener implements ExprezeeneListener{
 
@@ -413,14 +414,26 @@ public class BaseListener implements ExprezeeneListener{
                 currentVarScopeType = ScopeType.GLOBAL_SCOPE;
             }
 
+            /*
+            local variable dont have any modifier, so if there's a variable with modifier, then it will throw an error
+             */
 
-            try {
-                if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
-                else if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
-                else varAccessModifier = AccessModifier.PROTECTED;
-            } catch (NullPointerException e) {
-                varAccessModifier = AccessModifier.PRIVATE;
+
+            if (currentVarScopeType.equals(ScopeType.METHOD_SCOPE) | currentVarScopeType.equals(ScopeType.CLASS_METHOD_SCOPE))
+            {
+                try
+                {
+                    if (!ctx.modifier().getText().equals(""))
+                    {
+                        System.out.println("a local variable can't have any modifier.");
+                        return;
+                    }
+                } catch (Exception e)
+                {
+
+                }
             }
+            else if (currentVarScopeType.equals(ScopeType.))
 
             try {
                 if (ctx.modifier().STATIC().getText().equals("static")) _staticVariable = true;
@@ -612,8 +625,9 @@ public class BaseListener implements ExprezeeneListener{
                     ExceptionHandler.reportException("2 identical variable exist in class method scope");
                     return;
                 }
-
             }
+
+
         }
         else
         {

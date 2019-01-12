@@ -1,16 +1,8 @@
-class Orang
+
+
+func wow()
 {
-    var g as int;
-
-
-    func getAngka()
-    {
-        var g as int;
-        var a as int;
-    }
-
-    var g as int;
-    var a as int;
+ public var a as int;
 }
 
 
