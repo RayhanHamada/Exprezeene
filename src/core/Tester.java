@@ -23,7 +23,7 @@ public class Tester {
 
         String a = "rayhan";
 
-        System.out.println(a.hashCode() == a.hashCode());
+        System.out.println();
 
 
 

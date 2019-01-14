@@ -2,10 +2,8 @@
 
 func wow()
 {
- public var a as int;
+    public var a as int;
 }
-
-
 
 go()
 {
