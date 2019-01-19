@@ -1,6 +1,6 @@
 grammar Exprezeene;
 
-TO_SKIP     : ([\r\t\n] | ' ') -> skip
+TO_SKIP     : ([\r\t\n] | ' ') -> channel(HIDDEN)
             ;
 
 //keywords
@@ -226,7 +226,7 @@ varDeclStatement
     ;
 
 varInitStatement
-    : modifier varConst IDENTIFIER '=' (expr|objInstStatement)
+    : modifier varConst IDENTIFIER AS dataType '=' (expr|objInstStatement)
     ;
 
 varConst
@@ -239,7 +239,7 @@ varAssignStatement
     ;
 
 objInstStatement
-    : NEW IDENTIFIER parameter
+    : NEW IDENTIFIER arguments
     ;
 
 classDefStatement

@@ -1,9 +1,7 @@
 
 
-func wow()
-{
-    public var a as int;
-}
+var a as int = 1 + 1;
+
 
 go()
 {

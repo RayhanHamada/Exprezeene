@@ -29,4 +29,4 @@ class MyClass
 int a = 3;
 int a;
 
-define syntax for __VAR_INIT__ as 'deklarasikan' __IDENTIFIER__ 'dengan' 'tipe' __DATATYPE__ '=' __VALUE__
+define syntax for __VAR_DECL__ as 'deklarasikan' __IDENTIFIER__ 'dengan' 'tipe' __DATATYPE__ '=' __VALUE__

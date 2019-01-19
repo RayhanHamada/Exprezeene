@@ -32,6 +32,11 @@ public class BaseListener implements ExprezeeneListener{
     private static boolean inClassScope = false;
     private static boolean inClassMethod = false;
 
+    //is entering main method
+    private static boolean isEnteringMainMethod = false;
+    private static boolean isInVariable = false;
+
+
     /*
     check if the outer scope of the class is a class or not a class
     */
@@ -261,7 +266,14 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitParameter(ExprezeeneParser.ParameterContext ctx) {
+        if (canRun)
+        {
 
+        }
+        else
+        {
+
+        }
     }
 
     public void enterParameterVar(ExprezeeneParser.ParameterVarContext ctx) {
@@ -286,6 +298,20 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitArguments(ExprezeeneParser.ArgumentsContext ctx) {
 
+        if (canRun)
+        {
+            if (!isEnteringMainMethod)
+            {
+                if (isInVariable)
+                {
+//                    System.out.println()
+                }
+            }
+        }
+        else
+        {
+
+        }
     }
 
     public void enterAccmod(ExprezeeneParser.AccmodContext ctx) {
@@ -503,7 +529,6 @@ public class BaseListener implements ExprezeeneListener{
                 (applied for global method and in-class method).
                 below for global scope
                 */
-
                 if (!inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                 {
                     canRun = false;
@@ -537,7 +562,6 @@ public class BaseListener implements ExprezeeneListener{
                     ExceptionHandler.reportException("[Exception occurred] : 2 identical variable exist in class method scope");
                     return;
                 }
-
             }
 
             /*
@@ -591,41 +615,114 @@ public class BaseListener implements ExprezeeneListener{
         if (canRun)
         {
             System.out.println("ketemu inisiasi variable");
+
+            /*
+            check for scope type
+             */
             ScopeType currentVarScopeType;
-            if (!inClassScope && inMethodScope)
-            {
-                currentVarScopeType = ScopeType.GLOBAL_METHOD_SCOPE;
-            }
-            else if (inClassScope && !inMethodScope)
-            {
-                currentVarScopeType = ScopeType.CLASS_SCOPE;
-            }
-            else if (inClassScope && inMethodScope)
-            {
-                currentVarScopeType = ScopeType.CLASS_METHOD_SCOPE;
-            }
-            else
-            {
-                currentVarScopeType = ScopeType.GLOBAL_SCOPE;
-            }
+            if (!inClassScope && inMethodScope) currentVarScopeType = ScopeType.GLOBAL_METHOD_SCOPE;
+            else if (inClassScope && !inMethodScope) currentVarScopeType = ScopeType.CLASS_SCOPE;
+            else if (inClassScope && inMethodScope) currentVarScopeType = ScopeType.CLASS_METHOD_SCOPE;
+            else currentVarScopeType = ScopeType.GLOBAL_SCOPE;
 
-
-            try {
-                if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
-                else if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
-                else varAccessModifier = AccessModifier.PROTECTED;
-            } catch (NullPointerException e) {
-                varAccessModifier = AccessModifier.PRIVATE;
+            /*
+            check if a constant or variable
+             */
+            if (ctx.varConst().equals("var"))
+            {
+                _constVariable = false;
             }
+            else if (ctx.varConst().getText().equals("const"))
+            {
+                _constVariable = true;
+            }
+            /*
+            check whether a global scope variable is have access modifier, the default is public
+            note:
+                public : this variable is accessible by an *.xpre file that import the *.xpre file where this variable is currently on.
+                private : this variable is not accessible by an *.xpre file that import the *.xpre file where this variable is currently on.
+             */
+            if (currentVarScopeType.equals(ScopeType.GLOBAL_SCOPE))
+            {
+                try
+                {
+                    if (ctx.modifier().accmod().getText().equals("private"))
+                    {
+                        varAccessModifier = AccessModifier.PRIVATE;
+                    }
+                    else if (ctx.modifier().accmod().getText().equals("public"))
+                    {
+                        varAccessModifier = AccessModifier.PUBLIC;
+                    }
+                    else if (ctx.modifier().accmod().getText().equals("protected"))
+                    {
+                        canRun = false;
+                        ExceptionHandler.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
+                        return;
+                    }
+                } catch (Exception e)
+                {
+                    varAccessModifier = AccessModifier.PUBLIC;
+                }
+            }
+            /*
+            check whether a local variable inside global method is have any modifier
+            note : a local variable can't have any modifier (neither static modifier nor access modifier)
+             */
+            else if (currentVarScopeType.equals(ScopeType.GLOBAL_METHOD_SCOPE))
+            {
+                try
+                {
+                    if (!ctx.modifier().getText().equals(null))
+                    {
+                        canRun = false;
+                        ExceptionHandler.reportException("{Exception occurred] : a local variable can't have any modifier.");
+                        return;
+                    }
+                } catch (Exception e)
+                {
+                    varAccessModifier = AccessModifier.LOCAL;
+                }
+            }
+            /*
+            check whether a class variable is have any modifier
+            class variable can have both static modifier, and access modifier.
+             */
+            else if (currentVarScopeType.equals(ScopeType.CLASS_SCOPE))
+            {
+                try
+                {
+                    if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
+                    else if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
+                    else if (ctx.modifier().accmod().getText().equals("protected")) varAccessModifier = AccessModifier.PROTECTED;
+                } catch (Exception e)
+                {
+                    varAccessModifier = AccessModifier.PRIVATE;
+                }
 
-            try {
-                if (ctx.modifier().STATIC().getText().equals("static")) _staticVariable = true;
-            } catch (NullPointerException e) {
-                _staticVariable = false;
+                try
+                {
+                    _staticVariable = !ctx.modifier().STATIC().getText().isEmpty();
+                } catch (Exception e)
+                {
+                    _staticVariable = false;
+                }
+            }
+            /*
+            check whether a method variable inside class have any modifier.
+            note : local variable can't have any modifier
+             */
+            else if (currentVarScopeType.equals(ScopeType.CLASS_METHOD_SCOPE))
+            {
+                if (!ctx.modifier().getText().equals(""))
+                {
+                    canRun = false;
+                    ExceptionHandler.reportException("[Exception Occurred] : local variable can't have any modifier.");
+                    return;
+                }
             }
 
             varIdentifier = ctx.IDENTIFIER().getText();
-
             /*
             checking if there's variable(s) declaration or initialization with same identifier in some scope.
              */
@@ -639,11 +736,10 @@ public class BaseListener implements ExprezeeneListener{
                 (applied for global method and in-class method).
                 below for global scope
                 */
-
                 if (!inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("2 or more identical variable exist in global scope.");
+                    ExceptionHandler.reportException("[Exception occurred] : 2 or more identical variable exist in global scope.");
                     return;
                 }
                 /*
@@ -652,7 +748,7 @@ public class BaseListener implements ExprezeeneListener{
                 else if (!inClassScope && inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.GLOBAL_METHOD_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("2 identical variable exist in global method scope.");
+                    ExceptionHandler.reportException("[Exception occurred] : 2 identical variable exist in global method scope.");
                     return;
                 }
                 /*
@@ -661,7 +757,7 @@ public class BaseListener implements ExprezeeneListener{
                 else if (inClassScope && !inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.CLASS_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("2 identical variable exist in class scope");
+                    ExceptionHandler.reportException("[Exception occurred] : 2 identical variable exist in class scope");
                     return;
                 }
                 /*
@@ -670,10 +766,60 @@ public class BaseListener implements ExprezeeneListener{
                 else if (inClassScope && inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.CLASS_METHOD_SCOPE))
                 {
                     canRun = false;
-                    ExceptionHandler.reportException("2 identical variable exist in class method scope");
+                    ExceptionHandler.reportException("[Exception occurred] : 2 identical variable exist in class method scope");
                     return;
                 }
             }
+
+            /*
+            check if varDataType is not in primitive data type or reference data type.
+             */
+            varDataType = ctx.dataType().getText();
+            boolean ketemu = false;
+
+            for (String type : new String[] {"int", "char", "float", "bool", "double", "long"})
+            {
+                if (type.equals(varDataType))
+                {
+                    ketemu = true;
+                    break;
+                }
+            }
+
+            if (!ketemu)
+            {
+                for (Class c : DataHandler.getClasses())
+                {
+                    if (c.getIdentifier().equals(varDataType))
+                    {
+                        ketemu = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!ketemu)
+            {
+                ExceptionHandler.reportException("the type of this variable is not defined");
+                return;
+            }
+
+
+
+            /*
+            check if the variable exist in entry point (go function), if so, then the variable would be evaluated.
+            if not then :
+
+            if the value is in form of non-literal (or an expression that needs to be evaluated) then it would be kept as string of expression
+            (to be evaluated later if needed).
+
+            if the value is in form of literal then value would be instantly stored.
+
+             */
+
+
+
+            resetVariable();
 
 
         }
@@ -704,7 +850,16 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitObjInstStatement(ExprezeeneParser.ObjInstStatementContext ctx) {
-
+        if (canRun)
+        {
+            if (!isEnteringMainMethod)
+            {
+                if (isInVariable)
+                {
+                    varValue += "new " + ctx.IDENTIFIER().getText();
+                }
+            }
+        }
     }
 
     public void enterClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
