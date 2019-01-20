@@ -157,6 +157,14 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
+    public Object visitScriptName(ExprezeeneParser.ScriptNameContext ctx) {
+        return null;
+    }
+
+    public Object visitScriptNameAlias(ExprezeeneParser.ScriptNameAliasContext ctx) {
+        return null;
+    }
+
     public Object visitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
         return null;
     }
@@ -170,6 +178,10 @@ public class BaseVisitor implements ExprezeeneVisitor {
     }
 
     public Object visitVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx) {
+        return null;
+    }
+
+    public Object visitVarIdentifier(ExprezeeneParser.VarIdentifierContext ctx) {
         return null;
     }
 

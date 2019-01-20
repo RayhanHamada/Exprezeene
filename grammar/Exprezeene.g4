@@ -1,7 +1,8 @@
 grammar Exprezeene;
 
-TO_SKIP     : ([\r\t\n] | ' ') -> channel(HIDDEN)
+TO_SKIP     : ([\r\t\n] | ' ') -> skip
             ;
+
 
 //keywords
 DEFINE      : 'define';
@@ -183,7 +184,7 @@ primitiveType
     ;
 
 referenceType
-    : userDefinedType
+    : userDefinedType ('.' userDefinedType)*
     ;
 
 userDefinedType
@@ -218,24 +219,36 @@ allowedEntryPointStatement
     ;
 
 importStatement
-    : IMPORT IDENTIFIER (AS dataType)? ( ',' IDENTIFIER (AS dataType)?)*
+    : IMPORT scriptName (AS scriptNameAlias)? ( ',' scriptName (AS scriptNameAlias)?)*
+    ;
+
+scriptName
+    : IDENTIFIER
+    ;
+
+scriptNameAlias
+    : IDENTIFIER
     ;
 
 varDeclStatement
-    : modifier VAR IDENTIFIER (',' IDENTIFIER)* AS dataType
+    : modifier VAR varIdentifier (',' varIdentifier)* AS dataType
     ;
 
 varInitStatement
-    : modifier varConst IDENTIFIER AS dataType '=' (expr|objInstStatement)
+    : modifier varConst varIdentifier AS dataType '=' (expr|objInstStatement)
+    ;
+
+varAssignStatement
+    : <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
+    ;
+
+varIdentifier
+    : IDENTIFIER
     ;
 
 varConst
     : VAR
     | CONSTANT
-    ;
-
-varAssignStatement
-    : <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
     ;
 
 objInstStatement

@@ -1,7 +1,6 @@
 
 
-var a as int = 1 + 1;
-
+var me, you as float;
 
 go()
 {
