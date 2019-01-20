@@ -10,7 +10,10 @@ public class DataHandler {
     private static ArrayList<Class> classes = new ArrayList<>();
     public static final String[] PRIMITIVE_TYPES = {"int", "float", "char", "bool"};
 
-    public static final String[] RESERVED_WORD = {"class", "var", "func", "for", "if", "else", ""};
+    public static final String[] RESERVED_WORD = {"class", "var", "func", "for", "if", "else", "const",
+                                                  "define", "alias", "import", "as", "this", "new",
+                                                  "inherit", "public", "private", "protected", "static",
+                                                  "while", "for", "do", "in", "go"};
 
 
     private static Stack<Integer> anonScopeCounts = new Stack<>();

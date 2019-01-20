@@ -192,7 +192,7 @@ userDefinedType
     ;
 
 program
-    : globalScopeStatement* entryPoint
+    : globalScopeStatement* entryPoint globalScopeStatement* EOF
     ;
 
 globalScopeStatement

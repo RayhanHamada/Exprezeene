@@ -1,32 +1,34 @@
+demo bahasa program Exprezeene untuk fitur definisi sintaks dan keyword
 
+define rule aturan_gue
+    define keyword for __CLASS__ as "kelas"
+    define syntax for __CLASS_DEFINITION__ as __KELAS__ __IDENTIFIER__ "{" __ALLOWED_STATEMENT__"}"
+    define syntax for __FUNCTION_DEFINITION__ as "fungsi" __ACCESS_MODIFIER__ "balikin" __DATA_TYPE__ __IDENTIFIER__ "{" __ALLOWED_STATEMENT__ "}"
+end define
 
-var a; : GLOBAL.MyClass
-
-var a; : GLOBAL.MyClass.getAngka //
-
-3. var a; : GLOBAL.CLASS:MyClass.FUNCTION:getAngka.0$0
-
-4. var a; : GLOBAL.CLASS:MyClass.FUNCTION:getAngka.0$0.0$1
-
-
+using syntax aturan_gue
 
 
 
-class MyClass
+kelas Orang
 {
-    func getAngka()
+    fungsi publik balikin integer getAngka()
     {
-        var a;
+
+        kalo (3 > 5)
         {
-            var a;
-            {
-                var a;
-            }
+            //apaan gitu
         }
+        tapi kalo (4 < 5)
+        {
+            // apaan lagi gitu
+        }
+        kalo kagak samsek
+        {
+            // yaudah ini aja deh
+        }
+
+
+        kembaliin 4;
     }
 }
-
-int a = 3;
-int a;
-
-define syntax for __VAR_DECL__ as 'deklarasikan' __IDENTIFIER__ 'dengan' 'tipe' __DATATYPE__ '=' __VALUE__

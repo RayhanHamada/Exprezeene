@@ -4,8 +4,8 @@ import core.listener.ExprezeeneListener;
 import core.listener.ExprezeeneParser;
 import core.structures.*;
 import core.structures.Class;
+
 import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -830,16 +830,9 @@ public class BaseListener implements ExprezeeneListener{
         Interval interval = new Interval(a, b);
         CharStream input = ctx.expr().start.getInputStream();
         varValue = input.getText(interval);
+        System.out.println(ctx.start.getInputStream().getText(new Interval(ctx.start.getStartIndex(), ctx.stop.getStopIndex())));
 
-        if (isEnteringMainMethod) {
 
-            DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, _constVariable, location, currentVarScopeType, new Expression(varValue)));
-            DataHandler.getVariables().get(DataHandler.getVariables().size()-1).evaluate();
-        }
-        else
-        {
-            DataHandler.getVariables().add(new Variable(varIdentifier,varAccessModifier, varDataType, _staticVariable, _constVariable, location, currentVarScopeType, new Expression(varValue)));
-        }
 
         resetVariable();
     }

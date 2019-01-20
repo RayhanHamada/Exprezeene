@@ -1,6 +1,7 @@
 
 
 var me, you as float;
+var our as int = 2;
 
 go()
 {
