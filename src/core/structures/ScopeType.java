@@ -3,7 +3,8 @@ package core.structures;
 public enum ScopeType {
 
     GLOBAL_SCOPE,
+    NAMESPACE_SCOPE,
     CLASS_SCOPE,
-    GLOBAL_METHOD_SCOPE,
-    CLASS_METHOD_SCOPE
+    METHOD_SCOPE,
+
 }

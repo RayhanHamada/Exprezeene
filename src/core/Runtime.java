@@ -33,22 +33,24 @@ public class Runtime {
         return runStage;
     }
 
-    public static void goRunThisProgram() throws Exception
+    public static void goRunThisProgram(String filePath) throws Exception
     {
         /*
-        scanning every imported script(s)
+        scanning for any imported script(s)
          */
         runStage = RunStage.SCANNING_PREPROCESSOR;
-        CharStream input = CharStreams.fromFileName("teks.txt");
+        CharStream input = CharStreams.fromFileName(filePath);
         ExprezeeneLexer lexer = new ExprezeeneLexer(input);
         ExprezeeneParser parser = new ExprezeeneParser(new CommonTokenStream(lexer));
         parser.addParseListener(new BaseListener());
         parser.program();
 
+
+
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String... args) throws Exception {
 
-        Runtime.goRunThisProgram();
+        Runtime.goRunThisProgram(args[0]);
     }
 }

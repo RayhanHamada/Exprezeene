@@ -3,7 +3,7 @@ package core.structures;
 public enum RunStage {
 
     /*
-    for scanning preprocessor such as import statement and syntax or keyword definition
+    for scanning preprocessor such as import statement or syntax definition or keyword definition
      */
     SCANNING_PREPROCESSOR,
 

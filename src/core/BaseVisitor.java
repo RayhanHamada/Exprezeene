@@ -145,13 +145,14 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
-    public Object visitEntryPoint(ExprezeeneParser.EntryPointContext ctx) {
+    public Object visitNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
         return null;
     }
 
-    public Object visitAllowedEntryPointStatement(ExprezeeneParser.AllowedEntryPointStatementContext ctx) {
+    public Object visitNameSpaceStatement(ExprezeeneParser.NameSpaceStatementContext ctx) {
         return null;
     }
+
 
     public Object visitImportStatement(ExprezeeneParser.ImportStatementContext ctx) {
         return null;

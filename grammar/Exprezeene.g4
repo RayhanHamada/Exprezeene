@@ -192,7 +192,7 @@ userDefinedType
     ;
 
 program
-    : globalScopeStatement* entryPoint globalScopeStatement* EOF
+    : globalScopeStatement* EOF
     ;
 
 globalScopeStatement
@@ -203,19 +203,16 @@ globalScopeStatement
     | methodDefStatement
     ;
 
-entryPoint
-    : accmod? 'go' parameter  (AS )? '{' allowedEntryPointStatement* '}'
+nameSpaceDefinition
+    : NAMESPACE '{' nameSpaceStatement* '}'
     ;
 
-allowedEntryPointStatement
+nameSpaceStatement
     : varDeclStatement ';'
     | varInitStatement ';'
-    | varAssignStatement ';'
-    | methodCall ';'
-    | condStatement
-    | loopStatement
-    | objInstStatement ';'
-    | '{' allowedEntryPointStatement '}'
+    | classDefStatement
+    | methodDefStatement
+    | nameSpaceDefinition
     ;
 
 importStatement

@@ -11,8 +11,8 @@ public class Tester {
 
 
 
-    private static String scopeName = "GLOBAL.Orang.func";
-    private static String iScopeName = "GLOBAL.Orang.func";
+    private static String scopeName = "GLOBAL.Orang.Func";
+    private static String iScopeName = "GLOBAL.Orang.Func.get";
 
     public static int angka()
     {
@@ -21,10 +21,7 @@ public class Tester {
 
     public static void main(String[] args) {
 
-        String a = "rayhan";
-
-        System.out.println();
-
+        System.out.println(scopeName.equals(iScopeName.substring(0, scopeName.length())));
 
 
     }

@@ -8,7 +8,9 @@ public class DataHandler {
     private static ArrayList<Variable> variables = new ArrayList<>();
     private static ArrayList<Method> methods = new ArrayList<>();
     private static ArrayList<Class> classes = new ArrayList<>();
-    public static final String[] PRIMITIVE_TYPES = {"int", "float", "char", "bool"};
+    private static ArrayList<NameSpace> nameSpaces = new ArrayList<>();
+
+    public static final String[] PRIMITIVE_TYPES = {"int", "char", "float", "bool", "double", "long"};
 
     public static final String[] RESERVED_WORD = {"class", "var", "func", "for", "if", "else", "const",
                                                   "define", "alias", "import", "as", "this", "new",

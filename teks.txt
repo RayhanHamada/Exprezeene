@@ -1,9 +1,14 @@
 
 
-var me, you as float;
-var our as int = 2;
+var a as int;
 
-go()
+class Orang
 {
+    var a as int;
+}
+
+func e()
+{
+    var a as int;
 
 }
