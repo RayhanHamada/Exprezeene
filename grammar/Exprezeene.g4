@@ -15,6 +15,8 @@ AS          : 'as';
 THIS        : 'this';
 NEW         : 'new';
 INHERIT     : 'inherit';
+FROM        : 'from';
+PREPROCESSOR: 'preprocessor';
 
 PUBLIC      : 'public';
 PRIVATE     : 'private';
@@ -93,6 +95,10 @@ fragment OctDigit
 
 // parser rule
 
+identifier
+    : IDENTIFIER
+    ;
+
 integerLiteral
     : DECIMAL_LITERAL
     | OCTAL_LITERAL
@@ -114,12 +120,12 @@ literal
     ;
 
 methodCall
-    : IDENTIFIER arguments
+    : identifier arguments
     ;
 
 expr
     : primary                                       #primaryExpr
-    | expr operator='.' (IDENTIFIER|methodCall)     #memberAccessExpr
+    | expr operator='.' (identifier|methodCall)     #memberAccessExpr
     | expr '[' expr ']'                             #arrayAccessExpr
     | methodCall                                    #methodCallExpr
     | objInstStatement                              #objInstExpr
@@ -141,7 +147,7 @@ expr
 
 primary
     : literal
-    | IDENTIFIER
+    | identifier
     | '(' expr ')'
     ;
 
@@ -150,7 +156,7 @@ parameter
     ;
 
 parameterVar
-    : IDENTIFIER AS dataType defaultValueParameter?
+    : identifier AS dataType defaultValueParameter?
     ;
 
 defaultValueParameter
@@ -188,16 +194,15 @@ referenceType
     ;
 
 userDefinedType
-    : IDENTIFIER
+    : identifier
     ;
 
 program
-    : globalScopeStatement* EOF
+    : (importStatement ';')* globalScopeStatement* EOF
     ;
 
 globalScopeStatement
-    : importStatement ';'
-    | varDeclStatement ';'
+    : varDeclStatement ';'
     | varInitStatement ';'
     | classDefStatement
     | methodDefStatement
@@ -216,15 +221,15 @@ nameSpaceStatement
     ;
 
 importStatement
-    : IMPORT scriptName (AS scriptNameAlias)? ( ',' scriptName (AS scriptNameAlias)?)*
+    : IMPORT (scriptPath|scriptName) (',' (scriptPath|scriptName))*
+    ;
+
+scriptPath
+    : STRING_LITERAL
     ;
 
 scriptName
-    : IDENTIFIER
-    ;
-
-scriptNameAlias
-    : IDENTIFIER
+    : identifier
     ;
 
 varDeclStatement
@@ -240,7 +245,7 @@ varAssignStatement
     ;
 
 varIdentifier
-    : IDENTIFIER
+    : identifier
     ;
 
 varConst
@@ -249,11 +254,15 @@ varConst
     ;
 
 objInstStatement
-    : NEW IDENTIFIER arguments
+    : NEW identifier arguments
     ;
 
 classDefStatement
-    : modifier CLASS IDENTIFIER  (INHERIT dataType)? '{' inClassStatement* '}'
+    : modifier CLASS classIdentifier  (INHERIT dataType)? '{' inClassStatement* '}'
+    ;
+
+classIdentifier
+    : identifier
     ;
 
 inClassStatement
@@ -264,7 +273,11 @@ inClassStatement
     ;
 
 methodDefStatement
-    : modifier FUNCTION IDENTIFIER parameter (AS dataType)? '{' inMethodStatement* '}'
+    : modifier FUNCTION funcIdentifier parameter (AS dataType)? '{' inMethodStatement* '}'
+    ;
+
+funcIdentifier
+    : identifier
     ;
 
 inMethodStatement
@@ -298,9 +311,9 @@ elseStatement
 
 inIfStatement
     : methodCall ';'
-    | varDeclStatement
-    | varInitStatement
-    | varAssignStatement
+    | varDeclStatement ';'
+    | varInitStatement ';'
+    | varAssignStatement ';'
     | loopStatement
     | condStatement
     | '{' inIfStatement* '}'
@@ -318,11 +331,12 @@ whileloop
     ;
 
 forloop
-    : FOR '(' IDENTIFIER '=' expr ';' expr ';' expr ')' '{' inloopStatement* '}'
+    : FOR '(' varInitStatement ';' expr ';' expr ')' '{' inloopStatement* '}'
     ;
 
+
 foreachloop
-    : FOR '(' IDENTIFIER AS IDENTIFIER IN IDENTIFIER ')' '{' inloopStatement* '}'
+    : FOR '(' identifier AS dataType IN identifier ')' '{' inloopStatement* '}'
     ;
 
 doWhileloop

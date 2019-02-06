@@ -1,3 +1,27 @@
-identifier variabel, fungsi, atau class(user defined dataType) harus bersifat unik terhadap primitive dataType dan identifier variable, fungsi, ataupun class (user
-defined dataType atau built-in) yang telah terdefinisi atau ter deklarasi sebelumnya.
+
+
+
+namespace Orang
+{
+    public var b as int;
+
+    namespace People
+    {
+        public var a as int;
+    }
+}
+
+
+func go()
+{
+    Orang.People.a = 2;
+}
+
+
+
+GLOBAL
+
+nemu namespace, gatau identifier
+
+nemu deklarasi variable
 

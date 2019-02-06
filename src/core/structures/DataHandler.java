@@ -1,5 +1,6 @@
 package core.structures;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -9,6 +10,9 @@ public class DataHandler {
     private static ArrayList<Method> methods = new ArrayList<>();
     private static ArrayList<Class> classes = new ArrayList<>();
     private static ArrayList<NameSpace> nameSpaces = new ArrayList<>();
+
+    private ArrayList<File> importedScript = new ArrayList<>();
+
 
     public static final String[] PRIMITIVE_TYPES = {"int", "char", "float", "bool", "double", "long"};
 
@@ -39,5 +43,11 @@ public class DataHandler {
     {
         return classes;
     }
+
+    public static ArrayList<NameSpace> getNameSpaces()
+    {
+        return nameSpaces;
+    }
+
 
 }

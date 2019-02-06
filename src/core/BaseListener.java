@@ -11,38 +11,56 @@ import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 public class BaseListener implements ExprezeeneListener{
 
-    private static String location = "GLOBAL";
-    private static boolean canRun = true;
+    private String location;
+    private boolean canRun = true;
+
+    public static ArrayList<ScriptEvaluator> importedScript = new ArrayList<>();
 
     //for current Variable
-    private static String varIdentifier = null;
-    private static AccessModifier varAccessModifier = AccessModifier.PRIVATE;
-    private static String varDataType = null;
-    private static boolean _staticVariable = false, _constVariable = false;
-    private static String varValue = null;
+    private String varIdentifier = null;
+    private AccessModifier varAccessModifier = AccessModifier.PRIVATE;
+    private String varDataType = null;
+    private boolean _staticVariable = false, _constVariable = false;
+    private String varValue = null;
 
     //for current method
-    private static String methodIdentifier = null;
-    private static AccessModifier methodAccessModifier = AccessModifier.PRIVATE;
-    private static String methodReturnType = null;
-    private static boolean _staticMethod = false;
-    private static Parameter[] methodParam = null;
+    private String methodIdentifier = null;
+    private AccessModifier methodAccessModifier = AccessModifier.PRIVATE;
+    private String methodReturnType = null;
+    private boolean _staticMethod = false;
 
     // state for entering class and function scope
-    private static boolean inMethodScope = false;
-    private static boolean inClassScope = false;
+    private boolean inMethodScope = false;
+    private boolean inClassScope = false;
 
     //is entering main method
-    private static boolean inNamespace = false;
+    private boolean inNamespace = false;
+    private RunStage runStage;
+    private Stack<Scope> scopeStack;
+    private String tempClassName;
 
+    public BaseListener(RunStage runStage, String location)
+    {
+        this.runStage = runStage;
+        this.location = location;
+        this.scopeStack = new Stack<>();
+    }
+
+    public static void resetImportedScript()
+    {
+        importedScript = null;
+    }
 
     /*
     check if the outer scope of the class is a class or not a class
     */
 
-    public static boolean isStillClassScope()
+    public boolean isStillClassScope()
     {
         String currentScopeName = "";
         for (String loc : location.split("\\."))
@@ -57,34 +75,9 @@ public class BaseListener implements ExprezeeneListener{
             }
         }
 
-        boolean found = false;
-
         for (Class c : DataHandler.getClasses())
         {
-            if (c.getIdentifier().equals(currentScopeName) && c.getLocation().equals(location.substring(0, c.getLocation().length()))) return true;
-        }
-        return false;
-    }
-
-    public static boolean isStillNameSpaceScope()
-    {
-        String currentScopeName = "";
-        for (String loc : location.split("\\."))
-        {
-            if (!loc.matches("[0-9]+\\$[0-9]+"))
-            {
-                currentScopeName = loc;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        boolean found = false;
-        for (Class c : DataHandler.getClasses())
-        {
-            if (c.getIdentifier().equals(currentScopeName) && c.getLocation().equals(location.substring(0, c.getLocation().length()))) return true;
+            if (c.getIdentifier().equals(currentScopeName) && c.getScope().getLocation().equals(location.substring(0, c.getScope().getLocation().length()))) return true;
         }
         return false;
     }
@@ -105,7 +98,15 @@ public class BaseListener implements ExprezeeneListener{
         methodAccessModifier = AccessModifier.PRIVATE;
         methodReturnType = null;
         _staticMethod= false;
-        methodParam = null;
+
+    }
+
+    public void enterIdentifier(ExprezeeneParser.IdentifierContext ctx) {
+
+    }
+
+    public void exitIdentifier(ExprezeeneParser.IdentifierContext ctx) {
+
     }
 
     public void enterIntegerLiteral(ExprezeeneParser.IntegerLiteralContext ctx) {
@@ -381,6 +382,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterProgram(ExprezeeneParser.ProgramContext ctx) {
 
+
     }
 
     public void exitProgram(ExprezeeneParser.ProgramContext ctx) {
@@ -398,6 +400,7 @@ public class BaseListener implements ExprezeeneListener{
     public void enterNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
 
         inNamespace = true;
+
     }
 
     public void exitNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
@@ -418,14 +421,20 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitImportStatement(ExprezeeneParser.ImportStatementContext ctx) {
 
-        if (Runtime.getRunStage().equals(RunStage.SCANNING_PREPROCESSOR))
+        if (canRun)
         {
+            //do something for import statement here
+
 
         }
-        else
-        {
+    }
 
-        }
+    public void enterScriptPath(ExprezeeneParser.ScriptPathContext ctx) {
+
+    }
+
+    public void exitScriptPath(ExprezeeneParser.ScriptPathContext ctx) {
+
     }
 
     public void enterScriptName(ExprezeeneParser.ScriptNameContext ctx) {
@@ -436,31 +445,22 @@ public class BaseListener implements ExprezeeneListener{
 
     }
 
-    public void enterScriptNameAlias(ExprezeeneParser.ScriptNameAliasContext ctx) {
-
-    }
-
-    public void exitScriptNameAlias(ExprezeeneParser.ScriptNameAliasContext ctx) {
-
-    }
-
     public void enterVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
 
     }
 
     public void exitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
 
-        if (canRun)
+        if (canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
             System.out.println("ketemu deklarasi variable");
-            ScopeType currentVarScopeType;
+
             /*
             check whether a local variable inside method is have any modifier
             note : a local variable can't have any modifier (neither static modifier nor access modifier)
             */
             if (inMethodScope)
             {
-                currentVarScopeType = ScopeType.METHOD_SCOPE;
 
                 try
                 {
@@ -481,8 +481,6 @@ public class BaseListener implements ExprezeeneListener{
             */
             else if (inClassScope)
             {
-                currentVarScopeType = ScopeType.CLASS_SCOPE;
-
                 try
                 {
                     if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
@@ -492,7 +490,6 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     varAccessModifier = AccessModifier.PRIVATE;
                 }
-
                 try
                 {
                     _staticVariable = !ctx.modifier().STATIC().getText().isEmpty();
@@ -508,8 +505,6 @@ public class BaseListener implements ExprezeeneListener{
             */
             else if (inNamespace)
             {
-                currentVarScopeType = ScopeType.NAMESPACE_SCOPE;
-
                 try
                 {
                     if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
@@ -541,7 +536,6 @@ public class BaseListener implements ExprezeeneListener{
             */
             else
             {
-                currentVarScopeType = ScopeType.GLOBAL_SCOPE;
 
                 try
                 {
@@ -575,35 +569,35 @@ public class BaseListener implements ExprezeeneListener{
                 for (Variable variable : DataHandler.getVariables())
                 {
                     boolean isSameIdentifier = variable.getIdentifier().equals(varIdentifier);
-                    boolean isSameScopeDirection = variable.getLocation().equals(location.substring(0, variable.getLocation().length()));
+                    boolean isSameScopeDirection = variable.getScope().getLocation().equals(location.substring(0, variable.getScope().getLocation().length()));
 
-                /*
-                special checker for class and namespace variable, because they could have same type of structure inside them.
-                */
-                    boolean isSameLocation = variable.getLocation().equals(location);
+                    /*
+                    special checker for class and namespace variable, because they could have same type of structure inside them.
+                    */
+                    boolean isSameLocation = variable.getScope().getLocation().equals(location);
 
-                /*
-                checking if other variable with same identifier is exist in outer scope of an anonymous scope of a function
-                checking not going checking beyond function scope, so class variable or global variable wouldn't be marked as duplicate.
-                (applied for global method and in-class method).
-                below for global scope
-                */
-                    if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.METHOD_SCOPE))
+                    /*
+                    checking if other variable with same identifier is exist in outer scope of an anonymous scope of a function
+                    checking not going checking beyond function scope, so class variable or global variable wouldn't be marked as duplicate.
+                    (applied for global method and in-class method).
+                    below for global scope
+                    */
+                    if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScope().getScopeType().equals(ScopeType.METHOD_SCOPE))
                     {
                         ExceptionHandler.reportException("[Exception occurred] : 2 or more identical local variable exist in method scope.");
                         return;
                     }
-                    else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScopeType().equals(ScopeType.CLASS_SCOPE))
+                    else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.CLASS_SCOPE))
                     {
                         ExceptionHandler.reportException("[Exception occurred] : 2 or more identical class variable exist in class scope.");
                         return;
                     }
-                    else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
+                    else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
                     {
                         ExceptionHandler.reportException("[Exception occurred] : 2 or more identical namespace variable exist in namespace scope.");
                         return;
                     }
-                    else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScopeType().equals(ScopeType.GLOBAL_SCOPE))
+                    else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScope().getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                     {
                         ExceptionHandler.reportException("[Exception occurred] : 2 or more identical global variable exist in global scope.");
                         return;
@@ -643,12 +637,33 @@ public class BaseListener implements ExprezeeneListener{
                     return;
                 }
 
-                DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, location, currentVarScopeType));
+                DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, location, scopeStack.peek().getScopeType()));
             }
 
             resetVariable();
         }
+        else if (canRun && runStage.equals(RunStage.SCANNING_MAIN_METHOD))
+        {
+            /*
+            check whether a local variable inside method is have any modifier
+            note : a local variable can't have any modifier (neither static modifier nor access modifier)
+            */
+            try
+            {
+                if (!ctx.modifier().getText().equals(""))
+                {
+                    ExceptionHandler.reportException("{Exception occurred] : a local variable can't have any modifier.");
+                    return;
+                }
+            } catch (Exception e)
+            {
+                varAccessModifier = AccessModifier.LOCAL;
+            }
 
+
+
+
+        }
     }
 
     public void enterVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx) {
@@ -664,12 +679,10 @@ public class BaseListener implements ExprezeeneListener{
         /*
         check for scope type
         */
-            ScopeType currentVarScopeType;
+
 
             if (inMethodScope)
             {
-                currentVarScopeType = ScopeType.METHOD_SCOPE;
-
                 try
                 {
                     if (!ctx.modifier().getText().equals(""))
@@ -689,8 +702,6 @@ public class BaseListener implements ExprezeeneListener{
             */
             else if (inClassScope)
             {
-                currentVarScopeType = ScopeType.CLASS_SCOPE;
-
                 try
                 {
                     if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
@@ -716,8 +727,6 @@ public class BaseListener implements ExprezeeneListener{
             */
             else if (inNamespace)
             {
-                currentVarScopeType = ScopeType.NAMESPACE_SCOPE;
-
                 try
                 {
                     if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
@@ -749,8 +758,6 @@ public class BaseListener implements ExprezeeneListener{
             */
             else
             {
-                currentVarScopeType = ScopeType.GLOBAL_SCOPE;
-
                 try
                 {
                     if (ctx.modifier().accmod().getText().equals("private"))
@@ -787,12 +794,12 @@ public class BaseListener implements ExprezeeneListener{
             for (Variable variable : DataHandler.getVariables())
             {
                 boolean isSameIdentifier = variable.getIdentifier().equals(varIdentifier);
-                boolean isSameScopeDirection = variable.getLocation().equals(location.substring(0, variable.getLocation().length()));
+                boolean isSameScopeDirection = variable.getScope().getLocation().equals(location.substring(0, variable.getScope().getLocation().length()));
 
                 /*
                 special checker for class and namespace variable, because they could have same type of structure inside them.
                 */
-                boolean isSameLocation = variable.getLocation().equals(location);
+                boolean isSameLocation = variable.getScope().getLocation().equals(location);
 
                 /*
                 checking if other variable with same identifier is exist in outer scope of an anonymous scope of a function
@@ -800,22 +807,22 @@ public class BaseListener implements ExprezeeneListener{
                 (applied for global method and in-class method).
                 below for global scope
                 */
-                if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScopeType().equals(ScopeType.METHOD_SCOPE))
+                if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScope().getScopeType().equals(ScopeType.METHOD_SCOPE))
                 {
                     ExceptionHandler.reportException("[Exception occurred] : 2 or more identical local variable exist in method scope.");
                     return;
                 }
-                else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScopeType().equals(ScopeType.CLASS_SCOPE))
+                else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.CLASS_SCOPE))
                 {
                     ExceptionHandler.reportException("[Exception occurred] : 2 or more identical class variable exist in class scope.");
                     return;
                 }
-                else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
+                else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
                 {
                     ExceptionHandler.reportException("[Exception occurred] : 2 or more identical namespace variable exist in namespace scope.");
                     return;
                 }
-                else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScopeType().equals(ScopeType.GLOBAL_SCOPE))
+                else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScope().getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                 {
                     ExceptionHandler.reportException("[Exception occurred] : 2 or more identical global variable exist in global scope.");
                     return;
@@ -909,6 +916,9 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
 
+        //check if previously already in class scope
+
+
         inClassScope = true;
         System.out.println(inClassScope);
     }
@@ -916,15 +926,41 @@ public class BaseListener implements ExprezeeneListener{
     public void exitClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
         if (canRun)
         {
+            /*
+            adding current scope identifier into location
+             */
+            location+=  "." + ctx.classIdentifier().getText();
+            System.out.println(location);
+            /*
+            check if still in class scope
+             */
             if (!isStillClassScope())
             {
                 inClassScope = false;
             }
+
+
+
+
+            /*
+            subtract current scope identifier from location
+             */
+            location = location.substring(0, location.length()-ctx.classIdentifier().getText().length()-1);
+            System.out.println(location);
         }
         else
         {
 
         }
+    }
+
+    public void enterClassIdentifier(ExprezeeneParser.ClassIdentifierContext ctx) {
+
+
+    }
+
+    public void exitClassIdentifier(ExprezeeneParser.ClassIdentifierContext ctx) {
+        tempClassName = ctx.getText();
     }
 
     public void enterInClassStatement(ExprezeeneParser.InClassStatementContext ctx) {
@@ -943,6 +979,17 @@ public class BaseListener implements ExprezeeneListener{
     public void exitMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
 
         inMethodScope = false;
+        scopeStack.pop();
+
+    }
+
+    public void enterFuncIdentifier(ExprezeeneParser.FuncIdentifierContext ctx) {
+
+    }
+
+    public void exitFuncIdentifier(ExprezeeneParser.FuncIdentifierContext ctx) {
+        location += "." + ctx.getText();
+        scopeStack.add(new Scope(location, ScopeType.METHOD_SCOPE));
     }
 
     public void enterInMethodStatement(ExprezeeneParser.InMethodStatementContext ctx) {

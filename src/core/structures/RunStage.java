@@ -14,18 +14,18 @@ public enum RunStage {
 
     /*
     for scanning main method, program would use the latest main method, if there's main method inside imported script(s), then the imported script's main method
-    would be ignored.
+    would be ignored. (no matter where the import statement is)
      */
     SCANNING_MAIN_METHOD,
 
     /*
     for scanning all statement in the current script
      */
-    SCANNING_ALL_STATEMENT,
+    SCANNING_NON_MAIN_STATEMENT,
 
     /*
     run the program
      */
-    RUNNNING
+    RUNNING
 
 }

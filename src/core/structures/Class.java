@@ -4,16 +4,14 @@ public class Class {
 
     private String identifier;
     private AccessModifier accessModifier;
-    private String location;
-    private ScopeType scopeType;
+    private Scope scope;
     private Class heir;
 
     public Class(String identifier, AccessModifier accessModifier, String location, ScopeType scopeType, Class heir)
     {
         this.identifier = identifier;
         this.accessModifier = accessModifier;
-        this.location = location;
-        this.scopeType = scopeType;
+        this.scope = new Scope(location, scopeType);
         this.heir = heir;
     }
 
@@ -25,16 +23,12 @@ public class Class {
         return accessModifier;
     }
 
-    public String getLocation() {
-        return location;
+    public Scope getScope()
+    {
+        return scope;
     }
 
     public Class getHeir() {
         return heir;
-    }
-
-    public ScopeType getScopeType()
-    {
-        return scopeType;
     }
 }

@@ -40,7 +40,7 @@ public class Expression {
         CharStream input = CharStreams.fromString(expr);
         ExprezeeneLexer lexer = new ExprezeeneLexer(input);
         ExprezeeneParser parser = new ExprezeeneParser(new CommonTokenStream(lexer));
-        parser.addParseListener(new BaseListener());
+
 
         parser.expr();
     }

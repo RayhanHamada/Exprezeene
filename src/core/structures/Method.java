@@ -5,8 +5,7 @@ public class Method {
     private String identifier;
     private Parameter[] param;
     private AccessModifier accessModifier;
-    private String location;
-    private ScopeType scopeType;
+    private Scope scope;
     private String returnDataType;
 
 
@@ -15,8 +14,7 @@ public class Method {
         this.identifier = identifier;
         this.param = param;
         this.accessModifier = accessModifier;
-        this.location = location;
-        this.scopeType = scopeType;
+        this.scope = new Scope(location, scopeType);
         this.returnDataType = returnDataType;
     }
 
@@ -32,13 +30,9 @@ public class Method {
         return accessModifier;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public ScopeType getScopeType()
+    public Scope getScope()
     {
-        return scopeType;
+        return scope;
     }
 
     public String getReturnDataType() {

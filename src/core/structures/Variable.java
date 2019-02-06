@@ -8,9 +8,8 @@ public class Variable {
     private boolean _static, _const;
     private Expression expr;
     private boolean state; //false for declared, true for initialized
-    private String location;
-    private ScopeType scopeType;
     private int refCount;
+    private Scope scope;
 
 
     //for declared variable
@@ -23,9 +22,9 @@ public class Variable {
         this._const = _const;
         this.expr = null;
         this.state = false;
-        this.location = location;
+        this.scope = new Scope(location, scopeType);
         this.refCount = 0;
-        this.scopeType = scopeType;
+
     }
 
     //for initialized
@@ -38,10 +37,6 @@ public class Variable {
 
     public Expression getExpr() {
         return expr;
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     public String getIdentifier() {
@@ -68,12 +63,12 @@ public class Variable {
         return state;
     }
 
-    public ScopeType getScopeType() {
-        return scopeType;
-    }
-
     public int getRefCount() {
         return refCount;
+    }
+
+    public Scope getScope() {
+        return scope;
     }
 
     public void evaluate()

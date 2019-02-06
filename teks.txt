@@ -1,14 +1,13 @@
 
 
-var a as int;
 
 class Orang
 {
-    var a as int;
+
 }
 
 func e()
 {
     var a as int;
-
+    var a as int;
 }

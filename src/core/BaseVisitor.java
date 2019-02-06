@@ -9,6 +9,10 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class BaseVisitor implements ExprezeeneVisitor {
 
+    public Object visitIdentifier(ExprezeeneParser.IdentifierContext ctx) {
+        return null;
+    }
+
     public Object visitIntegerLiteral(ExprezeeneParser.IntegerLiteralContext ctx) {
         return null;
     }
@@ -153,16 +157,15 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
-
     public Object visitImportStatement(ExprezeeneParser.ImportStatementContext ctx) {
         return null;
     }
 
-    public Object visitScriptName(ExprezeeneParser.ScriptNameContext ctx) {
+    public Object visitScriptPath(ExprezeeneParser.ScriptPathContext ctx) {
         return null;
     }
 
-    public Object visitScriptNameAlias(ExprezeeneParser.ScriptNameAliasContext ctx) {
+    public Object visitScriptName(ExprezeeneParser.ScriptNameContext ctx) {
         return null;
     }
 
@@ -194,11 +197,19 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
+    public Object visitClassIdentifier(ExprezeeneParser.ClassIdentifierContext ctx) {
+        return null;
+    }
+
     public Object visitInClassStatement(ExprezeeneParser.InClassStatementContext ctx) {
         return null;
     }
 
     public Object visitMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
+        return null;
+    }
+
+    public Object visitFuncIdentifier(ExprezeeneParser.FuncIdentifierContext ctx) {
         return null;
     }
 

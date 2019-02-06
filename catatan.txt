@@ -2,7 +2,7 @@ demo bahasa program Exprezeene untuk fitur definisi sintaks dan keyword
 
 define rule aturan_gue
     define keyword for __CLASS__ as "kelas"
-    define syntax for __CLASS_DEFINITION__ as __KELAS__ __IDENTIFIER__ "{" __ALLOWED_STATEMENT__"}"
+    define syntax for __CLASS_DEFINITION__ as aturan_gue.__CLASS__ __IDENTIFIER__ "{" __ALLOWED_STATEMENT__"}"
     define syntax for __FUNCTION_DEFINITION__ as "fungsi" __ACCESS_MODIFIER__ "balikin" __DATA_TYPE__ __IDENTIFIER__ "{" __ALLOWED_STATEMENT__ "}"
 end define
 
@@ -32,3 +32,9 @@ kelas Orang
         kembaliin 4;
     }
 }
+
+
+
+
+----------------------------------------------------------------------------------------------
+problem : listener tidak bisa mengetahui apakah ia masih didalam suatu kelas ketika keluar dari kelas I

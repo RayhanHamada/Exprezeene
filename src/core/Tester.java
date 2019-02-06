@@ -1,8 +1,6 @@
 package core;
 
-import core.structures.AccessModifier;
-import core.structures.Variable;
-import core.structures.Class;
+import java.io.File;
 
 public class Tester {
 
@@ -19,9 +17,11 @@ public class Tester {
         return 4;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        System.out.println(scopeName.equals(iScopeName.substring(0, scopeName.length())));
+
+
+
 
 
     }
