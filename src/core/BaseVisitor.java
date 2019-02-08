@@ -149,6 +149,14 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
+    public Object visitPreprocessorStatement(ExprezeeneParser.PreprocessorStatementContext ctx) {
+        return null;
+    }
+
+    public Object visitInPreprocessorStatement(ExprezeeneParser.InPreprocessorStatementContext ctx) {
+        return null;
+    }
+
     public Object visitNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
         return null;
     }

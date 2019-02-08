@@ -1,4 +1,7 @@
-
+preprocessor
+{
+    import "rayhan", "./../hamada";
+}
 
 
 class Orang

@@ -19,8 +19,6 @@ public class BaseListener implements ExprezeeneListener{
     private String location;
     private boolean canRun = true;
 
-    public static ArrayList<ScriptEvaluator> importedScript = new ArrayList<>();
-
     //for current Variable
     private String varIdentifier = null;
     private AccessModifier varAccessModifier = AccessModifier.PRIVATE;
@@ -49,11 +47,6 @@ public class BaseListener implements ExprezeeneListener{
         this.runStage = runStage;
         this.location = location;
         this.scopeStack = new Stack<>();
-    }
-
-    public static void resetImportedScript()
-    {
-        importedScript = null;
     }
 
     /*
@@ -397,6 +390,22 @@ public class BaseListener implements ExprezeeneListener{
 
     }
 
+    public void enterPreprocessorStatement(ExprezeeneParser.PreprocessorStatementContext ctx) {
+
+    }
+
+    public void exitPreprocessorStatement(ExprezeeneParser.PreprocessorStatementContext ctx) {
+
+    }
+
+    public void enterInPreprocessorStatement(ExprezeeneParser.InPreprocessorStatementContext ctx) {
+
+    }
+
+    public void exitInPreprocessorStatement(ExprezeeneParser.InPreprocessorStatementContext ctx) {
+
+    }
+
     public void enterNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
 
         inNamespace = true;
@@ -421,11 +430,20 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitImportStatement(ExprezeeneParser.ImportStatementContext ctx) {
 
-        if (canRun)
+        if (ScriptEvaluator.canRun && runStage.equals(RunStage.SCANNING_PREPROCESSOR))
         {
-            //do something for import statement here
-
-
+            for (ExprezeeneParser.ScriptPathContext spc: ctx.scriptPath())
+            {
+                for (ScriptEvaluator se : ScriptEvaluator.scripts)
+                {
+                    if (se.equals(new ScriptEvaluator(spc.getText(), false)))
+                    {
+                        ExceptionHandler.reportException("2 identical script detected");
+                        ScriptEvaluator.setCanRun(false);
+                        return;
+                    }
+                }
+            }
         }
     }
 
@@ -434,14 +452,6 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitScriptPath(ExprezeeneParser.ScriptPathContext ctx) {
-
-    }
-
-    public void enterScriptName(ExprezeeneParser.ScriptNameContext ctx) {
-
-    }
-
-    public void exitScriptName(ExprezeeneParser.ScriptNameContext ctx) {
 
     }
 
@@ -642,7 +652,7 @@ public class BaseListener implements ExprezeeneListener{
 
             resetVariable();
         }
-        else if (canRun && runStage.equals(RunStage.SCANNING_MAIN_METHOD))
+        else if (canRun && runStage.equals(RunStage.RUNNING))
         {
             /*
             check whether a local variable inside method is have any modifier

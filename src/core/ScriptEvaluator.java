@@ -17,7 +17,9 @@ public class ScriptEvaluator {
     /*
     contain imported script, and current script
      */
-    public static ArrayList<ScriptEvaluator> neededScripts;
+    public static ArrayList<ScriptEvaluator> scripts = new ArrayList<>();
+    public ArrayList<ScriptEvaluator> currentScriptScripts = new ArrayList<>();
+    public static boolean canRun = true;
 
     public ScriptEvaluator(String scriptPath, boolean isMainScript)
     {
@@ -35,6 +37,17 @@ public class ScriptEvaluator {
         return isMainScript;
     }
 
+    public static boolean isCanRun()
+    {
+        return canRun;
+    }
+
+    public static void setCanRun(boolean c)
+    {
+        canRun = c;
+    }
+
+
     /*
     to check if the script is valid
     a valid *.xpre script is have this following criteria:
@@ -51,66 +64,60 @@ public class ScriptEvaluator {
 
     public void evaluate() throws Exception
     {
-        if (!checkIfScriptValid())
+        if (canRun)
         {
-            System.out.println("[Error Occurred] : the script \"" + script.getPath() + "\" is not valid." );
-            return;
-        }
+            if (!checkIfScriptValid())
+            {
+                System.out.println("[Error Occurred] : the script \"" + script.getPath() + "\" is not valid." );
+                return;
+            }
 
-        neededScripts.add(this);
+            if (isMainScript) scripts.add(this);
 
-        if (isMainScript)
-        {
             /*
-            scanning for any imported script(s)
-            */
+            for the main script, the procedure of interpretation is
+            1. scanning preprocessor,
+            2. scanning for all statement except preprocessor and main method,
+            3. find and execute every statement in main method.
+
+            for the imported script, the procedure of interpretation is:
+            1. scanning preprocessor,
+            2. scanning all statement except preprocessor statement and main method(if any) statement.
+             */
+
             CharStream input = CharStreams.fromFileName(script.getPath());
             ExprezeeneLexer lexer = new ExprezeeneLexer(input);
             ExprezeeneParser parser = new ExprezeeneParser(new CommonTokenStream(lexer));
+
+            /*
+            scanning for any imported script(s)
+            */
             parser.addParseListener(new BaseListener(RunStage.SCANNING_PREPROCESSOR, "GLOBAL"));
             parser.program();
 
             // set the script evaluator imported script
-            this.neededScripts = BaseListener.importedScript;
-            BaseListener.resetImportedScript();
-            for (ScriptEvaluator se : neededScripts)
+            for (ScriptEvaluator se : scripts)
             {
-//                if ()
+                se.evaluate();
             }
 
             /*
-             scanning for imported script(s) statement
-             */
-            parser.addParseListener(new BaseListener(RunStage.SCANNING_IMPORTED_SCRIPT, "GLOBAL"));
+            for scanning all statement except preprocessor and the main method.
+            */
+            parser.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, "GLOBAL"));
             parser.program();
 
 
-
-            /*
-            scan for main method
-             */
-            parser.addParseListener(new BaseListener(RunStage.SCANNING_MAIN_METHOD, "GLOBAL"));
-            parser.program();
-
-            /*
-            scan
-             */
-
-
+            if (isMainScript)
+            {
+                /*
+                execute every statement in the main method.
+                */
+                parser.addParseListener(new BaseListener(RunStage.RUNNING, "GLOBAL"));
+                parser.program();
+            }
 
 
         }
-        else
-        {
-
-        }
-    }
-
-    /*
-    for the main script
-     */
-    public void goRunThisProgram() throws Exception
-    {
-        // run the main method code
     }
 }

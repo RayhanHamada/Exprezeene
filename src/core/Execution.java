@@ -5,7 +5,7 @@ import java.io.File;
 public class Execution {
 
     private static ScriptEvaluator mainScriptEvaluator;
-    private static String mainMethodCode = "";
+    private  static String mainMethodCode = "";
 
     /*
     contains all fulfilled imported script needed for the main script.
@@ -23,5 +23,9 @@ public class Execution {
     public static void setMainMethodCode(String code)
     {
         mainMethodCode = code;
+    }
+    public static String getMainMethodCode()
+    {
+        return mainMethodCode;
     }
 }

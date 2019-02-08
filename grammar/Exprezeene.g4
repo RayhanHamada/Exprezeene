@@ -198,7 +198,7 @@ userDefinedType
     ;
 
 program
-    : (importStatement ';')* globalScopeStatement* EOF
+    : preprocessorStatement* globalScopeStatement* EOF
     ;
 
 globalScopeStatement
@@ -206,6 +206,14 @@ globalScopeStatement
     | varInitStatement ';'
     | classDefStatement
     | methodDefStatement
+    ;
+
+preprocessorStatement
+    : PREPROCESSOR '{' inPreprocessorStatement* '}'
+    ;
+
+inPreprocessorStatement
+    : importStatement ';'
     ;
 
 nameSpaceDefinition
@@ -221,16 +229,14 @@ nameSpaceStatement
     ;
 
 importStatement
-    : IMPORT (scriptPath|scriptName) (',' (scriptPath|scriptName))*
+    : IMPORT (scriptPath) (',' (scriptPath))* ';'
     ;
 
 scriptPath
     : STRING_LITERAL
     ;
 
-scriptName
-    : identifier
-    ;
+
 
 varDeclStatement
     : modifier VAR varIdentifier (',' varIdentifier)* AS dataType
@@ -288,6 +294,7 @@ inMethodStatement
     | methodCall ';'
     | condStatement
     | loopStatement
+    | expr ';'
     | '{' inMethodStatement '}'
     ;
 
@@ -316,6 +323,7 @@ inIfStatement
     | varAssignStatement ';'
     | loopStatement
     | condStatement
+    | expr ';'
     | '{' inIfStatement* '}'
     ;
 
@@ -350,6 +358,7 @@ inloopStatement
     | varInitStatement ';'
     | condStatement
     | loopStatement
+    | expr ';'
     | '{' inloopStatement* '}'
     ;
 
