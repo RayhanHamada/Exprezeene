@@ -229,7 +229,7 @@ nameSpaceStatement
     ;
 
 importStatement
-    : IMPORT (scriptPath) (',' (scriptPath))* ';'
+    : IMPORT (scriptPath) (',' (scriptPath))*
     ;
 
 scriptPath

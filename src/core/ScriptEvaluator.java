@@ -14,6 +14,7 @@ public class ScriptEvaluator {
 
     private boolean isMainScript;
     private File script;
+    private ScriptEvaluator parentEvaluator;
     /*
     contain imported script, and current script
      */
@@ -21,9 +22,10 @@ public class ScriptEvaluator {
     public ArrayList<ScriptEvaluator> currentScriptScripts = new ArrayList<>();
     public static boolean canRun = true;
 
-    public ScriptEvaluator(String scriptPath, boolean isMainScript)
+    public ScriptEvaluator(String scriptPath, ScriptEvaluator parentEvaluator, boolean isMainScript)
     {
         this.script = new File(scriptPath);
+        this.parentEvaluator = parentEvaluator;
         this.isMainScript = isMainScript;
     }
 
@@ -58,7 +60,7 @@ public class ScriptEvaluator {
      */
     private boolean checkIfScriptValid()
     {
-        if (script.exists() && script.isFile() && script.getName().matches("[A-Za-z0-9_]+\\.xpre")) return true;
+        if (script.exists() && script.isFile() && script.getName().matches("[A-Za-z0-9_]+\\.txt")) return true;
         return false;
     }
 
@@ -68,19 +70,19 @@ public class ScriptEvaluator {
         {
             if (!checkIfScriptValid())
             {
-                System.out.println("[Error Occurred] : the script \"" + script.getPath() + "\" is not valid." );
+                System.out.println("[Error Occurred in " + script.getName() + " on line " + BaseListener.currentLine + " row " + BaseListener.currentRow +"] : the script \"" + script.getPath() + "\" is not valid." );
                 return;
             }
 
             if (isMainScript) scripts.add(this);
 
             /*
-            for the main script, the procedure of interpretation is
+            for the main script, the procedure of interpretation are:
             1. scanning preprocessor,
             2. scanning for all statement except preprocessor and main method,
-            3. find and execute every statement in main method.
+            3. find main method and execute every statement in main method.
 
-            for the imported script, the procedure of interpretation is:
+            for the imported script, the procedure of interpretation are:
             1. scanning preprocessor,
             2. scanning all statement except preprocessor statement and main method(if any) statement.
              */
@@ -95,8 +97,18 @@ public class ScriptEvaluator {
             parser.addParseListener(new BaseListener(RunStage.SCANNING_PREPROCESSOR, "GLOBAL"));
             parser.program();
 
-            // set the script evaluator imported script
-            for (ScriptEvaluator se : scripts)
+            /*
+            set imported script for current script , add every tempScript element into scripts and reset tempScript
+             */
+            currentScriptScripts = BaseListener.tempScript;
+            for (ScriptEvaluator se : currentScriptScripts) scripts.add(se);
+
+            BaseListener.resetTempScript();
+
+            /*
+            set the script evaluator imported script
+             */
+            for (ScriptEvaluator se : currentScriptScripts)
             {
                 se.evaluate();
             }
@@ -107,7 +119,9 @@ public class ScriptEvaluator {
             parser.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, "GLOBAL"));
             parser.program();
 
-
+            /*
+            if this script is main script.
+             */
             if (isMainScript)
             {
                 /*
@@ -116,7 +130,6 @@ public class ScriptEvaluator {
                 parser.addParseListener(new BaseListener(RunStage.RUNNING, "GLOBAL"));
                 parser.program();
             }
-
 
         }
     }

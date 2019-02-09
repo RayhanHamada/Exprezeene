@@ -11,6 +11,7 @@ import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -18,6 +19,8 @@ public class BaseListener implements ExprezeeneListener{
 
     private String location;
     private boolean canRun = true;
+    public static ArrayList<ScriptEvaluator> tempScript = new ArrayList<>();
+    public static int currentRow = 0, currentLine = 0;
 
     //for current Variable
     private String varIdentifier = null;
@@ -73,6 +76,11 @@ public class BaseListener implements ExprezeeneListener{
             if (c.getIdentifier().equals(currentScopeName) && c.getScope().getLocation().equals(location.substring(0, c.getScope().getLocation().length()))) return true;
         }
         return false;
+    }
+
+    public static void resetTempScript()
+    {
+        tempScript = new ArrayList<>();
     }
 
     public void resetVariable()
@@ -429,20 +437,32 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitImportStatement(ExprezeeneParser.ImportStatementContext ctx) {
-
+        currentLine = ctx.start.getLine();
         if (ScriptEvaluator.canRun && runStage.equals(RunStage.SCANNING_PREPROCESSOR))
         {
+            /*
+            if 2 import with same path or name is detected, then it would be ignored and the interpreter
+            would just gave warnings.
+             */
             for (ExprezeeneParser.ScriptPathContext spc: ctx.scriptPath())
             {
+                currentRow = spc.start.getCharPositionInLine();
                 for (ScriptEvaluator se : ScriptEvaluator.scripts)
                 {
-                    if (se.equals(new ScriptEvaluator(spc.getText(), false)))
+                    boolean isSameScriptName = se.getScript().equals(new File(spc.getText().substring(1, spc.getText().length()-1)));
+//                    System.out.println(spc.getText().substring(1, spc.getText().length()-1) + " is same as " + se.getScript().getPath() + " : " + isSameScriptName);
+                    if (isSameScriptName)
                     {
-                        ExceptionHandler.reportException("2 identical script detected");
-                        ScriptEvaluator.setCanRun(false);
+                        Notifier.report("2 or more script with same path or name is detected!", NotifierType.WARNING);
                         return;
                     }
                 }
+
+                /*
+                add into tempScript
+                 */
+                String substringed = spc.getText().substring(1, spc.getText().length()-1);
+                tempScript.add(new ScriptEvaluator(substringed,  false));
             }
         }
     }
@@ -476,7 +496,7 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     if (!ctx.modifier().getText().equals(""))
                     {
-                        ExceptionHandler.reportException("{Exception occurred] : a local variable can't have any modifier.");
+                        Notifier.reportException("{Exception occurred] : a local variable can't have any modifier.");
                         return;
                     }
                 } catch (Exception e)
@@ -560,7 +580,7 @@ public class BaseListener implements ExprezeeneListener{
                     else if (ctx.modifier().accmod().getText().equals("protected"))
                     {
                         canRun = false;
-                        ExceptionHandler.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
+                        Notifier.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
                         return;
                     }
                 } catch (Exception e)
@@ -594,22 +614,22 @@ public class BaseListener implements ExprezeeneListener{
                     */
                     if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScope().getScopeType().equals(ScopeType.METHOD_SCOPE))
                     {
-                        ExceptionHandler.reportException("[Exception occurred] : 2 or more identical local variable exist in method scope.");
+                        Notifier.reportException("[Exception occurred] : 2 or more identical local variable exist in method scope.");
                         return;
                     }
                     else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.CLASS_SCOPE))
                     {
-                        ExceptionHandler.reportException("[Exception occurred] : 2 or more identical class variable exist in class scope.");
+                        Notifier.reportException("[Exception occurred] : 2 or more identical class variable exist in class scope.");
                         return;
                     }
                     else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
                     {
-                        ExceptionHandler.reportException("[Exception occurred] : 2 or more identical namespace variable exist in namespace scope.");
+                        Notifier.reportException("[Exception occurred] : 2 or more identical namespace variable exist in namespace scope.");
                         return;
                     }
                     else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScope().getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                     {
-                        ExceptionHandler.reportException("[Exception occurred] : 2 or more identical global variable exist in global scope.");
+                        Notifier.reportException("[Exception occurred] : 2 or more identical global variable exist in global scope.");
                         return;
                     }
                 }
@@ -643,7 +663,7 @@ public class BaseListener implements ExprezeeneListener{
 
                 if (!ketemu)
                 {
-                    ExceptionHandler.reportException("[Exception occurred] : the type of this variable is not defined");
+                    Notifier.reportException("[Exception occurred] : the type of this variable is not defined");
                     return;
                 }
 
@@ -658,17 +678,17 @@ public class BaseListener implements ExprezeeneListener{
             check whether a local variable inside method is have any modifier
             note : a local variable can't have any modifier (neither static modifier nor access modifier)
             */
-            try
-            {
-                if (!ctx.modifier().getText().equals(""))
-                {
-                    ExceptionHandler.reportException("{Exception occurred] : a local variable can't have any modifier.");
-                    return;
-                }
-            } catch (Exception e)
-            {
-                varAccessModifier = AccessModifier.LOCAL;
-            }
+//            try
+//            {
+//                if (!ctx.modifier().getText().equals(""))
+//                {
+//                    Notifier.reportException("{Exception occurred] : a local variable can't have any modifier.");
+//                    return;
+//                }
+//            } catch (Exception e)
+//            {
+//                varAccessModifier = AccessModifier.LOCAL;
+//            }
 
 
 
@@ -697,7 +717,7 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     if (!ctx.modifier().getText().equals(""))
                     {
-                        ExceptionHandler.reportException("{Exception occurred] : a local variable can't have any modifier.");
+                        Notifier.reportException("{Exception occurred] : a local variable can't have any modifier.");
                         return;
                     }
                 } catch (Exception e)
@@ -781,7 +801,7 @@ public class BaseListener implements ExprezeeneListener{
                     else if (ctx.modifier().accmod().getText().equals("protected"))
                     {
                         canRun = false;
-                        ExceptionHandler.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
+                        Notifier.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
                         return;
                     }
                 } catch (Exception e)
@@ -819,22 +839,22 @@ public class BaseListener implements ExprezeeneListener{
                 */
                 if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScope().getScopeType().equals(ScopeType.METHOD_SCOPE))
                 {
-                    ExceptionHandler.reportException("[Exception occurred] : 2 or more identical local variable exist in method scope.");
+                    Notifier.reportException("[Exception occurred] : 2 or more identical local variable exist in method scope.");
                     return;
                 }
                 else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.CLASS_SCOPE))
                 {
-                    ExceptionHandler.reportException("[Exception occurred] : 2 or more identical class variable exist in class scope.");
+                    Notifier.reportException("[Exception occurred] : 2 or more identical class variable exist in class scope.");
                     return;
                 }
                 else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
                 {
-                    ExceptionHandler.reportException("[Exception occurred] : 2 or more identical namespace variable exist in namespace scope.");
+                    Notifier.reportException("[Exception occurred] : 2 or more identical namespace variable exist in namespace scope.");
                     return;
                 }
                 else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScope().getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                 {
-                    ExceptionHandler.reportException("[Exception occurred] : 2 or more identical global variable exist in global scope.");
+                    Notifier.reportException("[Exception occurred] : 2 or more identical global variable exist in global scope.");
                     return;
                 }
             }
@@ -868,7 +888,7 @@ public class BaseListener implements ExprezeeneListener{
 
             if (!ketemu)
             {
-                ExceptionHandler.reportException("the type of this variable is not defined");
+                Notifier.reportException("the type of this variable is not defined");
                 return;
             }
 
@@ -930,7 +950,7 @@ public class BaseListener implements ExprezeeneListener{
 
 
         inClassScope = true;
-        System.out.println(inClassScope);
+
     }
 
     public void exitClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
@@ -940,7 +960,7 @@ public class BaseListener implements ExprezeeneListener{
             adding current scope identifier into location
              */
             location+=  "." + ctx.classIdentifier().getText();
-            System.out.println(location);
+
             /*
             check if still in class scope
              */
@@ -956,7 +976,7 @@ public class BaseListener implements ExprezeeneListener{
             subtract current scope identifier from location
              */
             location = location.substring(0, location.length()-ctx.classIdentifier().getText().length()-1);
-            System.out.println(location);
+
         }
         else
         {

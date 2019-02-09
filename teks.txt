@@ -1,6 +1,7 @@
 preprocessor
 {
-    import "rayhan", "./../hamada";
+    import "C:/Users/RayhanHamada/IdeaProjects/Exprezeene/rayhan.txt";
+    import "C:/Users/RayhanHamada/IdeaProjects/Exprezeene/hamada.txt";
 }
 
 
