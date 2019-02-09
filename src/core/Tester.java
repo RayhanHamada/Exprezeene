@@ -19,8 +19,7 @@ public class Tester {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println(new File("C:\\Users\\RayhanHamada\\IdeaProjects\\Exprezeene\\teks.txt").exists());
-        System.out.println(new File("C:/Users/RayhanHamada/IdeaProjects/Exprezeene/teks.txt").exists());
+        System.out.println("RayhanHamada".hashCode());
 
 
 

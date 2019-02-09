@@ -15,7 +15,7 @@ public class Execution {
     public static void main(String... args) throws Exception {
 
 
-        mainScriptEvaluator = new ScriptEvaluator(args[0], true);
+        mainScriptEvaluator = new ScriptEvaluator(args[0], null, true);
         mainScriptEvaluator.evaluate();
 
     }

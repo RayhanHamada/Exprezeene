@@ -2,48 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da66eab6-7753-401c-8b32-9b06fa9e94ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/hamada.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rayhan.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/structures/Notifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/structures/NotifierType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/antlr_4_7_2_complete.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/Exprezeene.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/Exprezeene.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hamada.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hamada.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/BaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/BaseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/BaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/BaseVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/Tester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/Tester.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ClassDefStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ClassDefStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$CondStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$CondStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DoWhileloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DoWhileloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseIfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseIfStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForeachloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForeachloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$GlobalScopeStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$GlobalScopeStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IfStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ImportStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ImportStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InClassStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InClassStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InIfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InIfStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InMethodStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InMethodStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InloopStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InloopStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LoopStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LoopStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodDefStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodDefStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ProgramContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ProgramContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarAssignStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarAssignStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarConstContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarConstContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarDeclStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarDeclStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarInitStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarInitStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$WhileloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$WhileloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rayhan.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rayhan.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/BaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/BaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/BaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/BaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/Execution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Execution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/ScriptEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ScriptEvaluator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Tester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/structures/ExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/structures/Notifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/Notifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/teks.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -58,21 +27,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/Execution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-              <folding>
-                <element signature="e#632#633#0" expanded="true" />
-                <element signature="e#669#670#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/ScriptEvaluator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+            <state relative-caret-position="291">
+              <caret line="80" column="106" selection-start-line="80" selection-start-column="106" selection-end-line="80" selection-end-column="106" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/BaseListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+            <state relative-caret-position="119">
+              <caret line="533" lean-forward="true" selection-start-line="533" selection-end-line="533" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/teks.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -104,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/Tester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="22" column="102" selection-start-line="22" selection-start-column="102" selection-end-line="22" selection-end-column="102" />
+            <state relative-caret-position="306">
+              <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -114,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/rayhan.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+              <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -122,26 +87,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/structures/Notifier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-              <folding>
-                <element signature="e#561#562#0" expanded="true" />
-                <element signature="e#604#605#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hamada.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grammar/Exprezeene.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="229" selection-start-line="229" selection-end-line="229" />
+            <state relative-caret-position="3604">
+              <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -167,7 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>expr</find>
       <find>exitVarIni</find>
       <find>exitName</find>
       <find>isSt</find>
@@ -179,7 +143,6 @@
       <find>enterVarDe</find>
       <find>enterMethod</find>
       <find>enterVar</find>
-      <find>varDecl</find>
       <find>enterName</find>
       <find>elseif</find>
       <find>exitVarDecl</find>
@@ -196,7 +159,9 @@
       <find>importstate</find>
       <find>importStat</find>
       <find>import</find>
+      <find>imp</find>
       <find>currentR</find>
+      <find>varDecl</find>
     </findStrings>
     <replaceStrings>
       <replace>loop</replace>
@@ -255,15 +220,15 @@
         <option value="$PROJECT_DIR$/src/core/structures/NotifyerType.java" />
         <option value="$PROJECT_DIR$/src/core/structures/ExceptionHandler.java" />
         <option value="$PROJECT_DIR$/src/core/BaseVisitor.java" />
-        <option value="$PROJECT_DIR$/hamada.txt" />
-        <option value="$PROJECT_DIR$/src/core/Execution.java" />
-        <option value="$PROJECT_DIR$/src/core/Tester.java" />
         <option value="$PROJECT_DIR$/grammar/Exprezeene.g4" />
-        <option value="$PROJECT_DIR$/teks.txt" />
+        <option value="$PROJECT_DIR$/src/core/Tester.java" />
+        <option value="$PROJECT_DIR$/src/core/Execution.java" />
         <option value="$PROJECT_DIR$/src/core/BaseListener.java" />
-        <option value="$PROJECT_DIR$/rayhan.txt" />
-        <option value="$PROJECT_DIR$/src/core/structures/Notifier.java" />
         <option value="$PROJECT_DIR$/src/core/ScriptEvaluator.java" />
+        <option value="$PROJECT_DIR$/teks.txt" />
+        <option value="$PROJECT_DIR$/hamada.txt" />
+        <option value="$PROJECT_DIR$/src/core/structures/Notifier.java" />
+        <option value="$PROJECT_DIR$/rayhan.txt" />
       </list>
     </option>
   </component>
@@ -285,12 +250,33 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Exprezeene" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Exprezeene" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Exprezeene" type="616d4139:PackageViewModuleNode" />
+              <item name="core" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
               <item name="Exprezeene" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="Exprezeene" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="Exprezeene" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="grammar" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="Exprezeene" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -341,36 +327,20 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Exprezeene" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Exprezeene" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Exprezeene" type="616d4139:PackageViewModuleNode" />
-              <item name="core" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/auto-gen" value="false" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/gen-listener" value="true" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/gen-visitor" value="true" />
-    <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/output-dir" value="C:\Users\RayhanHamada\IdeaProjects\Exprezeene\src" />
+    <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/output-dir" value="D:\RayhanHamada\CodingStuff\Project\Exprezeene\src" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/package" value="core.listener" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549686929519" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549716154310" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last.edited.regexp" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -604,7 +574,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18120806" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18926175" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -613,7 +583,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4986577" visible="true" weight="0.22379604" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4986577" visible="true" weight="0.22379604" />
       <window_info anchor="bottom" x="1941" y="283" width="1340" height="383" id="Debug" order="3" type="WINDOWED" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -623,7 +593,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013423" side_tool="true" weight="0.22379604" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" weight="0.3796034" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32719547" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.12889518" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -685,49 +655,49 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/core/ScriptEvaluator.java</url>
-          <line>112</line>
+          <line>120</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/core/BaseListener.java</url>
-          <line>464</line>
+          <line>467</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/core/ScriptEvaluator.java</url>
-          <line>76</line>
+          <line>84</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/core/ScriptEvaluator.java</url>
-          <line>103</line>
+          <line>111</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/core/BaseListener.java</url>
-          <line>453</line>
+          <line>456</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/core/BaseListener.java</url>
-          <line>449</line>
+          <line>452</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/core/BaseListener.java</url>
-          <line>446</line>
+          <line>449</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/core/BaseListener.java</url>
-          <line>455</line>
+          <line>458</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
@@ -738,20 +708,8 @@
     <entry file="file://$PROJECT_DIR$/src/core/runtime/Action.java" />
     <entry file="file://$PROJECT_DIR$/src/core/runtime/InFunctionVarInitialization.java" />
     <entry file="file://$PROJECT_DIR$/grammar/Expression.g4" />
-    <entry file="file://$PROJECT_DIR$/src/core/listener/ExprezeeneVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/listener/ExprezeeneBaseVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2342">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/listener/ExprezeeneVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/core/listener/ExprezeeneBaseVisitor.java" />
     <entry file="file://$PROJECT_DIR$/src/core/structures/PrimitiveType.java" />
     <entry file="file://$PROJECT_DIR$/src/core/structures/_Integer.java" />
     <entry file="file://$PROJECT_DIR$/src/core/datatype/DataType.java" />
@@ -855,13 +813,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/listener/ExprezeeneParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/listener/ExprezeeneParser.java" />
     <entry file="file://$PROJECT_DIR$/src/core/Tester2.java" />
     <entry file="file://$PROJECT_DIR$/src/core/structures/Expression.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -921,6 +873,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grammar/Exprezeene.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3604">
+          <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/structures/RunStage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -928,73 +887,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Tester.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="22" column="102" selection-start-line="22" selection-start-column="102" selection-end-line="22" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/Execution.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding>
-            <element signature="e#632#633#0" expanded="true" />
-            <element signature="e#669#670#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grammar/Exprezeene.g4">
+    <entry file="file://$PROJECT_DIR$/src/core/ScriptEvaluator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="229" selection-start-line="229" selection-end-line="229" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hamada.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/teks.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rayhan.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/structures/Notifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding>
-            <element signature="e#561#562#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/BaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+        <state relative-caret-position="291">
+          <caret line="80" column="106" selection-start-line="80" selection-start-column="106" selection-end-line="80" selection-end-column="106" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/ScriptEvaluator.java">
+    <entry file="file://$PROJECT_DIR$/src/core/Tester.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+          <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/structures/Notifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hamada.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teks.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rayhan.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/BaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="533" lean-forward="true" selection-start-line="533" selection-end-line="533" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

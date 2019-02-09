@@ -45,11 +45,14 @@ public class BaseListener implements ExprezeeneListener{
     private Stack<Scope> scopeStack;
     private String tempClassName;
 
-    public BaseListener(RunStage runStage, String location)
+    private String currentScriptName;
+
+    public BaseListener(RunStage runStage, String currentScriptName, String location)
     {
         this.runStage = runStage;
         this.location = location;
         this.scopeStack = new Stack<>();
+        this.currentScriptName = currentScriptName;
     }
 
     /*
@@ -453,7 +456,7 @@ public class BaseListener implements ExprezeeneListener{
 //                    System.out.println(spc.getText().substring(1, spc.getText().length()-1) + " is same as " + se.getScript().getPath() + " : " + isSameScriptName);
                     if (isSameScriptName)
                     {
-                        Notifier.report("2 or more script with same path or name is detected!", NotifierType.WARNING);
+                        Notifier.report("2 or more script with same path or name is detected!", currentScriptName, NotifierType.WARNING);
                         return;
                     }
                 }
@@ -462,7 +465,7 @@ public class BaseListener implements ExprezeeneListener{
                 add into tempScript
                  */
                 String substringed = spc.getText().substring(1, spc.getText().length()-1);
-                tempScript.add(new ScriptEvaluator(substringed,  false));
+                tempScript.add(new ScriptEvaluator(substringed, currentScriptName,false));
             }
         }
     }

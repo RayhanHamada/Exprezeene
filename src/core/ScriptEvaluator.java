@@ -1,7 +1,10 @@
 package core;
 
+
 import core.listener.ExprezeeneLexer;
 import core.listener.ExprezeeneParser;
+import core.structures.Notifier;
+import core.structures.NotifierType;
 import core.structures.RunStage;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -14,7 +17,7 @@ public class ScriptEvaluator {
 
     private boolean isMainScript;
     private File script;
-    private ScriptEvaluator parentEvaluator;
+    private String parentScriptName;
     /*
     contain imported script, and current script
      */
@@ -22,10 +25,10 @@ public class ScriptEvaluator {
     public ArrayList<ScriptEvaluator> currentScriptScripts = new ArrayList<>();
     public static boolean canRun = true;
 
-    public ScriptEvaluator(String scriptPath, ScriptEvaluator parentEvaluator, boolean isMainScript)
+    public ScriptEvaluator(String scriptPath, String parentScriptName, boolean isMainScript)
     {
         this.script = new File(scriptPath);
-        this.parentEvaluator = parentEvaluator;
+        this.parentScriptName = parentScriptName;
         this.isMainScript = isMainScript;
     }
 
@@ -49,6 +52,11 @@ public class ScriptEvaluator {
         canRun = c;
     }
 
+    public String getParentEvaluator()
+    {
+        return parentScriptName;
+    }
+
 
     /*
     to check if the script is valid
@@ -70,7 +78,7 @@ public class ScriptEvaluator {
         {
             if (!checkIfScriptValid())
             {
-                System.out.println("[Error Occurred in " + script.getName() + " on line " + BaseListener.currentLine + " row " + BaseListener.currentRow +"] : the script \"" + script.getPath() + "\" is not valid." );
+                Notifier.report("the script " + this.script.getPath() + " is not valid" , parentScriptName,  NotifierType.ERROR);
                 return;
             }
 
@@ -94,7 +102,7 @@ public class ScriptEvaluator {
             /*
             scanning for any imported script(s)
             */
-            parser.addParseListener(new BaseListener(RunStage.SCANNING_PREPROCESSOR, "GLOBAL"));
+            parser.addParseListener(new BaseListener(RunStage.SCANNING_PREPROCESSOR, this.script.getName(),"GLOBAL"));
             parser.program();
 
             /*
@@ -116,7 +124,7 @@ public class ScriptEvaluator {
             /*
             for scanning all statement except preprocessor and the main method.
             */
-            parser.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, "GLOBAL"));
+            parser.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, this.script.getName(),"GLOBAL"));
             parser.program();
 
             /*
@@ -127,7 +135,7 @@ public class ScriptEvaluator {
                 /*
                 execute every statement in the main method.
                 */
-                parser.addParseListener(new BaseListener(RunStage.RUNNING, "GLOBAL"));
+                parser.addParseListener(new BaseListener(RunStage.RUNNING, this.script.getName(),"GLOBAL"));
                 parser.program();
             }
 
