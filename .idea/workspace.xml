@@ -331,7 +331,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="file.status.colors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -422,11 +422,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Execution" />
         <item itemvalue="Application.Tester" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.ScriptEvaluator" />
         <item itemvalue="Application.MainTester" />
+        <item itemvalue="Application.Execution" />
       </list>
     </recent_temporary>
   </component>
