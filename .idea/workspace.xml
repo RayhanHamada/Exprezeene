@@ -433,11 +433,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Execution" />
         <item itemvalue="Application.Tester" />
-        <item itemvalue="Application.ScriptEvaluator" />
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.ScriptEvaluator" />
         <item itemvalue="Application.MainTester" />
+        <item itemvalue="Application.Execution" />
       </list>
     </recent_temporary>
   </component>
