@@ -72,73 +72,73 @@ public class ScriptEvaluator {
         return false;
     }
 
-    public void evaluate() throws Exception
-    {
-        if (canRun)
-        {
-            if (!checkIfScriptValid())
-            {
-                Notifier.report("the script " + this.script.getPath() + " is not valid" , parentScriptName,  NotifierType.ERROR);
-                return;
-            }
-
-            if (isMainScript) scripts.add(this);
-
-            /*
-            for the main script, the procedure of interpretation are:
-            1. scanning preprocessor,
-            2. scanning for all statement except preprocessor and main method,
-            3. find main method and execute every statement in main method.
-
-            for the imported script, the procedure of interpretation are:
-            1. scanning preprocessor,
-            2. scanning all statement except preprocessor statement and main method(if any) statement.
-             */
-
-            CharStream input = CharStreams.fromFileName(script.getPath());
-            ExprezeeneLexer lexer = new ExprezeeneLexer(input);
-            ExprezeeneParser parser = new ExprezeeneParser(new CommonTokenStream(lexer));
-
-            /*
-            scanning for any imported script(s)
-            */
-            parser.addParseListener(new BaseListener(RunStage.SCANNING_PREPROCESSOR, this.script.getName(),"GLOBAL"));
-            parser.program();
-
-            /*
-            set imported script for current script , add every tempScript element into scripts and reset tempScript
-             */
-            currentScriptScripts = BaseListener.tempScript;
-            for (ScriptEvaluator se : currentScriptScripts) scripts.add(se);
-
-            BaseListener.resetTempScript();
-
-            /*
-            set the script evaluator imported script
-             */
-            for (ScriptEvaluator se : currentScriptScripts)
-            {
-                se.evaluate();
-            }
-
-            /*
-            for scanning all statement except preprocessor and the main method.
-            */
-            parser.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, this.script.getName(),"GLOBAL"));
-            parser.program();
-
-            /*
-            if this script is main script.
-             */
-            if (isMainScript)
-            {
-                /*
-                execute every statement in the main method.
-                */
-                parser.addParseListener(new BaseListener(RunStage.RUNNING, this.script.getName(),"GLOBAL"));
-                parser.program();
-            }
-
-        }
-    }
+//    public void evaluate() throws Exception
+//    {
+//        if (canRun)
+//        {
+//            if (!checkIfScriptValid())
+//            {
+//                Notifier.report("the script " + this.script.getPath() + " is not valid" , parentScriptName,  NotifierType.ERROR);
+//                return;
+//            }
+//
+//            if (isMainScript) scripts.add(this);
+//
+//            /*
+//            for the main script, the procedure of interpretation are:
+//            1. scanning preprocessor,
+//            2. scanning for all statement except preprocessor and main method,
+//            3. find main method and execute every statement in main method.
+//
+//            for the imported script, the procedure of interpretation are:
+//            1. scanning preprocessor,
+//            2. scanning all statement except preprocessor statement and main method(if any) statement.
+//             */
+//
+//            CharStream input = CharStreams.fromFileName(script.getPath());
+//            ExprezeeneLexer lexer = new ExprezeeneLexer(input);
+//            ExprezeeneParser parser = new ExprezeeneParser(new CommonTokenStream(lexer));
+//
+//            /*
+//            scanning for any imported script(s)
+//            */
+//            parser.addParseListener(new BaseListener(RunStage.SCANNING_PREPROCESSOR, this.script.getName(),"GLOBAL"));
+//            parser.program();
+//
+//            /*
+//            set imported script for current script , add every tempScript element into scripts and reset tempScript
+//             */
+//            currentScriptScripts = BaseListener.tempScript;
+//            for (ScriptEvaluator se : currentScriptScripts) scripts.add(se);
+//
+//            BaseListener.resetTempScript();
+//
+//            /*
+//            set the script evaluator imported script
+//             */
+//            for (ScriptEvaluator se : currentScriptScripts)
+//            {
+//                se.evaluate();
+//            }
+//
+//            /*
+//            for scanning all statement except preprocessor and the main method.
+//            */
+//            parser.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, this.script.getName(),"GLOBAL"));
+//            parser.program();
+//
+//            /*
+//            if this script is main script.
+//             */
+//            if (isMainScript)
+//            {
+//                /*
+//                execute every statement in the main method.
+//                */
+//                parser.addParseListener(new BaseListener(RunStage.RUNNING, this.script.getName(),"GLOBAL"));
+//                parser.program();
+//            }
+//
+//        }
+//    }
 }

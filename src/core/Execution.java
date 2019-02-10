@@ -4,7 +4,6 @@ import java.io.File;
 
 public class Execution {
 
-    private static ScriptEvaluator mainScriptEvaluator;
     private  static String mainMethodCode = "";
 
     /*
@@ -15,8 +14,8 @@ public class Execution {
     public static void main(String... args) throws Exception {
 
 
-        mainScriptEvaluator = new ScriptEvaluator(args[0], null, true);
-        mainScriptEvaluator.evaluate();
+        ScriptEvaluator2.allScript.add(new Script(args[0], null, true));
+        ScriptEvaluator2.evaluate(ScriptEvaluator2.allScript.get(0));
 
     }
 

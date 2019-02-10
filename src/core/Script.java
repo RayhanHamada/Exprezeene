@@ -1,6 +1,7 @@
 package core;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class Script {
 
@@ -9,6 +10,7 @@ public class Script {
     private File scriptFile; //file representation of this script
     private boolean isMainScript;
     private Script parentScript; //what script import this script
+    private ArrayList<Script> importedScript;
 
     public Script(String scriptPath, Script parentScript, boolean isMainScript)
     {
@@ -17,6 +19,7 @@ public class Script {
         this.scriptName = scriptFile.getName();
         this.isMainScript = isMainScript;
         this.parentScript = parentScript;
+        this.importedScript = new ArrayList<>();
     }
 
     public String getScriptPath() {
@@ -39,6 +42,22 @@ public class Script {
     {
         return parentScript;
     }
+
+    public ArrayList<Script> getImportedScript()
+    {
+        return importedScript;
+    }
+
+    public void addScript(Script s)
+    {
+        importedScript.add(s);
+    }
+
+    public void setImportedScript(ArrayList<Script> scripts)
+    {
+        importedScript = scripts;
+    }
+
 }
 
 

@@ -11,7 +11,6 @@ import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -19,7 +18,7 @@ public class BaseListener implements ExprezeeneListener{
 
     private String location;
     private boolean canRun = true;
-    public static ArrayList<ScriptEvaluator> tempScript = new ArrayList<>();
+    public static ArrayList<Script> tempScript = new ArrayList<>();
     public static int currentRow = 0, currentLine = 0;
 
     //for current Variable
@@ -45,14 +44,15 @@ public class BaseListener implements ExprezeeneListener{
     private Stack<Scope> scopeStack;
     private String tempClassName;
 
-    private String currentScriptName;
+    //current analyzed script
+    private Script currentScript;
 
-    public BaseListener(RunStage runStage, String currentScriptName, String location)
+    public BaseListener(RunStage runStage, Script currentScript, String location)
     {
         this.runStage = runStage;
         this.location = location;
         this.scopeStack = new Stack<>();
-        this.currentScriptName = currentScriptName;
+        this.currentScript = currentScript;
     }
 
     /*
@@ -450,22 +450,16 @@ public class BaseListener implements ExprezeeneListener{
             for (ExprezeeneParser.ScriptPathContext spc: ctx.scriptPath())
             {
                 currentRow = spc.start.getCharPositionInLine();
-                for (ScriptEvaluator se : ScriptEvaluator.scripts)
+                for (Script sc : ScriptEvaluator2.allScript)
                 {
-                    boolean isSameScriptName = se.getScript().equals(new File(spc.getText().substring(1, spc.getText().length()-1)));
-//                    System.out.println(spc.getText().substring(1, spc.getText().length()-1) + " is same as " + se.getScript().getPath() + " : " + isSameScriptName);
-                    if (isSameScriptName)
+                    if (spc.getText().substring(1, spc.getText().length()-1).equals(sc.getScriptPath()))
                     {
-                        Notifier.report("2 or more script with same path or name is detected!", currentScriptName, NotifierType.WARNING);
+                        Notifier.report(spc.getText().substring(1, spc.getText().length()-1) + " have duplicate(s)", currentScript.getScriptName(), NotifierType.WARNING);
                         return;
                     }
                 }
 
-                /*
-                add into tempScript
-                 */
-                String substringed = spc.getText().substring(1, spc.getText().length()-1);
-                tempScript.add(new ScriptEvaluator(substringed, currentScriptName,false));
+                tempScript.add(new Script(spc.getText().substring(1, spc.getText().length()-1), currentScript, false));
             }
         }
     }
