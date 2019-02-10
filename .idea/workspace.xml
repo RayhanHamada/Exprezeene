@@ -4,10 +4,8 @@
     <list default="true" id="da66eab6-7753-401c-8b32-9b06fa9e94ec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/BaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/BaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/Execution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Execution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Script.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Script.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/ScriptEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ScriptEvaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/ScriptEvaluator2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ScriptEvaluator2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/ScriptEvaluator.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/BaseListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="456" column="114" selection-start-line="456" selection-start-column="114" selection-end-line="456" selection-end-column="114" />
+            <state relative-caret-position="51">
+              <caret line="443" column="29" selection-start-line="443" selection-start-column="29" selection-end-line="443" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,7 +40,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/ScriptEvaluator2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
+            <state relative-caret-position="341">
               <caret line="35" column="87" selection-start-line="35" selection-start-column="87" selection-end-line="35" selection-end-column="87" />
             </state>
           </provider>
@@ -51,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/Script.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="136">
+              <caret line="8" column="68" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,6 +136,7 @@
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="RayhanHamada &lt;hamadadesk1999@gmail.com&gt;" />
+        <option value="finishing import mechanism and still working on namespace" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -197,9 +196,9 @@
         <option value="$PROJECT_DIR$/src/core/structures/Notifier.java" />
         <option value="$PROJECT_DIR$/rayhan.txt" />
         <option value="$PROJECT_DIR$/src/core/Execution.java" />
-        <option value="$PROJECT_DIR$/src/core/Script.java" />
         <option value="$PROJECT_DIR$/src/core/ScriptEvaluator.java" />
         <option value="$PROJECT_DIR$/src/core/ScriptEvaluator2.java" />
+        <option value="$PROJECT_DIR$/src/core/Script.java" />
         <option value="$PROJECT_DIR$/src/core/BaseListener.java" />
       </list>
     </option>
@@ -302,7 +301,7 @@
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/gen-visitor" value="true" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/output-dir" value="D:\RayhanHamada\CodingStuff\Project\Exprezeene\src" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/package" value="core.listener" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549716154310" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549783608356" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last.edited.regexp" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
@@ -524,7 +523,21 @@
       <option name="project" value="LOCAL" />
       <updated>1549598642578</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="finishing import mechanism and still working on namespace">
+      <created>1549782889017</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1549782889017</updated>
+    </task>
+    <task id="LOCAL-00017" summary="finishing import mechanism and still working on namespace">
+      <created>1549783251957</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1549783251957</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -541,7 +554,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19463088" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19463088" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -549,16 +562,16 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49798658" visible="true" weight="0.22379604" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798658" weight="0.22379604" />
       <window_info anchor="bottom" x="1941" y="283" width="1340" height="383" id="Debug" order="3" type="WINDOWED" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.31161472" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.16997167" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49932885" weight="0.07932011" />
       <window_info anchor="bottom" id="Tool Output" order="8" weight="0.17705382" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50201344" side_tool="true" weight="0.22379604" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" weight="0.16997167" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" weight="0.3796034" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.12889518" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -631,7 +644,8 @@
     <MESSAGE value="adding Runtime Class" />
     <MESSAGE value="working on namespace structure" />
     <MESSAGE value="working on import mechanism and namespace" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on import mechanism and namespace" />
+    <MESSAGE value="finishing import mechanism and still working on namespace" />
+    <option name="LAST_COMMIT_MESSAGE" value="finishing import mechanism and still working on namespace" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/core/runtime/Action.java" />
@@ -806,16 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Script.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hamada.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -827,16 +831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="59" lean-forward="true" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/ScriptEvaluator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -854,17 +848,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Script.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="68" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/ScriptEvaluator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/ScriptEvaluator2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state relative-caret-position="341">
           <caret line="35" column="87" selection-start-line="35" selection-start-column="87" selection-end-line="35" selection-end-column="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/BaseListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="456" column="114" selection-start-line="456" selection-start-column="114" selection-end-line="456" selection-end-column="114" />
+        <state relative-caret-position="51">
+          <caret line="443" column="29" selection-start-line="443" selection-start-column="29" selection-end-line="443" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

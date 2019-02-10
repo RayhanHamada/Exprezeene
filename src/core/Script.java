@@ -5,12 +5,16 @@ import java.util.ArrayList;
 
 public class Script {
 
+    /*
+    Script is just a file contains Exprezeene's program source code.
+     */
+
     private String scriptPath; //script path
-    private String scriptName;
-    private File scriptFile; //file representation of this script
-    private boolean isMainScript;
-    private Script parentScript; //what script import this script
-    private ArrayList<Script> importedScript;
+    private String scriptName; //script name
+    private File scriptFile; //file representation the script
+    private boolean isMainScript; // is this script is the main script
+    private Script parentScript; //what script import this script, if main, then it would be null
+    private ArrayList<Script> importedScript; // list of imported scripts
 
     public Script(String scriptPath, Script parentScript, boolean isMainScript)
     {

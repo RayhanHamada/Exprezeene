@@ -441,7 +441,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitImportStatement(ExprezeeneParser.ImportStatementContext ctx) {
         currentLine = ctx.start.getLine();
-        if (ScriptEvaluator.canRun && runStage.equals(RunStage.SCANNING_PREPROCESSOR))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_PREPROCESSOR))
         {
             /*
             if 2 import with same path or name is detected, then it would be ignored and the interpreter
