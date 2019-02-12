@@ -417,6 +417,9 @@ public class BaseListener implements ExprezeeneListener{
 
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
+            /*
+            adding namespace identifier into location
+            */
             location += "." + ctx.getText();
             scopeStack.add(new Scope(location, ScopeType.NAMESPACE_SCOPE));
             inNamespace = true;

@@ -32,6 +32,7 @@ public class ScriptEvaluator2 {
             if (!(script.getScriptFile().exists() && script.getScriptFile().isFile() && script.getScriptName().matches("[A-Za-z0-9_]+\\.txt")))
             {
                 Notifier.report("the script " + script.getScriptName() + " is not valid", (script.isMainScript())? script.getScriptName() : script.getParentScript().getScriptName(), NotifierType.ERROR);
+                canRun = false;
                 return;
             }
 
