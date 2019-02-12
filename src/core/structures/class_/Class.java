@@ -1,29 +1,26 @@
-package core.structures;
+package core.structures.class_;
 
-public class Method {
+import core.structures.structure_comp.AccessModifier;
+import core.structures.structure_comp.Scope;
+import core.structures.structure_comp.ScopeType;
+
+public class Class {
 
     private String identifier;
-    private Parameter[] param;
     private AccessModifier accessModifier;
     private Scope scope;
-    private String returnDataType;
+    private Class heir;
 
-
-    public Method(String identifier, Parameter[] param, AccessModifier accessModifier, String location, ScopeType scopeType, String returnDataType)
+    public Class(String identifier, AccessModifier accessModifier, String location, ScopeType scopeType, Class heir)
     {
         this.identifier = identifier;
-        this.param = param;
         this.accessModifier = accessModifier;
         this.scope = new Scope(location, scopeType);
-        this.returnDataType = returnDataType;
+        this.heir = heir;
     }
 
     public String getIdentifier() {
         return identifier;
-    }
-
-    public Parameter[] getParam() {
-        return param;
     }
 
     public AccessModifier getAccessModifier() {
@@ -35,9 +32,7 @@ public class Method {
         return scope;
     }
 
-    public String getReturnDataType() {
-        return returnDataType;
+    public Class getHeir() {
+        return heir;
     }
-
-
 }

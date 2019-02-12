@@ -1,4 +1,4 @@
-package core.structures;
+package core.structures.structure_comp;
 
 public enum AccessModifier {
 

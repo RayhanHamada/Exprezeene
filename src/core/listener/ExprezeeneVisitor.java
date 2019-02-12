@@ -256,6 +256,12 @@ public interface ExprezeeneVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ExprezeeneParser#nameSpaceIdentifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ExprezeeneParser#nameSpaceStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

@@ -1,5 +1,0 @@
-preprocessor
-{
-    import "D:/RayhanHamada/CodingStuff/Project/Exprezeene/rayhan.txt";
-    import "D:/g.txt";
-}

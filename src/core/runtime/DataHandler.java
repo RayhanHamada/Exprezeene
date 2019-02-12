@@ -1,4 +1,9 @@
-package core.structures;
+package core.runtime;
+
+import core.structures.class_.Class;
+import core.structures.method.Method;
+import core.structures.namespace.NameSpace;
+import core.structures.variable.Variable;
 
 import java.io.File;
 import java.util.ArrayList;

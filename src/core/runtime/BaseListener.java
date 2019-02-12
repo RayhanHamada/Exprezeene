@@ -1,10 +1,15 @@
-package core;
+package core.runtime;
 
 import core.listener.ExprezeeneListener;
 import core.listener.ExprezeeneParser;
-import core.structures.*;
-import core.structures.Class;
+import core.notifier.Notifier;
+import core.notifier.NotifierType;
+import core.structures.class_.Class;
 
+import core.structures.structure_comp.AccessModifier;
+import core.structures.structure_comp.Scope;
+import core.structures.structure_comp.ScopeType;
+import core.structures.variable.Variable;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.Interval;
@@ -17,9 +22,11 @@ import java.util.Stack;
 public class BaseListener implements ExprezeeneListener{
 
     private String location;
-    private boolean canRun = true;
     public static ArrayList<Script> tempScript = new ArrayList<>();
+    private Script currentScript;
     public static int currentRow = 0, currentLine = 0;
+    private RunStage runStage;
+    private Stack<Scope> scopeStack;
 
     //for current Variable
     private String varIdentifier = null;
@@ -40,12 +47,6 @@ public class BaseListener implements ExprezeeneListener{
 
     //is entering main method
     private boolean inNamespace = false;
-    private RunStage runStage;
-    private Stack<Scope> scopeStack;
-    private String tempClassName;
-
-    //current analyzed script
-    private Script currentScript;
 
     public BaseListener(RunStage runStage, Script currentScript, String location)
     {
@@ -53,6 +54,7 @@ public class BaseListener implements ExprezeeneListener{
         this.location = location;
         this.scopeStack = new Stack<>();
         this.currentScript = currentScript;
+        scopeStack.add(new Scope(location, ScopeType.GLOBAL_SCOPE));
     }
 
     /*
@@ -61,25 +63,23 @@ public class BaseListener implements ExprezeeneListener{
 
     public boolean isStillClassScope()
     {
-        String currentScopeName = "";
-        for (String loc : location.split("\\."))
-        {
-            if (!loc.matches("[0-9]+\\$[0-9]+"))
-            {
-                currentScopeName = loc;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        for (Class c : DataHandler.getClasses())
-        {
-            if (c.getIdentifier().equals(currentScopeName) && c.getScope().getLocation().equals(location.substring(0, c.getScope().getLocation().length()))) return true;
-        }
-        return false;
+        if (scopeStack.peek().getScopeType().equals(ScopeType.CLASS_SCOPE)) return true;
+        else return false;
     }
+
+    public boolean isStillNameSpaceScope()
+    {
+        if (scopeStack.peek().getScopeType().equals(ScopeType.NAMESPACE_SCOPE)) return true;
+        else return false;
+    }
+
+
+    public void popScope()
+    {
+        location = location.replaceFirst("\\.[^\\.]+$", "");
+        scopeStack.pop();
+    }
+
 
     public static void resetTempScript()
     {
@@ -294,7 +294,7 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitParameter(ExprezeeneParser.ParameterContext ctx) {
-        if (canRun)
+        if (ScriptEvaluator2.canRun)
         {
 
         }
@@ -326,7 +326,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitArguments(ExprezeeneParser.ArgumentsContext ctx) {
 
-        if (canRun)
+        if (ScriptEvaluator2.canRun)
         {
 
         }
@@ -409,6 +409,20 @@ public class BaseListener implements ExprezeeneListener{
 
     }
 
+    public void enterNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx) {
+
+    }
+
+    public void exitNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx) {
+
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        {
+            location += "." + ctx.getText();
+            scopeStack.add(new Scope(location, ScopeType.NAMESPACE_SCOPE));
+            inNamespace = true;
+        }
+    }
+
     public void enterInPreprocessorStatement(ExprezeeneParser.InPreprocessorStatementContext ctx) {
 
     }
@@ -419,12 +433,21 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
 
-        inNamespace = true;
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        {
+            inNamespace = true;
+        }
 
     }
 
     public void exitNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
 
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        {
+            popScope();
+            inNamespace = isStillNameSpaceScope();
+            System.out.println("namespace in " + scopeStack.peek().getScopeName());
+        }
     }
 
     public void enterNameSpaceStatement(ExprezeeneParser.NameSpaceStatementContext ctx) {
@@ -478,7 +501,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
 
-        if (canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
             System.out.println("ketemu deklarasi variable");
 
@@ -576,7 +599,7 @@ public class BaseListener implements ExprezeeneListener{
                     }
                     else if (ctx.modifier().accmod().getText().equals("protected"))
                     {
-                        canRun = false;
+                        ScriptEvaluator2.canRun = false;
                         Notifier.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
                         return;
                     }
@@ -664,12 +687,12 @@ public class BaseListener implements ExprezeeneListener{
                     return;
                 }
 
-                DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, location, scopeStack.peek().getScopeType()));
+                DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, scopeStack.peek()));
             }
 
             resetVariable();
         }
-        else if (canRun && runStage.equals(RunStage.RUNNING))
+        else if (ScriptEvaluator2.canRun && runStage.equals(RunStage.RUNNING))
         {
             /*
             check whether a local variable inside method is have any modifier
@@ -699,7 +722,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx) {
 
-        if (canRun)
+        if (ScriptEvaluator2.canRun)
         {
             System.out.println("ketemu inisiasi variable");
 
@@ -797,7 +820,7 @@ public class BaseListener implements ExprezeeneListener{
                     }
                     else if (ctx.modifier().accmod().getText().equals("protected"))
                     {
-                        canRun = false;
+                        ScriptEvaluator2.canRun = false;
                         Notifier.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
                         return;
                     }
@@ -943,40 +966,19 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
 
-        //check if previously already in class scope
-
-
-        inClassScope = true;
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        {
+            inClassScope = true;
+        }
 
     }
 
     public void exitClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
-        if (canRun)
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
-            /*
-            adding current scope identifier into location
-             */
-            location+=  "." + ctx.classIdentifier().getText();
-
-            /*
-            check if still in class scope
-             */
-            if (!isStillClassScope())
-            {
-                inClassScope = false;
-            }
-
-
-
-
-            /*
-            subtract current scope identifier from location
-             */
-            location = location.substring(0, location.length()-ctx.classIdentifier().getText().length()-1);
-
-        }
-        else
-        {
+            popScope();
+            inClassScope = isStillClassScope();
+            System.out.println("class in " + scopeStack.peek().getScopeType());
 
         }
     }
@@ -987,7 +989,12 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitClassIdentifier(ExprezeeneParser.ClassIdentifierContext ctx) {
-        tempClassName = ctx.getText();
+
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        {
+            location += "." + ctx.getText();
+            scopeStack.add(new Scope(location, ScopeType.CLASS_SCOPE));
+        }
     }
 
     public void enterInClassStatement(ExprezeeneParser.InClassStatementContext ctx) {
@@ -1000,13 +1007,20 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
 
-        inMethodScope = true;
+        if (ScriptEvaluator2.canRun)
+        {
+            inMethodScope = true;
+
+        }
     }
 
     public void exitMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
 
-        inMethodScope = false;
-        scopeStack.pop();
+        if (ScriptEvaluator2.canRun)
+        {
+            popScope();
+            inMethodScope = false;
+        }
 
     }
 
@@ -1015,8 +1029,12 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitFuncIdentifier(ExprezeeneParser.FuncIdentifierContext ctx) {
-        location += "." + ctx.getText();
-        scopeStack.add(new Scope(location, ScopeType.METHOD_SCOPE));
+
+        if (ScriptEvaluator2.canRun)
+        {
+            location += "." + ctx.getText();
+            scopeStack.add(new Scope(location, ScopeType.METHOD_SCOPE));
+        }
     }
 
     public void enterInMethodStatement(ExprezeeneParser.InMethodStatementContext ctx) {

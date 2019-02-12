@@ -1,4 +1,4 @@
-package core.structures;
+package core.structures.method;
 
 public class Parameter {
 

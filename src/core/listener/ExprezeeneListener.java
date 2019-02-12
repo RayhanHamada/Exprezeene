@@ -422,6 +422,16 @@ public interface ExprezeeneListener extends ParseTreeListener {
 	 */
 	void exitNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ExprezeeneParser#nameSpaceIdentifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExprezeeneParser#nameSpaceIdentifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ExprezeeneParser#nameSpaceStatement}.
 	 * @param ctx the parse tree
 	 */

@@ -1,6 +1,5 @@
-package core.structures;
+package core.structures.structure_comp;
 
-import core.BaseListener;
 import core.listener.ExprezeeneLexer;
 import core.listener.ExprezeeneParser;
 import org.antlr.v4.runtime.CharStream;

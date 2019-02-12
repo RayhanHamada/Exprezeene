@@ -1,6 +1,6 @@
-package core.structures;
+package core.notifier;
 
-import core.BaseListener;
+import core.runtime.BaseListener;
 
 public class Notifier {
 

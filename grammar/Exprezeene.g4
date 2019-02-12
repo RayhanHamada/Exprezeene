@@ -206,6 +206,7 @@ globalScopeStatement
     | varInitStatement ';'
     | classDefStatement
     | methodDefStatement
+    | nameSpaceDefinition
     ;
 
 preprocessorStatement
@@ -217,7 +218,11 @@ inPreprocessorStatement
     ;
 
 nameSpaceDefinition
-    : NAMESPACE '{' nameSpaceStatement* '}'
+    : NAMESPACE nameSpaceIdentifier '{' nameSpaceStatement* '}'
+    ;
+
+nameSpaceIdentifier
+    : IDENTIFIER
     ;
 
 nameSpaceStatement

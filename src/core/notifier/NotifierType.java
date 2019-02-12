@@ -1,4 +1,4 @@
-package core.structures;
+package core.notifier;
 
 public enum NotifierType {
 

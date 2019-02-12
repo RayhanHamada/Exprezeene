@@ -472,6 +472,18 @@ public class ExprezeeneBaseListener implements ExprezeeneListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNameSpaceStatement(ExprezeeneParser.NameSpaceStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}

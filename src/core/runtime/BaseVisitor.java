@@ -1,4 +1,4 @@
-package core;
+package core.runtime;
 
 import core.listener.ExprezeeneParser;
 import core.listener.ExprezeeneVisitor;
@@ -150,6 +150,10 @@ public class BaseVisitor implements ExprezeeneVisitor {
     }
 
     public Object visitPreprocessorStatement(ExprezeeneParser.PreprocessorStatementContext ctx) {
+        return null;
+    }
+
+    public Object visitNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx) {
         return null;
     }
 

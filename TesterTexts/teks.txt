@@ -1,0 +1,28 @@
+preprocessor
+{
+    import "D:/RayhanHamada/CodingStuff/Project/Exprezeene/TesterTexts/rayhan.txt";
+}
+
+namespace Rayhan
+{
+    namespace Hamada
+    {
+
+    }
+}
+
+
+class Orang
+{
+    class SubOrang
+    {
+
+    }
+}
+
+var a as int;
+
+func e()
+{
+    var a as int;
+}

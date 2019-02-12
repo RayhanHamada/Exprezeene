@@ -1,11 +1,9 @@
-package core;
+package core.runtime;
 
 import core.listener.ExprezeeneLexer;
 import core.listener.ExprezeeneParser;
-import core.structures.Notifier;
-import core.structures.NotifierType;
-import core.structures.RunStage;
-import org.antlr.runtime.CharStreamState;
+import core.notifier.Notifier;
+import core.notifier.NotifierType;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -70,8 +68,11 @@ public class ScriptEvaluator2 {
             /*
             for scanning all statement except preprocessor and the main method.
             */
-            parser.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, script,"GLOBAL"));
-            parser.program();
+            CharStream i1 = CharStreams.fromFileName(script.getScriptPath());
+            ExprezeeneLexer l1 = new ExprezeeneLexer(i1);
+            ExprezeeneParser p1 = new ExprezeeneParser(new CommonTokenStream(l1));
+            p1.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, script,"GLOBAL"));
+            p1.program();
 
             /*
             if this script is main script.
@@ -81,8 +82,11 @@ public class ScriptEvaluator2 {
                 /*
                 execute every statement in the main method.
                 */
-                parser.addParseListener(new BaseListener(RunStage.RUNNING, script,"GLOBAL"));
-                parser.program();
+                CharStream i2 = CharStreams.fromFileName(script.getScriptPath());
+                ExprezeeneLexer l2= new ExprezeeneLexer(i2);
+                ExprezeeneParser p2 = new ExprezeeneParser(new CommonTokenStream(l2));
+                p2.addParseListener(new BaseListener(RunStage.RUNNING, script,"GLOBAL"));
+                p2.program();
             }
 
 
