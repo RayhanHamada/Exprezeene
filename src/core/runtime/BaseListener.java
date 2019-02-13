@@ -16,6 +16,7 @@ import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -386,7 +387,6 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterProgram(ExprezeeneParser.ProgramContext ctx) {
 
-
     }
 
     public void exitProgram(ExprezeeneParser.ProgramContext ctx) {
@@ -514,7 +514,6 @@ public class BaseListener implements ExprezeeneListener{
             */
             if (inMethodScope)
             {
-
                 try
                 {
                     if (!ctx.modifier().getText().equals(""))
@@ -587,7 +586,7 @@ public class BaseListener implements ExprezeeneListener{
                 public : this variable is accessible by an *.xpre file that import the *.xpre file where this variable is currently on.
                 private : this variable is not accessible by an *.xpre file that import the *.xpre file where this variable is currently on.
             */
-            else
+            else if (!(inMethodScope || inClassScope || inNamespace))
             {
 
                 try
@@ -622,8 +621,20 @@ public class BaseListener implements ExprezeeneListener{
                 for (Variable variable : DataHandler.getVariables())
                 {
                     boolean isSameIdentifier = variable.getIdentifier().equals(varIdentifier);
-                    boolean isSameScopeDirection = variable.getScope().getLocation().equals(location.substring(0, variable.getScope().getLocation().length()));
 
+                    /*
+                        determine whether the iterated variable and current variable is in a same direction.
+                        if the iterated
+                     */
+                    boolean isSameScopeDirection;
+                    if (variable.getScope().getLocation().length() < location.length())
+                    {
+                        isSameScopeDirection = variable.getScope().getLocation().equals(location.substring(0, variable.getScope().getLocation().length()));
+                    }
+                    else
+                    {
+                        isSameScopeDirection = location.equals(variable.getScope().getLocation().substring(0, location.length()));
+                    }
                     /*
                     special checker for class and namespace variable, because they could have same type of structure inside them.
                     */
@@ -981,7 +992,6 @@ public class BaseListener implements ExprezeeneListener{
         {
             popScope();
             inClassScope = isStillClassScope();
-            System.out.println("class in " + scopeStack.peek().getScopeType());
 
         }
     }

@@ -1,28 +1,16 @@
-preprocessor
-{
-    import "D:/RayhanHamada/CodingStuff/Project/Exprezeene/TesterTexts/rayhan.txt";
-}
-
-namespace Rayhan
-{
-    namespace Hamada
-    {
-
-    }
-}
 
 
 class Orang
 {
+
+    var a as int;
+
     class SubOrang
     {
-
+        var b as int;
     }
 }
 
-var a as int;
+var c as int;
 
-func e()
-{
-    var a as int;
-}
+
