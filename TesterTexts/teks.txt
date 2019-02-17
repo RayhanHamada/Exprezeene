@@ -4,7 +4,11 @@ var a as int;
 
 var b as int;
 
-var c as int = 9;
+func main()
+{
+var g as int;
+var f as int = 6;
+}
 
 
 

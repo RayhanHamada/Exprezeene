@@ -1,6 +1,7 @@
 package core.notifier;
 
 import core.runtime.BaseListener;
+import core.runtime.ScriptEvaluator2;
 
 public class Notifier {
 
@@ -8,15 +9,12 @@ public class Notifier {
     {
         if (notifierType.equals(NotifierType.WARNING))
         {
-            System.out.printf("[WARNING in %s on line %d row %d] : %s.\n", scriptWhereThisOccur, BaseListener.currentLine, BaseListener.currentRow, message);
-        }
-        else if (notifierType.equals(NotifierType.EXCEPTION))
-        {
-            System.out.printf("[EXCEPTION in %s on line %d row %d] : %s.\n", scriptWhereThisOccur, BaseListener.currentLine, BaseListener.currentRow, message);
+            System.out.printf("[WARNING in %s:%d:%d] : %s.\n", scriptWhereThisOccur, BaseListener.currentLine, BaseListener.currentRow, message);
         }
         else
         {
-            System.out.printf("[ERROR in %s on line %d row %d] : %s.\n", scriptWhereThisOccur, BaseListener.currentLine, BaseListener.currentRow, message);
+            System.out.printf("[ERROR in %s:%d:%d] : %s.\n", scriptWhereThisOccur, BaseListener.currentLine, BaseListener.currentRow, message);
+            ScriptEvaluator2.canRun = false;
         }
     }
 

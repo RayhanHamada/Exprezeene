@@ -1,6 +1,5 @@
 package core.runtime;
 
-import com.sun.corba.se.impl.presentation.rmi.ExceptionHandler;
 import core.listener.ExprezeeneListener;
 import core.listener.ExprezeeneParser;
 import core.notifier.Notifier;
@@ -17,7 +16,6 @@ import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -29,6 +27,7 @@ public class BaseListener implements ExprezeeneListener{
     public static int currentRow = 0, currentLine = 0;
     private RunStage runStage;
     private Stack<Scope> scopeStack;
+    private boolean inMainMethodScope = false;
 
     //for current Variable
     private String varIdentifier = null;
@@ -296,7 +295,7 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitParameter(ExprezeeneParser.ParameterContext ctx) {
-        if (ScriptEvaluator2.canRun)
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
 
         }
@@ -328,7 +327,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitArguments(ExprezeeneParser.ArgumentsContext ctx) {
 
-        if (ScriptEvaluator2.canRun)
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
 
         }
@@ -603,6 +602,8 @@ public class BaseListener implements ExprezeeneListener{
             for (int varCount = 0; varCount < ctx.varIdentifier().size(); varCount++ )
             {
                 varIdentifier = ctx.varIdentifier(varCount).getText();
+                currentLine = ctx.varIdentifier(varCount).start.getLine();
+                currentRow = ctx.varIdentifier(varCount).start.getCharPositionInLine();
                 for (Variable variable : DataHandler.getVariables())
                 {
                     boolean isSameIdentifier = variable.getIdentifier().equals(varIdentifier);
@@ -632,22 +633,22 @@ public class BaseListener implements ExprezeeneListener{
                     */
                     if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScope().getScopeType().equals(ScopeType.METHOD_SCOPE))
                     {
-                        Notifier.reportException("[Exception occurred] : 2 or more identical local variable exist in method scope.");
+                        Notifier.report("2 local variable with same identifier is detected in method scope.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
                     else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.CLASS_SCOPE))
                     {
-                        Notifier.reportException("[Exception occurred] : 2 or more identical class variable exist in class scope.");
+                        Notifier.report("2 class variable with same identifier is detected in class scope.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
                     else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
                     {
-                        Notifier.reportException("[Exception occurred] : 2 or more identical namespace variable exist in namespace scope.");
+                        Notifier.report("2 variable with same identifier is detected in namespace scope.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
                     else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScope().getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                     {
-                        Notifier.reportException("[Exception occurred] : 2 or more identical global variable exist in global scope.");
+                        Notifier.report("2 variable with same identifier is detected in global scope.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
                 }
@@ -790,10 +791,9 @@ public class BaseListener implements ExprezeeneListener{
                 }
             }
 
-
-        /*
-        check if a constant or variable
-        */
+            /*
+            check if a constant or variable
+            */
             if (ctx.varConst().equals("var")) _constVariable = false;
             else if (ctx.varConst().getText().equals("const")) _constVariable = true;
 
@@ -831,22 +831,22 @@ public class BaseListener implements ExprezeeneListener{
                 */
                 if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScope().getScopeType().equals(ScopeType.METHOD_SCOPE))
                 {
-                    Notifier.report("2 or more variable with same name exist in method scope.", currentScript.getScriptName(), NotifierType.EXCEPTION);
+                    Notifier.report("2 or more variable with same name exist in method scope.", currentScript.getScriptName(), NotifierType.ERROR);
                     return;
                 }
                 else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.CLASS_SCOPE))
                 {
-                    Notifier.report("2 or more variable with same name exist in class scope.", currentScript.getScriptName(), NotifierType.EXCEPTION);
+                    Notifier.report("2 or more variable with same name exist in class scope.", currentScript.getScriptName(), NotifierType.ERROR);
                     return;
                 }
                 else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
                 {
-                    Notifier.report("2 or more variable with same name exist in namespace scope.", currentScript.getScriptName(), NotifierType.EXCEPTION);
+                    Notifier.report("2 or more variable with same name exist in namespace scope.", currentScript.getScriptName(), NotifierType.ERROR);
                     return;
                 }
                 else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScope().getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                 {
-                    Notifier.report("2 or more variable with same name exist in global scope.", currentScript.getScriptName(), NotifierType.EXCEPTION);
+                    Notifier.report("2 or more variable with same name exist in global scope.", currentScript.getScriptName(), NotifierType.ERROR);
                     return;
                 }
             }
@@ -930,6 +930,8 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
 
+        currentLine = ctx.start.getLine();
+        currentRow = ctx.start.getCharPositionInLine();
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
             inClassScope = true;
@@ -938,6 +940,9 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitClassDefStatement(ExprezeeneParser.ClassDefStatementContext ctx) {
+
+        currentLine = ctx.start.getLine();
+        currentRow = ctx.start.getCharPositionInLine();
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
             popScope();
@@ -953,6 +958,8 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitClassIdentifier(ExprezeeneParser.ClassIdentifierContext ctx) {
 
+        currentLine = ctx.start.getLine();
+        currentRow = ctx.start.getCharPositionInLine();
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
             location += "." + ctx.getText();
@@ -970,6 +977,8 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
 
+        currentLine = ctx.start.getLine();
+        currentRow = ctx.start.getCharPositionInLine();
         if (ScriptEvaluator2.canRun)
         {
             inMethodScope = true;
@@ -979,7 +988,9 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitMethodDefStatement(ExprezeeneParser.MethodDefStatementContext ctx) {
 
-        if (ScriptEvaluator2.canRun)
+        currentLine = ctx.start.getLine();
+        currentRow = ctx.start.getCharPositionInLine();
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
             popScope();
             inMethodScope = false;
@@ -992,12 +1003,35 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitFuncIdentifier(ExprezeeneParser.FuncIdentifierContext ctx) {
-
-        if (ScriptEvaluator2.canRun)
+        currentLine = ctx.start.getLine();
+        currentRow = ctx.start.getCharPositionInLine();
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
-            location += "." + ctx.getText();
-            scopeStack.add(new Scope(location, ScopeType.METHOD_SCOPE));
+            /*
+            check if this method is main method, if so then do nothing, because current run stage is SCANNING_NON_MAIN_STATEMENT
+            */
+            if (ctx.getText().equals("main"))
+            {
+                if (scopeStack.peek().getScopeType().equals(ScopeType.GLOBAL_SCOPE));
+                else
+                {
+                    ScriptEvaluator2.canRun = false;
+                    Notifier.report("The main method can't be defined everywhere but global scope.", currentScript.getScriptName(), NotifierType.ERROR);
+                    return;
+                }
+            }
+
+            /*
+            if not then current scope would be updated.
+            */
+            else
+            {
+                location += "." + ctx.getText();
+                scopeStack.add(new Scope(location, ScopeType.METHOD_SCOPE));
+            }
         }
+
+
     }
 
     public void enterInMethodStatement(ExprezeeneParser.InMethodStatementContext ctx) {
