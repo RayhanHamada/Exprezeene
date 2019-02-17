@@ -1,5 +1,6 @@
 package core.runtime;
 
+import com.sun.corba.se.impl.presentation.rmi.ExceptionHandler;
 import core.listener.ExprezeeneListener;
 import core.listener.ExprezeeneParser;
 import core.notifier.Notifier;
@@ -507,7 +508,6 @@ public class BaseListener implements ExprezeeneListener{
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
             System.out.println("ketemu deklarasi variable");
-
             /*
             check whether a local variable inside method is have any modifier
             note : a local variable can't have any modifier (neither static modifier nor access modifier)
@@ -518,7 +518,7 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     if (!ctx.modifier().getText().equals(""))
                     {
-                        Notifier.reportException("{Exception occurred] : a local variable can't have any modifier.");
+                        Notifier.report("a local variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
                 } catch (Exception e)
@@ -559,24 +559,16 @@ public class BaseListener implements ExprezeeneListener{
             {
                 try
                 {
-                    if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
-                    else if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
-                    else if (ctx.modifier().accmod().getText().equals("protected"))
+                    if (!ctx.modifier().getText().equals(""))
                     {
-                        System.out.println("[Exception Occured] : a namespace variable can't have protected access modifier.");
+                        ScriptEvaluator2.canRun = false;
+                        Notifier.report("a namespace variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
-                } catch (Exception e)
-                {
-                    varAccessModifier = AccessModifier.PRIVATE; //default access modifier for namespace variable
-                }
 
-                try
-                {
-                    _staticVariable = !ctx.modifier().STATIC().getText().isEmpty();
                 } catch (Exception e)
                 {
-                    _staticVariable = false;
+                    varAccessModifier = AccessModifier.PUBLIC;
                 }
             }
 
@@ -591,20 +583,13 @@ public class BaseListener implements ExprezeeneListener{
 
                 try
                 {
-                    if (ctx.modifier().accmod().getText().equals("private"))
-                    {
-                        varAccessModifier = AccessModifier.PRIVATE;
-                    }
-                    else if (ctx.modifier().accmod().getText().equals("public"))
-                    {
-                        varAccessModifier = AccessModifier.PUBLIC;
-                    }
-                    else if (ctx.modifier().accmod().getText().equals("protected"))
+                    if (!ctx.modifier().getText().equals(""))
                     {
                         ScriptEvaluator2.canRun = false;
-                        Notifier.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
+                        Notifier.report("a global variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
+
                 } catch (Exception e)
                 {
                     varAccessModifier = AccessModifier.PUBLIC;
@@ -624,7 +609,6 @@ public class BaseListener implements ExprezeeneListener{
 
                     /*
                         determine whether the iterated variable and current variable is in a same direction.
-                        if the iterated
                      */
                     boolean isSameScopeDirection;
                     if (variable.getScope().getLocation().length() < location.length())
@@ -697,7 +681,7 @@ public class BaseListener implements ExprezeeneListener{
 
                 if (!ketemu)
                 {
-                    Notifier.reportException("[Exception occurred] : the type of this variable is not defined");
+                    Notifier.report("the data type of this variable is undefined.", currentScript.getScriptName(), NotifierType.ERROR);
                     return;
                 }
 
@@ -706,28 +690,7 @@ public class BaseListener implements ExprezeeneListener{
 
             resetVariable();
         }
-        else if (ScriptEvaluator2.canRun && runStage.equals(RunStage.RUNNING))
-        {
-            /*
-            check whether a local variable inside method is have any modifier
-            note : a local variable can't have any modifier (neither static modifier nor access modifier)
-            */
-//            try
-//            {
-//                if (!ctx.modifier().getText().equals(""))
-//                {
-//                    Notifier.reportException("{Exception occurred] : a local variable can't have any modifier.");
-//                    return;
-//                }
-//            } catch (Exception e)
-//            {
-//                varAccessModifier = AccessModifier.LOCAL;
-//            }
 
-
-
-
-        }
     }
 
     public void enterVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx) {
@@ -736,22 +699,21 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx) {
 
-        if (ScriptEvaluator2.canRun)
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
             System.out.println("ketemu inisiasi variable");
 
-        /*
-        check for scope type
-        */
-
-
+            /*
+            check whether a local variable inside method is have any modifier
+            note : a local variable can't have any modifier (neither static modifier nor access modifier)
+            */
             if (inMethodScope)
             {
                 try
                 {
                     if (!ctx.modifier().getText().equals(""))
                     {
-                        Notifier.reportException("{Exception occurred] : a local variable can't have any modifier.");
+                        Notifier.report("a local variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
                 } catch (Exception e)
@@ -775,7 +737,6 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     varAccessModifier = AccessModifier.PRIVATE;
                 }
-
                 try
                 {
                     _staticVariable = !ctx.modifier().STATIC().getText().isEmpty();
@@ -793,24 +754,16 @@ public class BaseListener implements ExprezeeneListener{
             {
                 try
                 {
-                    if (ctx.modifier().accmod().getText().equals("public")) varAccessModifier = AccessModifier.PUBLIC;
-                    else if (ctx.modifier().accmod().getText().equals("private")) varAccessModifier = AccessModifier.PRIVATE;
-                    else if (ctx.modifier().accmod().getText().equals("protected"))
+                    if (!ctx.modifier().getText().equals(""))
                     {
-                        System.out.println("[Exception Occured] : a namespace variable can't have protected access modifier.");
+                        ScriptEvaluator2.canRun = false;
+                        Notifier.report("a namespace variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
-                } catch (Exception e)
-                {
-                    varAccessModifier = AccessModifier.PRIVATE; //default access modifier for namespace variable
-                }
 
-                try
-                {
-                    _staticVariable = !ctx.modifier().STATIC().getText().isEmpty();
                 } catch (Exception e)
                 {
-                    _staticVariable = false;
+                    varAccessModifier = AccessModifier.PUBLIC;
                 }
             }
 
@@ -820,24 +773,17 @@ public class BaseListener implements ExprezeeneListener{
                 public : this variable is accessible by an *.xpre file that import the *.xpre file where this variable is currently on.
                 private : this variable is not accessible by an *.xpre file that import the *.xpre file where this variable is currently on.
             */
-            else
+            else if (!(inMethodScope || inClassScope || inNamespace))
             {
                 try
                 {
-                    if (ctx.modifier().accmod().getText().equals("private"))
-                    {
-                        varAccessModifier = AccessModifier.PRIVATE;
-                    }
-                    else if (ctx.modifier().accmod().getText().equals("public"))
-                    {
-                        varAccessModifier = AccessModifier.PUBLIC;
-                    }
-                    else if (ctx.modifier().accmod().getText().equals("protected"))
+                    if (!ctx.modifier().getText().equals(""))
                     {
                         ScriptEvaluator2.canRun = false;
-                        Notifier.reportException("[Exception occurred] : a global variable can't have protected access modifier.");
+                        Notifier.report("a global variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
+
                 } catch (Exception e)
                 {
                     varAccessModifier = AccessModifier.PUBLIC;
@@ -852,14 +798,26 @@ public class BaseListener implements ExprezeeneListener{
             else if (ctx.varConst().getText().equals("const")) _constVariable = true;
 
             /*
-        checking if there's variable(s) declaration or initialization with same identifier in some scope.
-        */
+            checking if there's variable(s) declaration or initialization with same identifier in some scope.
+            */
             varIdentifier = ctx.varIdentifier().getText();
             for (Variable variable : DataHandler.getVariables())
             {
                 boolean isSameIdentifier = variable.getIdentifier().equals(varIdentifier);
-                boolean isSameScopeDirection = variable.getScope().getLocation().equals(location.substring(0, variable.getScope().getLocation().length()));
 
+                /*
+                determine whether the iterated variable and current variable is in a same direction.
+                */
+                boolean isSameScopeDirection = false;
+
+                if (variable.getScope().getLocation().length() < location.length())
+                {
+                    isSameScopeDirection = variable.getScope().getLocation().equals(location.substring(0, variable.getScope().getLocation().length()));
+                }
+                else
+                {
+                    isSameScopeDirection = location.equals(variable.getScope().getLocation().substring(0, location.length()));
+                }
                 /*
                 special checker for class and namespace variable, because they could have same type of structure inside them.
                 */
@@ -873,29 +831,29 @@ public class BaseListener implements ExprezeeneListener{
                 */
                 if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScope().getScopeType().equals(ScopeType.METHOD_SCOPE))
                 {
-                    Notifier.reportException("[Exception occurred] : 2 or more identical local variable exist in method scope.");
+                    Notifier.report("2 or more variable with same name exist in method scope.", currentScript.getScriptName(), NotifierType.EXCEPTION);
                     return;
                 }
                 else if (inClassScope && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.CLASS_SCOPE))
                 {
-                    Notifier.reportException("[Exception occurred] : 2 or more identical class variable exist in class scope.");
+                    Notifier.report("2 or more variable with same name exist in class scope.", currentScript.getScriptName(), NotifierType.EXCEPTION);
                     return;
                 }
                 else if (inNamespace && isSameIdentifier && isSameLocation && variable.getScope().getScopeType().equals(ScopeType.NAMESPACE_SCOPE))
                 {
-                    Notifier.reportException("[Exception occurred] : 2 or more identical namespace variable exist in namespace scope.");
+                    Notifier.report("2 or more variable with same name exist in namespace scope.", currentScript.getScriptName(), NotifierType.EXCEPTION);
                     return;
                 }
                 else if (!(inMethodScope || inClassScope || inNamespace) && isSameIdentifier && variable.getScope().getScopeType().equals(ScopeType.GLOBAL_SCOPE))
                 {
-                    Notifier.reportException("[Exception occurred] : 2 or more identical global variable exist in global scope.");
+                    Notifier.report("2 or more variable with same name exist in global scope.", currentScript.getScriptName(), NotifierType.EXCEPTION);
                     return;
                 }
             }
 
-        /*
-        check if varDataType is not in primitive data type or reference data type.
-        */
+            /*
+            check if varDataType is not in primitive data type or reference data type.
+            */
             varDataType = ctx.dataType().getText();
             boolean ketemu = false;
 
@@ -922,25 +880,17 @@ public class BaseListener implements ExprezeeneListener{
 
             if (!ketemu)
             {
-                Notifier.reportException("the type of this variable is not defined");
+                Notifier.report("the data type of this variable is undefined", currentScript.getScriptName(), NotifierType.ERROR);
                 return;
             }
 
-            /*
-            check if the variable exist in entry point (go function), if so, then the variable would be evaluated.
-            if not then :
 
-            if the value is in form of non-literal (or an expression that needs to be evaluated) then it would be kept as string of expression
-            (to be evaluated later if needed).
-
-            if the value is in form of literal then value would be instantly stored.
-             */
             int a = ctx.expr().start.getStartIndex();
             int b = ctx.expr().stop.getStopIndex();
             Interval interval = new Interval(a, b);
             CharStream input = ctx.expr().start.getInputStream();
             varValue = input.getText(interval);
-            System.out.println(ctx.start.getInputStream().getText(new Interval(ctx.start.getStartIndex(), ctx.stop.getStopIndex())));
+            System.out.println(varValue);
 
             resetVariable();
         }

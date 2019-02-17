@@ -1,16 +1,10 @@
 
 
-class Orang
-{
+var a as int;
 
-    var a as int;
+var b as int;
 
-    class SubOrang
-    {
-        var b as int;
-    }
-}
+var c as int = 9;
 
-var c as int;
 
 

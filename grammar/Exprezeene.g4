@@ -248,7 +248,7 @@ varDeclStatement
     ;
 
 varInitStatement
-    : modifier varConst varIdentifier AS dataType '=' (expr|objInstStatement)
+    : modifier varConst varIdentifier AS dataType '=' (expr)
     ;
 
 varAssignStatement

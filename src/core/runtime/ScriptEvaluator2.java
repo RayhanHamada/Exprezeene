@@ -76,8 +76,6 @@ public class ScriptEvaluator2 {
             p1.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, script,"GLOBAL"));
             p1.program();
 
-            for (Variable var : DataHandler.getVariables()) System.out.println(var.getIdentifier());
-
             /*
             if this script is main script.
              */
