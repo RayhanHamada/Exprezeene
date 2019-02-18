@@ -4,6 +4,8 @@ import core.listener.ExprezeeneLexer;
 import core.listener.ExprezeeneParser;
 import core.notifier.Notifier;
 import core.notifier.NotifierType;
+
+import core.runtime.antlrgenerated.BaseListener;
 import core.structures.variable.Variable;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -17,19 +19,19 @@ public class ScriptEvaluator2 {
     public static ArrayList<Script> allScript = new ArrayList<>();
 
 
-    private static void addAllTempIntoAllScript(ArrayList<Script> scripts)
+    private static void addAllTempIntoAllScript()
     {
-        for (Script script : scripts)
+        for (Script script : BaseListener.tempScript)
         {
             allScript.add(script);
         }
+        BaseListener.resetTempScript();
     }
 
     public static void evaluate(Script script) throws Exception
     {
         if (canRun)
         {
-
             if (!(script.getScriptFile().exists() && script.getScriptFile().isFile() && script.getScriptName().matches("[A-Za-z0-9_]+\\.txt")))
             {
                 Notifier.report("the script " + script.getScriptName() + " is not valid", (script.isMainScript())? script.getScriptName() : script.getParentScript().getScriptName(), NotifierType.ERROR);
@@ -59,8 +61,7 @@ public class ScriptEvaluator2 {
             parser.program();
 
             script.setImportedScript(BaseListener.tempScript);
-            addAllTempIntoAllScript(BaseListener.tempScript);
-            BaseListener.resetTempScript();
+            addAllTempIntoAllScript();
 
             for (Script s : script.getImportedScript())
             {
@@ -76,6 +77,12 @@ public class ScriptEvaluator2 {
             p1.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, script,"GLOBAL"));
             p1.program();
 
+
+            for (Variable v : DataHandler.getVariables())
+            {
+                System.out.println(v.getScope().getRefIndex());
+                System.out.println(v.getScope().getLocation());
+            }
             /*
             if this script is main script.
              */
@@ -85,13 +92,11 @@ public class ScriptEvaluator2 {
                 execute every statement in the main method.
                 */
                 CharStream i2 = CharStreams.fromFileName(script.getScriptPath());
-                ExprezeeneLexer l2= new ExprezeeneLexer(i2);
+                ExprezeeneLexer l2 = new ExprezeeneLexer(i2);
                 ExprezeeneParser p2 = new ExprezeeneParser(new CommonTokenStream(l2));
                 p2.addParseListener(new BaseListener(RunStage.RUNNING, script,"GLOBAL"));
                 p2.program();
             }
         }
-
     }
-
 }

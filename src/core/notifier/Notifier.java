@@ -1,6 +1,6 @@
 package core.notifier;
 
-import core.runtime.BaseListener;
+import core.runtime.antlrgenerated.BaseListener;
 import core.runtime.ScriptEvaluator2;
 
 public class Notifier {

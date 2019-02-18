@@ -7,14 +7,14 @@ import core.structures.structure_comp.ScopeType;
 
 public class Variable {
 
-    private String identifier;
-    private AccessModifier accessModifier;
-    private String dataType;
-    private boolean _static, _const;
-    private Expression expr;
+    private String identifier; // the name of the variable
+    private AccessModifier accessModifier; // access modifier of the variable
+    private String dataType; // for datatype of the variable
+    private boolean _static, _const; // is static? is constant ?
+    private Expression expr; // if the variable is initialized, then it must have a value.
     private boolean state; //false for declared, true for initialized
     private int refCount; // how many times this variable is used
-    private Scope scope;
+    private Scope scope; // for scope reference
 
 
     //for declared variable
@@ -28,14 +28,13 @@ public class Variable {
         this.expr = null;
         this.state = false;
         this.scope = scope;
-        this.refCount = 0;
 
     }
 
     //for initialized
     public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, Scope scope, Expression expr)
     {
-        this(identifier, accessModifier, dataType, _static, _const,scope);
+        this(identifier, accessModifier, dataType, _static, _const, scope);
         this.expr = expr;
         this.state = true;
     }
@@ -80,5 +79,6 @@ public class Variable {
     {
         expr.evaluate();
     }
+
 
 }

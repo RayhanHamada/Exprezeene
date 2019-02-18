@@ -1,9 +1,13 @@
-package core.runtime;
+package core.runtime.antlrgenerated;
 
 import core.listener.ExprezeeneListener;
 import core.listener.ExprezeeneParser;
 import core.notifier.Notifier;
 import core.notifier.NotifierType;
+import core.runtime.DataHandler;
+import core.runtime.RunStage;
+import core.runtime.Script;
+import core.runtime.ScriptEvaluator2;
 import core.structures.class_.Class;
 
 import core.structures.structure_comp.AccessModifier;
@@ -504,7 +508,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
 
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT) && !inMainMethodScope)
         {
             System.out.println("ketemu deklarasi variable");
             /*
@@ -685,11 +689,32 @@ public class BaseListener implements ExprezeeneListener{
                     Notifier.report("the data type of this variable is undefined.", currentScript.getScriptName(), NotifierType.ERROR);
                     return;
                 }
+//                Scope s = new Scope(scopeStack.peek().getLocation(), scopeStack.peek().getScopeType());
 
                 DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, scopeStack.peek()));
+
+                /*
+                incrementing the ref index
+                 */
+                scopeStack.peek().incrementRefIndex();
+
             }
 
+            /*
+            remove the last Scope element in the scopeStack, then instantiate a new Scope with same properties as the removed scope have.
+            this is because to prevent (idk, java behaviour maybe ??) to assume that the assigned scope when instantiated a variable is a reference to the next
+            variable instance's scope too. the result of this behaviour is every variable declared in same scope would have same refIndex, and it is wrong.
+             */
+            int curRefIndex = scopeStack.peek().getRefIndex();
+            ScopeType st = scopeStack.peek().getScopeType();
+            scopeStack.pop();
+            scopeStack.add(new Scope(location, st, curRefIndex));
+
             resetVariable();
+        }
+        else if (ScriptEvaluator2.canRun && runStage.equals(RunStage.RUNNING) && inMainMethodScope)
+        {
+
         }
 
     }
@@ -982,7 +1007,6 @@ public class BaseListener implements ExprezeeneListener{
         if (ScriptEvaluator2.canRun)
         {
             inMethodScope = true;
-
         }
     }
 
@@ -1007,11 +1031,13 @@ public class BaseListener implements ExprezeeneListener{
         currentRow = ctx.start.getCharPositionInLine();
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
         {
+
             /*
             check if this method is main method, if so then do nothing, because current run stage is SCANNING_NON_MAIN_STATEMENT
             */
             if (ctx.getText().equals("main"))
             {
+                inMainMethodScope = true;
                 if (scopeStack.peek().getScopeType().equals(ScopeType.GLOBAL_SCOPE));
                 else
                 {
