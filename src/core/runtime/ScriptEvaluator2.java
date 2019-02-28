@@ -6,18 +6,19 @@ import core.notifier.Notifier;
 import core.notifier.NotifierType;
 
 import core.runtime.antlrgenerated.BaseListener;
+import core.structures.structure_comp.Expression;
 import core.structures.variable.Variable;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class ScriptEvaluator2 {
 
     public static boolean canRun = true;
     public static ArrayList<Script> allScript = new ArrayList<>();
-
 
     private static void addAllTempIntoAllScript()
     {
@@ -40,14 +41,13 @@ public class ScriptEvaluator2 {
             }
 
             /*
-            for the main script, the procedure of interpretation are:
-            1. scanning preprocessor,
-            2. scanning for all statement except preprocessor and main method,
-            3. find main method and execute every statement in main method.
+            interpretation procedure of main script :
+            1. scanning all preprocessor.
+            2. scanning all statement(include main method statement) except preprocessor.
 
-            for the imported script, the procedure of interpretation are:
-            1. scanning preprocessor,
-            2. scanning all statement except preprocessor statement and main method(if any) statement.
+            interpretation procedure of non-main script
+            1. scanning all preprocessor.
+            2. scanning all statement(with no main method, if there's any, then the main method would be ignored) except preprocessor.
              */
 
             CharStream input = CharStreams.fromFileName(script.getScriptPath());
@@ -68,34 +68,42 @@ public class ScriptEvaluator2 {
                 ScriptEvaluator2.evaluate(s);
             }
 
+
+
             /*
             for scanning all statement except preprocessor and the main method.
             */
             CharStream i1 = CharStreams.fromFileName(script.getScriptPath());
             ExprezeeneLexer l1 = new ExprezeeneLexer(i1);
             ExprezeeneParser p1 = new ExprezeeneParser(new CommonTokenStream(l1));
-            p1.addParseListener(new BaseListener(RunStage.SCANNING_NON_MAIN_STATEMENT, script,"GLOBAL"));
+            p1.addParseListener(new BaseListener(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT, script,"GLOBAL"));
             p1.program();
-
 
             for (Variable v : DataHandler.getVariables())
             {
-                System.out.println(v.getScope().getRefIndex());
                 System.out.println(v.getScope().getLocation());
             }
+
             /*
-            if this script is main script.
+            if this script is main script, then execute every statement in the main method.
              */
             if (script.isMainScript())
             {
-                /*
-                execute every statement in the main method.
-                */
-                CharStream i2 = CharStreams.fromFileName(script.getScriptPath());
-                ExprezeeneLexer l2 = new ExprezeeneLexer(i2);
-                ExprezeeneParser p2 = new ExprezeeneParser(new CommonTokenStream(l2));
-                p2.addParseListener(new BaseListener(RunStage.RUNNING, script,"GLOBAL"));
-                p2.program();
+                // if the first main method statement is variable statement, then it would be false, if it's expression statement, then it would be true.
+                boolean varOrExpression = false;
+
+                for (Expression expression : DataHandler.getExpressionStatements())
+                {
+                    if (expression.getScope().getLocation().equals("GLOBAL.main") && expression.getScope().getRefIndex() == 0)
+                    {
+                        varOrExpression = true;
+                    }
+                }
+
+                if (varOrExpression)
+                {
+
+                }
             }
         }
     }

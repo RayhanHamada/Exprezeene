@@ -10,7 +10,7 @@ public enum RunStage {
     /*
     for scanning all statement in the current script
      */
-    SCANNING_NON_MAIN_STATEMENT,
+    SCANNING_NON_PREPROCESSOR_STATEMENT,
 
     /*
     run the program

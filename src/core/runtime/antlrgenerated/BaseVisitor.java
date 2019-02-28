@@ -29,75 +29,15 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
-    public Object visitAssignmentExpr(ExprezeeneParser.AssignmentExprContext ctx) {
-        return null;
-    }
-
-    public Object visitPostFixExpr(ExprezeeneParser.PostFixExprContext ctx) {
-        return null;
-    }
-
-    public Object visitOrLogicExpr(ExprezeeneParser.OrLogicExprContext ctx) {
-        return null;
-    }
-
-    public Object visitOrBitWiseExpr(ExprezeeneParser.OrBitWiseExprContext ctx) {
-        return null;
-    }
-
-    public Object visitAndLogicExpr(ExprezeeneParser.AndLogicExprContext ctx) {
-        return null;
-    }
-
-    public Object visitPreFixExpr(ExprezeeneParser.PreFixExprContext ctx) {
-        return null;
-    }
-
-    public Object visitBitShiftExpr(ExprezeeneParser.BitShiftExprContext ctx) {
-        return null;
-    }
-
-    public Object visitRelationalExpr(ExprezeeneParser.RelationalExprContext ctx) {
-        return null;
-    }
-
-    public Object visitMultExpr(ExprezeeneParser.MultExprContext ctx) {
-        return null;
-    }
-
-    public Object visitMethodCallExpr(ExprezeeneParser.MethodCallExprContext ctx) {
-        return null;
-    }
-
-    public Object visitObjInstExpr(ExprezeeneParser.ObjInstExprContext ctx) {
-        return null;
-    }
-
-    public Object visitArrayAccessExpr(ExprezeeneParser.ArrayAccessExprContext ctx) {
-        return null;
-    }
-
-    public Object visitPrimaryExpr(ExprezeeneParser.PrimaryExprContext ctx) {
-        return null;
-    }
-
-    public Object visitAddExpr(ExprezeeneParser.AddExprContext ctx) {
-        return null;
-    }
-
-    public Object visitXorBitWiseExpr(ExprezeeneParser.XorBitWiseExprContext ctx) {
-        return null;
-    }
-
-    public Object visitMemberAccessExpr(ExprezeeneParser.MemberAccessExprContext ctx) {
-        return null;
-    }
-
-    public Object visitAndBitWiseExpr(ExprezeeneParser.AndBitWiseExprContext ctx) {
+    public Object visitExpr(ExprezeeneParser.ExprContext ctx) {
         return null;
     }
 
     public Object visitPrimary(ExprezeeneParser.PrimaryContext ctx) {
+        return null;
+    }
+
+    public Object visitExpressionStatement(ExprezeeneParser.ExpressionStatementContext ctx) {
         return null;
     }
 

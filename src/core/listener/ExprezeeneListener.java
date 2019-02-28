@@ -58,209 +58,15 @@ public interface ExprezeeneListener extends ParseTreeListener {
 	 */
 	void exitMethodCall(ExprezeeneParser.MethodCallContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code assignmentExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
+	 * Enter a parse tree produced by {@link ExprezeeneParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignmentExpr(ExprezeeneParser.AssignmentExprContext ctx);
+	void enterExpr(ExprezeeneParser.ExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code assignmentExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
+	 * Exit a parse tree produced by {@link ExprezeeneParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignmentExpr(ExprezeeneParser.AssignmentExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code postFixExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterPostFixExpr(ExprezeeneParser.PostFixExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code postFixExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitPostFixExpr(ExprezeeneParser.PostFixExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code orLogicExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterOrLogicExpr(ExprezeeneParser.OrLogicExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code orLogicExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitOrLogicExpr(ExprezeeneParser.OrLogicExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code orBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterOrBitWiseExpr(ExprezeeneParser.OrBitWiseExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code orBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitOrBitWiseExpr(ExprezeeneParser.OrBitWiseExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code andLogicExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterAndLogicExpr(ExprezeeneParser.AndLogicExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code andLogicExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitAndLogicExpr(ExprezeeneParser.AndLogicExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code preFixExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterPreFixExpr(ExprezeeneParser.PreFixExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code preFixExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitPreFixExpr(ExprezeeneParser.PreFixExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code bitShiftExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBitShiftExpr(ExprezeeneParser.BitShiftExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code bitShiftExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBitShiftExpr(ExprezeeneParser.BitShiftExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code relationalExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterRelationalExpr(ExprezeeneParser.RelationalExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code relationalExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitRelationalExpr(ExprezeeneParser.RelationalExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code multExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterMultExpr(ExprezeeneParser.MultExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code multExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitMultExpr(ExprezeeneParser.MultExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code methodCallExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterMethodCallExpr(ExprezeeneParser.MethodCallExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code methodCallExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitMethodCallExpr(ExprezeeneParser.MethodCallExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code objInstExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterObjInstExpr(ExprezeeneParser.ObjInstExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code objInstExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitObjInstExpr(ExprezeeneParser.ObjInstExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code arrayAccessExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterArrayAccessExpr(ExprezeeneParser.ArrayAccessExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code arrayAccessExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitArrayAccessExpr(ExprezeeneParser.ArrayAccessExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code primaryExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrimaryExpr(ExprezeeneParser.PrimaryExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code primaryExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrimaryExpr(ExprezeeneParser.PrimaryExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code addExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterAddExpr(ExprezeeneParser.AddExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code addExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitAddExpr(ExprezeeneParser.AddExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code xorBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterXorBitWiseExpr(ExprezeeneParser.XorBitWiseExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code xorBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitXorBitWiseExpr(ExprezeeneParser.XorBitWiseExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code memberAccessExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterMemberAccessExpr(ExprezeeneParser.MemberAccessExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code memberAccessExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitMemberAccessExpr(ExprezeeneParser.MemberAccessExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code andBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterAndBitWiseExpr(ExprezeeneParser.AndBitWiseExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code andBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitAndBitWiseExpr(ExprezeeneParser.AndBitWiseExprContext ctx);
+	void exitExpr(ExprezeeneParser.ExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ExprezeeneParser#primary}.
 	 * @param ctx the parse tree
@@ -271,6 +77,16 @@ public interface ExprezeeneListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrimary(ExprezeeneParser.PrimaryContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExprezeeneParser#expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionStatement(ExprezeeneParser.ExpressionStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExprezeeneParser#expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionStatement(ExprezeeneParser.ExpressionStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ExprezeeneParser#parameter}.
 	 * @param ctx the parse tree

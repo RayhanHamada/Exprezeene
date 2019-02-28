@@ -10,23 +10,15 @@ import java.util.ArrayList;
 
 public class Expression {
 
-//    public enum ExpressionType
-//    {
-//        EXPRESSION,
-//        LITERAL_VALUE,
-//        OBJECT
-//    }
-
-
     private String expr;
-//    private ExpressionType type;
+    private Scope scope;
 
     private ArrayList<Expression> expressions;
 
-    public Expression(String expr)
+    public Expression(String expr, Scope scope)
     {
         this.expr = expr;
-        this.expressions = new ArrayList<>();
+        this.scope = scope;
     }
 
     public String getExpr()
@@ -40,7 +32,11 @@ public class Expression {
         ExprezeeneLexer lexer = new ExprezeeneLexer(input);
         ExprezeeneParser parser = new ExprezeeneParser(new CommonTokenStream(lexer));
 
-
         parser.expr();
+    }
+
+    public Scope getScope()
+    {
+        return scope;
     }
 }

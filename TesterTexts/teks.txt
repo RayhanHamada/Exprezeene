@@ -1,21 +1,7 @@
 
-
-
-
-class Orang
+preprocessor
 {
-
-    var a as int;
-    var b as int;
-
-    func ge()
-    {
-        var f as int;
-    }
-
-    var c as int;
+    import "D:/RayhanHamada/CodingStuff/Project/Exprezeene/TesterTexts/rayhan.txt";
 }
-
-
 
 

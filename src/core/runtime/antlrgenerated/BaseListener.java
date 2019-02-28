@@ -150,139 +150,11 @@ public class BaseListener implements ExprezeeneListener{
 
     }
 
-    public void enterAssignmentExpr(ExprezeeneParser.AssignmentExprContext ctx) {
+    public void enterExpr(ExprezeeneParser.ExprContext ctx) {
 
     }
 
-    public void exitAssignmentExpr(ExprezeeneParser.AssignmentExprContext ctx) {
-
-    }
-
-    public void enterPostFixExpr(ExprezeeneParser.PostFixExprContext ctx) {
-
-    }
-
-    public void exitPostFixExpr(ExprezeeneParser.PostFixExprContext ctx) {
-
-    }
-
-    public void enterOrLogicExpr(ExprezeeneParser.OrLogicExprContext ctx) {
-
-    }
-
-    public void exitOrLogicExpr(ExprezeeneParser.OrLogicExprContext ctx) {
-
-    }
-
-    public void enterOrBitWiseExpr(ExprezeeneParser.OrBitWiseExprContext ctx) {
-
-    }
-
-    public void exitOrBitWiseExpr(ExprezeeneParser.OrBitWiseExprContext ctx) {
-
-    }
-
-    public void enterAndLogicExpr(ExprezeeneParser.AndLogicExprContext ctx) {
-
-    }
-
-    public void exitAndLogicExpr(ExprezeeneParser.AndLogicExprContext ctx) {
-
-    }
-
-    public void enterPreFixExpr(ExprezeeneParser.PreFixExprContext ctx) {
-
-    }
-
-    public void exitPreFixExpr(ExprezeeneParser.PreFixExprContext ctx) {
-
-    }
-
-    public void enterBitShiftExpr(ExprezeeneParser.BitShiftExprContext ctx) {
-
-    }
-
-    public void exitBitShiftExpr(ExprezeeneParser.BitShiftExprContext ctx) {
-
-    }
-
-    public void enterRelationalExpr(ExprezeeneParser.RelationalExprContext ctx) {
-
-    }
-
-    public void exitRelationalExpr(ExprezeeneParser.RelationalExprContext ctx) {
-
-    }
-
-    public void enterMultExpr(ExprezeeneParser.MultExprContext ctx) {
-
-    }
-
-    public void exitMultExpr(ExprezeeneParser.MultExprContext ctx) {
-
-    }
-
-    public void enterMethodCallExpr(ExprezeeneParser.MethodCallExprContext ctx) {
-
-    }
-
-    public void exitMethodCallExpr(ExprezeeneParser.MethodCallExprContext ctx) {
-
-    }
-
-    public void enterObjInstExpr(ExprezeeneParser.ObjInstExprContext ctx) {
-
-    }
-
-    public void exitObjInstExpr(ExprezeeneParser.ObjInstExprContext ctx) {
-
-    }
-
-    public void enterArrayAccessExpr(ExprezeeneParser.ArrayAccessExprContext ctx) {
-
-    }
-
-    public void exitArrayAccessExpr(ExprezeeneParser.ArrayAccessExprContext ctx) {
-
-    }
-
-    public void enterPrimaryExpr(ExprezeeneParser.PrimaryExprContext ctx) {
-
-    }
-
-    public void exitPrimaryExpr(ExprezeeneParser.PrimaryExprContext ctx) {
-
-    }
-
-    public void enterAddExpr(ExprezeeneParser.AddExprContext ctx) {
-
-    }
-
-    public void exitAddExpr(ExprezeeneParser.AddExprContext ctx) {
-
-    }
-
-    public void enterXorBitWiseExpr(ExprezeeneParser.XorBitWiseExprContext ctx) {
-
-    }
-
-    public void exitXorBitWiseExpr(ExprezeeneParser.XorBitWiseExprContext ctx) {
-
-    }
-
-    public void enterMemberAccessExpr(ExprezeeneParser.MemberAccessExprContext ctx) {
-
-    }
-
-    public void exitMemberAccessExpr(ExprezeeneParser.MemberAccessExprContext ctx) {
-
-    }
-
-    public void enterAndBitWiseExpr(ExprezeeneParser.AndBitWiseExprContext ctx) {
-
-    }
-
-    public void exitAndBitWiseExpr(ExprezeeneParser.AndBitWiseExprContext ctx) {
+    public void exitExpr(ExprezeeneParser.ExprContext ctx) {
 
     }
 
@@ -294,12 +166,20 @@ public class BaseListener implements ExprezeeneListener{
 
     }
 
+    public void enterExpressionStatement(ExprezeeneParser.ExpressionStatementContext ctx) {
+
+    }
+
+    public void exitExpressionStatement(ExprezeeneParser.ExpressionStatementContext ctx) {
+
+    }
+
     public void enterParameter(ExprezeeneParser.ParameterContext ctx) {
 
     }
 
     public void exitParameter(ExprezeeneParser.ParameterContext ctx) {
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
 
         }
@@ -331,7 +211,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitArguments(ExprezeeneParser.ArgumentsContext ctx) {
 
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
 
         }
@@ -419,7 +299,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitNameSpaceIdentifier(ExprezeeneParser.NameSpaceIdentifierContext ctx) {
 
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             /*
             adding namespace identifier into location
@@ -440,7 +320,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void enterNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
 
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             inNamespace = true;
         }
@@ -449,7 +329,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitNameSpaceDefinition(ExprezeeneParser.NameSpaceDefinitionContext ctx) {
 
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             popScope();
             inNamespace = isStillNameSpaceScope();
@@ -508,7 +388,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarDeclStatement(ExprezeeneParser.VarDeclStatementContext ctx) {
 
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT) && !inMainMethodScope)
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             System.out.println("ketemu deklarasi variable");
             /*
@@ -712,10 +592,7 @@ public class BaseListener implements ExprezeeneListener{
 
             resetVariable();
         }
-        else if (ScriptEvaluator2.canRun && runStage.equals(RunStage.RUNNING) && inMainMethodScope)
-        {
 
-        }
 
     }
 
@@ -725,7 +602,7 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx) {
 
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             System.out.println("ketemu inisiasi variable");
 
@@ -957,7 +834,7 @@ public class BaseListener implements ExprezeeneListener{
 
         currentLine = ctx.start.getLine();
         currentRow = ctx.start.getCharPositionInLine();
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             inClassScope = true;
         }
@@ -968,7 +845,7 @@ public class BaseListener implements ExprezeeneListener{
 
         currentLine = ctx.start.getLine();
         currentRow = ctx.start.getCharPositionInLine();
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             popScope();
             inClassScope = isStillClassScope();
@@ -985,7 +862,7 @@ public class BaseListener implements ExprezeeneListener{
 
         currentLine = ctx.start.getLine();
         currentRow = ctx.start.getCharPositionInLine();
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             location += "." + ctx.getText();
             scopeStack.add(new Scope(location, ScopeType.CLASS_SCOPE));
@@ -1014,7 +891,7 @@ public class BaseListener implements ExprezeeneListener{
 
         currentLine = ctx.start.getLine();
         currentRow = ctx.start.getCharPositionInLine();
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
             popScope();
             inMethodScope = false;
@@ -1029,32 +906,14 @@ public class BaseListener implements ExprezeeneListener{
     public void exitFuncIdentifier(ExprezeeneParser.FuncIdentifierContext ctx) {
         currentLine = ctx.start.getLine();
         currentRow = ctx.start.getCharPositionInLine();
-        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_MAIN_STATEMENT))
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
 
             /*
-            check if this method is main method, if so then do nothing, because current run stage is SCANNING_NON_MAIN_STATEMENT
+            check if this method is main method, if so then do nothing, because current run stage is SCANNING_NON_PREPROCESSOR_STATEMENT
             */
-            if (ctx.getText().equals("main"))
-            {
-                inMainMethodScope = true;
-                if (scopeStack.peek().getScopeType().equals(ScopeType.GLOBAL_SCOPE));
-                else
-                {
-                    ScriptEvaluator2.canRun = false;
-                    Notifier.report("The main method can't be defined everywhere but global scope.", currentScript.getScriptName(), NotifierType.ERROR);
-                    return;
-                }
-            }
-
-            /*
-            if not then current scope would be updated.
-            */
-            else
-            {
-                location += "." + ctx.getText();
-                scopeStack.add(new Scope(location, ScopeType.METHOD_SCOPE));
-            }
+            location += "." + ctx.getText();
+            scopeStack.add(new Scope(location, ScopeType.METHOD_SCOPE));
         }
 
 

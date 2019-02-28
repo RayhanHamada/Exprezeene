@@ -1,9 +1,6 @@
 package core.structures.variable;
 
-import core.structures.structure_comp.AccessModifier;
-import core.structures.structure_comp.Expression;
-import core.structures.structure_comp.Scope;
-import core.structures.structure_comp.ScopeType;
+import core.structures.structure_comp.*;
 
 public class Variable {
 

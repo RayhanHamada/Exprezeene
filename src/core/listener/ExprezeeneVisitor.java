@@ -41,130 +41,23 @@ public interface ExprezeeneVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMethodCall(ExprezeeneParser.MethodCallContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code assignmentExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
+	 * Visit a parse tree produced by {@link ExprezeeneParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssignmentExpr(ExprezeeneParser.AssignmentExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code postFixExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPostFixExpr(ExprezeeneParser.PostFixExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code orLogicExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOrLogicExpr(ExprezeeneParser.OrLogicExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code orBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOrBitWiseExpr(ExprezeeneParser.OrBitWiseExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code andLogicExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAndLogicExpr(ExprezeeneParser.AndLogicExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code preFixExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPreFixExpr(ExprezeeneParser.PreFixExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code bitShiftExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBitShiftExpr(ExprezeeneParser.BitShiftExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code relationalExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRelationalExpr(ExprezeeneParser.RelationalExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code multExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMultExpr(ExprezeeneParser.MultExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code methodCallExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMethodCallExpr(ExprezeeneParser.MethodCallExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code objInstExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitObjInstExpr(ExprezeeneParser.ObjInstExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code arrayAccessExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArrayAccessExpr(ExprezeeneParser.ArrayAccessExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code primaryExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrimaryExpr(ExprezeeneParser.PrimaryExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code addExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAddExpr(ExprezeeneParser.AddExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code xorBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitXorBitWiseExpr(ExprezeeneParser.XorBitWiseExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code memberAccessExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMemberAccessExpr(ExprezeeneParser.MemberAccessExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code andBitWiseExpr}
-	 * labeled alternative in {@link ExprezeeneParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAndBitWiseExpr(ExprezeeneParser.AndBitWiseExprContext ctx);
+	T visitExpr(ExprezeeneParser.ExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExprezeeneParser#primary}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitPrimary(ExprezeeneParser.PrimaryContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprezeeneParser#expressionStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionStatement(ExprezeeneParser.ExpressionStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExprezeeneParser#parameter}.
 	 * @param ctx the parse tree

@@ -3,6 +3,7 @@ package core.runtime;
 import core.structures.class_.Class;
 import core.structures.method.Method;
 import core.structures.namespace.NameSpace;
+import core.structures.structure_comp.Expression;
 import core.structures.variable.Variable;
 
 import java.io.File;
@@ -15,6 +16,8 @@ public class DataHandler {
     private static ArrayList<Method> methods = new ArrayList<>();
     private static ArrayList<Class> classes = new ArrayList<>();
     private static ArrayList<NameSpace> nameSpaces = new ArrayList<>();
+    private static ArrayList<Expression> expressionStatements = new ArrayList<>();
+
 
     private ArrayList<File> importedScript = new ArrayList<>();
 
@@ -52,6 +55,11 @@ public class DataHandler {
     public static ArrayList<NameSpace> getNameSpaces()
     {
         return nameSpaces;
+    }
+
+    public static ArrayList<Expression> getExpressionStatements()
+    {
+        return expressionStatements;
     }
 
 

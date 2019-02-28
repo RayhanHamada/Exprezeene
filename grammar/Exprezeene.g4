@@ -124,31 +124,35 @@ methodCall
     ;
 
 expr
-    : primary                                       #primaryExpr
-    | expr operator='.' (identifier|methodCall)     #memberAccessExpr
-    | expr '[' expr ']'                             #arrayAccessExpr
-    | methodCall                                    #methodCallExpr
-    | objInstStatement                              #objInstExpr
-    | expr postfix=('++' | '--')                    #postFixExpr
-    | prefix=('+'|'-'|'++'|'--') expr               #preFixExpr
-    | prefix=('~'|'!') expr                         #preFixExpr
-    | expr operator=('*'|'/'|'%') expr              #multExpr
-    | expr operator=('+'|'-') expr                  #addExpr
-    | expr ('<' '<' | '>' '>' '>' | '>' '>') expr   #bitShiftExpr
-    | expr operator=('<=' | '>=' | '>' | '<') expr  #relationalExpr
-    | expr operator=('==' | '!=') expr              #relationalExpr
-    | expr operator='&' expr                        #andBitWiseExpr
-    | expr operator='^' expr                        #xorBitWiseExpr
-    | expr operator='|' expr                        #orBitWiseExpr
-    | expr operator='&&' expr                       #andLogicExpr
-    | expr operator='||' expr                       #orLogicExpr
-    | <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr #assignmentExpr
+    : primary
+    | expr operator='.' (identifier|methodCall)
+    | expr '[' expr ']'
+    | methodCall
+    | objInstStatement
+    | expr postfix=('++' | '--')
+    | prefix=('+'|'-'|'++'|'--') expr
+    | prefix=('~'|'!') expr
+    | expr operator=('*'|'/'|'%') expr
+    | expr operator=('+'|'-') expr
+    | expr ('<' '<' | '>' '>' '>' | '>' '>') expr
+    | expr operator=('<=' | '>=' | '>' | '<') expr
+    | expr operator=('==' | '!=') expr
+    | expr operator='&' expr
+    | expr operator='^' expr
+    | expr operator='|' expr
+    | expr operator='&&' expr
+    | expr operator='||' expr
+    | <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
     ;
 
 primary
     : literal
     | identifier
     | '(' expr ')'
+    ;
+
+expressionStatement
+    : expr ';'
     ;
 
 parameter
@@ -299,7 +303,7 @@ inMethodStatement
     | methodCall ';'
     | condStatement
     | loopStatement
-    | expr ';'
+    | expressionStatement
     | '{' inMethodStatement '}'
     ;
 
@@ -328,7 +332,7 @@ inIfStatement
     | varAssignStatement ';'
     | loopStatement
     | condStatement
-    | expr ';'
+    | expressionStatement
     | '{' inIfStatement* '}'
     ;
 
@@ -363,7 +367,7 @@ inloopStatement
     | varInitStatement ';'
     | condStatement
     | loopStatement
-    | expr ';'
+    | expressionStatement
     | '{' inloopStatement* '}'
     ;
 
