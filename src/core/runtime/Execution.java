@@ -7,7 +7,7 @@ public class Execution {
 
 
            ScriptEvaluator2.allScript.add(new Script(args[0], null, true));
-        ScriptEvaluator2.evaluate(ScriptEvaluator2.allScript.get(0));
+           ScriptEvaluator2.evaluate(ScriptEvaluator2.allScript.get(0));
 
     }
 }

@@ -1,4 +1,0 @@
-preprocessor
-{
-    import "D:/RayhanHamada/CodingStuff/Project/Exprezeene/TesterTexts/teks.txt";
-}

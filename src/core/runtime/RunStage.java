@@ -12,9 +12,5 @@ public enum RunStage {
      */
     SCANNING_NON_PREPROCESSOR_STATEMENT,
 
-    /*
-    run the program
-     */
-    RUNNING
 
 }

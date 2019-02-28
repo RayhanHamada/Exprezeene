@@ -438,16 +438,6 @@ public interface ExprezeeneListener extends ParseTreeListener {
 	 */
 	void exitElseStatement(ExprezeeneParser.ElseStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExprezeeneParser#inIfStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterInIfStatement(ExprezeeneParser.InIfStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ExprezeeneParser#inIfStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitInIfStatement(ExprezeeneParser.InIfStatementContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ExprezeeneParser#loopStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -497,14 +487,4 @@ public interface ExprezeeneListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDoWhileloop(ExprezeeneParser.DoWhileloopContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ExprezeeneParser#inloopStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterInloopStatement(ExprezeeneParser.InloopStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ExprezeeneParser#inloopStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitInloopStatement(ExprezeeneParser.InloopStatementContext ctx);
 }

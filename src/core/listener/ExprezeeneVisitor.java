@@ -269,12 +269,6 @@ public interface ExprezeeneVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitElseStatement(ExprezeeneParser.ElseStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExprezeeneParser#inIfStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitInIfStatement(ExprezeeneParser.InIfStatementContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link ExprezeeneParser#loopStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -304,10 +298,4 @@ public interface ExprezeeneVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDoWhileloop(ExprezeeneParser.DoWhileloopContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ExprezeeneParser#inloopStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitInloopStatement(ExprezeeneParser.InloopStatementContext ctx);
 }

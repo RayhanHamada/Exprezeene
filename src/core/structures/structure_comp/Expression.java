@@ -21,6 +21,11 @@ public class Expression {
         this.scope = scope;
     }
 
+    public Expression(String expr)
+    {
+        this(expr, null);
+    }
+
     public String getExpr()
     {
         return expr;
@@ -28,11 +33,7 @@ public class Expression {
 
     public void evaluate()
     {
-        CharStream input = CharStreams.fromString(expr);
-        ExprezeeneLexer lexer = new ExprezeeneLexer(input);
-        ExprezeeneParser parser = new ExprezeeneParser(new CommonTokenStream(lexer));
 
-        parser.expr();
     }
 
     public Scope getScope()

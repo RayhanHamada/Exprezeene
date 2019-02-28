@@ -8,7 +8,7 @@ public class Variable {
     private AccessModifier accessModifier; // access modifier of the variable
     private String dataType; // for datatype of the variable
     private boolean _static, _const; // is static? is constant ?
-    private Expression expr; // if the variable is initialized, then it must have a value.
+    private Expression exprRepr; // if the variable is initialized, then it must have a value.
     private boolean state; //false for declared, true for initialized
     private int refCount; // how many times this variable is used
     private Scope scope; // for scope reference
@@ -22,22 +22,22 @@ public class Variable {
         this.dataType = dataType;
         this._static = _static;
         this._const = _const;
-        this.expr = null;
+        this.exprRepr = null;
         this.state = false;
         this.scope = scope;
 
     }
 
     //for initialized
-    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, Scope scope, Expression expr)
+    public Variable(String identifier, AccessModifier accessModifier, String dataType, boolean _static, boolean _const, Scope scope, String exprRepr)
     {
         this(identifier, accessModifier, dataType, _static, _const, scope);
-        this.expr = expr;
+        this.exprRepr = new Expression(exprRepr);
         this.state = true;
     }
 
     public Expression getExpr() {
-        return expr;
+        return exprRepr;
     }
 
     public String getIdentifier() {
@@ -74,7 +74,8 @@ public class Variable {
 
     public void evaluate()
     {
-        expr.evaluate();
+        if (exprRepr ==  null) return;
+        exprRepr.evaluate();
     }
 
 

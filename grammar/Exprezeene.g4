@@ -125,6 +125,7 @@ methodCall
 
 expr
     : primary
+    | expr operator='::' (identifier|methodCall)
     | expr operator='.' (identifier|methodCall)
     | expr '[' expr ']'
     | methodCall
@@ -245,8 +246,6 @@ scriptPath
     : STRING_LITERAL
     ;
 
-
-
 varDeclStatement
     : modifier VAR varIdentifier (',' varIdentifier)* AS dataType
     ;
@@ -298,13 +297,10 @@ funcIdentifier
 inMethodStatement
     : varDeclStatement ';'
     | varInitStatement ';'
-    | varAssignStatement ';'
-    | objInstStatement ';'
-    | methodCall ';'
     | condStatement
     | loopStatement
     | expressionStatement
-    | '{' inMethodStatement '}'
+//    | '{' inMethodStatement '}'
     ;
 
 condStatement
@@ -314,26 +310,15 @@ condStatement
     ;
 
 ifStatement
-    : IF '(' expr ')' '{' inIfStatement* '}'
+    : IF '(' expr ')' '{' inMethodStatement* '}'
     ;
 
 elseIfStatement
-    : ELSE IF '(' expr ')' '{' inIfStatement* '}'
+    : ELSE IF '(' expr ')' '{' inMethodStatement* '}'
     ;
 
 elseStatement
-    : ELSE '{' inIfStatement* '}'
-    ;
-
-inIfStatement
-    : methodCall ';'
-    | varDeclStatement ';'
-    | varInitStatement ';'
-    | varAssignStatement ';'
-    | loopStatement
-    | condStatement
-    | expressionStatement
-    | '{' inIfStatement* '}'
+    : ELSE '{' inMethodStatement* '}'
     ;
 
 loopStatement
@@ -344,31 +329,20 @@ loopStatement
     ;
 
 whileloop
-    : WHILE '(' expr ')' '{' inloopStatement* '}'
+    : WHILE '(' expr ')' '{' inMethodStatement* '}'
     ;
 
 forloop
-    : FOR '(' varInitStatement ';' expr ';' expr ')' '{' inloopStatement* '}'
+    : FOR '(' varInitStatement ';' expr ';' expr ')' '{' inMethodStatement* '}'
     ;
 
 
 foreachloop
-    : FOR '(' identifier AS dataType IN identifier ')' '{' inloopStatement* '}'
+    : FOR '(' identifier AS dataType IN identifier ')' '{' inMethodStatement* '}'
     ;
 
 doWhileloop
-    : DO '{' inloopStatement* '}' WHILE '(' expr ')' ';'
-    ;
-
-inloopStatement
-    : methodCall ';'
-    | varAssignStatement ';'
-    | varDeclStatement ';'
-    | varInitStatement ';'
-    | condStatement
-    | loopStatement
-    | expressionStatement
-    | '{' inloopStatement* '}'
+    : DO '{' inMethodStatement* '}' WHILE '(' expr ')' ';'
     ;
 
 

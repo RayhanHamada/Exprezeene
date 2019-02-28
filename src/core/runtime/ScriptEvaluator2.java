@@ -7,12 +7,10 @@ import core.notifier.NotifierType;
 
 import core.runtime.antlrgenerated.BaseListener;
 import core.structures.structure_comp.Expression;
-import core.structures.variable.Variable;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class ScriptEvaluator2 {
@@ -68,8 +66,6 @@ public class ScriptEvaluator2 {
                 ScriptEvaluator2.evaluate(s);
             }
 
-
-
             /*
             for scanning all statement except preprocessor and the main method.
             */
@@ -78,11 +74,6 @@ public class ScriptEvaluator2 {
             ExprezeeneParser p1 = new ExprezeeneParser(new CommonTokenStream(l1));
             p1.addParseListener(new BaseListener(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT, script,"GLOBAL"));
             p1.program();
-
-            for (Variable v : DataHandler.getVariables())
-            {
-                System.out.println(v.getScope().getLocation());
-            }
 
             /*
             if this script is main script, then execute every statement in the main method.

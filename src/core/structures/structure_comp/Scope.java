@@ -11,6 +11,9 @@ public class Scope {
      */
     private int refIndex;
 
+    /*
+    for class, namespace, and method
+     */
     public Scope(String location, ScopeType scopeType)
     {
         this.location = location;
@@ -19,19 +22,14 @@ public class Scope {
         this.refIndex = 0;
     }
 
+    /*
+    for variable statement and expression statement
+     */
     public Scope(String location, ScopeType scopeType, int refIndex)
     {
         this(location, scopeType);
         this.refIndex = refIndex;
     }
-
-//    public Scope(Scope s)
-//    {
-//        this.location = s.location;
-//        this.scopeType = s.scopeType;
-//        this.scopeName = location.replaceAll("[^\\.]+\\.", "");
-//        this.refIndex = 0;
-//    }
 
     public String getLocation()
     {

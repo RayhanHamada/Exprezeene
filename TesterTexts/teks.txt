@@ -1,7 +1,10 @@
 
-preprocessor
+func genius()
 {
-    import "D:/RayhanHamada/CodingStuff/Project/Exprezeene/TesterTexts/rayhan.txt";
+
+    {
+        var a as int;
+    }
+
+    var a as int;
 }
-
-

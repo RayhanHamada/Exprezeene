@@ -6,5 +6,6 @@ public enum ScopeType {
     NAMESPACE_SCOPE,
     CLASS_SCOPE,
     METHOD_SCOPE,
+    CONDITIONAL_STATEMENT_SCOPE
 
 }

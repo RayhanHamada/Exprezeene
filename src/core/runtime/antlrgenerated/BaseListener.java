@@ -172,6 +172,13 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitExpressionStatement(ExprezeeneParser.ExpressionStatementContext ctx) {
 
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
+        {
+            currentLine = ctx.start.getLine();
+            currentRow = ctx.start.getCharPositionInLine();
+
+
+        }
     }
 
     public void enterParameter(ExprezeeneParser.ParameterContext ctx) {
@@ -181,6 +188,7 @@ public class BaseListener implements ExprezeeneListener{
     public void exitParameter(ExprezeeneParser.ParameterContext ctx) {
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
+
 
         }
         else
@@ -606,6 +614,9 @@ public class BaseListener implements ExprezeeneListener{
         {
             System.out.println("ketemu inisiasi variable");
 
+            currentLine = ctx.start.getLine();
+            currentRow = ctx.start.getCharPositionInLine();
+
             /*
             check whether a local variable inside method is have any modifier
             note : a local variable can't have any modifier (neither static modifier nor access modifier)
@@ -792,7 +803,19 @@ public class BaseListener implements ExprezeeneListener{
             Interval interval = new Interval(a, b);
             CharStream input = ctx.expr().start.getInputStream();
             varValue = input.getText(interval);
-            System.out.println(varValue);
+            DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, _constVariable, scopeStack.peek(), varValue));
+
+            scopeStack.peek().incrementRefIndex();
+
+            /*
+            remove the last Scope element in the scopeStack, then instantiate a new Scope with same properties as the removed scope have.
+            this is because to prevent (idk, java behaviour maybe ??) to assume that the assigned scope when instantiated a variable is a reference to the next
+            variable instance's scope too. the result of this behaviour is every variable declared in same scope would have same refIndex, and it is wrong.
+             */
+            int curRefIndex = scopeStack.peek().getRefIndex();
+            ScopeType st = scopeStack.peek().getScopeType();
+            scopeStack.pop();
+            scopeStack.add(new Scope(location, st, curRefIndex));
 
             resetVariable();
         }
@@ -941,6 +964,13 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitIfStatement(ExprezeeneParser.IfStatementContext ctx) {
 
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
+        {
+            currentLine = ctx.start.getLine();
+            currentRow = ctx.start.getCharPositionInLine();
+
+
+        }
     }
 
     public void enterElseIfStatement(ExprezeeneParser.ElseIfStatementContext ctx) {
@@ -956,14 +986,6 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitElseStatement(ExprezeeneParser.ElseStatementContext ctx) {
-
-    }
-
-    public void enterInIfStatement(ExprezeeneParser.InIfStatementContext ctx) {
-
-    }
-
-    public void exitInIfStatement(ExprezeeneParser.InIfStatementContext ctx) {
 
     }
 
@@ -1004,14 +1026,6 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitDoWhileloop(ExprezeeneParser.DoWhileloopContext ctx) {
-
-    }
-
-    public void enterInloopStatement(ExprezeeneParser.InloopStatementContext ctx) {
-
-    }
-
-    public void exitInloopStatement(ExprezeeneParser.InloopStatementContext ctx) {
 
     }
 

@@ -181,10 +181,6 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
-    public Object visitInIfStatement(ExprezeeneParser.InIfStatementContext ctx) {
-        return null;
-    }
-
     public Object visitLoopStatement(ExprezeeneParser.LoopStatementContext ctx) {
         return null;
     }
@@ -202,10 +198,6 @@ public class BaseVisitor implements ExprezeeneVisitor {
     }
 
     public Object visitDoWhileloop(ExprezeeneParser.DoWhileloopContext ctx) {
-        return null;
-    }
-
-    public Object visitInloopStatement(ExprezeeneParser.InloopStatementContext ctx) {
         return null;
     }
 
