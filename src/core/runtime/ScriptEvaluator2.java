@@ -6,11 +6,16 @@ import core.notifier.Notifier;
 import core.notifier.NotifierType;
 
 import core.runtime.antlrgenerated.BaseListener;
+import core.structures.conditionals.ConditionalStatement;
+import core.structures.conditionals.ConditionalType;
+import core.structures.namespace.NameSpace;
 import core.structures.structure_comp.Expression;
+import core.structures.variable.Variable;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class ScriptEvaluator2 {
@@ -75,17 +80,25 @@ public class ScriptEvaluator2 {
             p1.addParseListener(new BaseListener(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT, script,"GLOBAL"));
             p1.program();
 
+            for (ConditionalStatement c : DataHandler.getConditionalStatements())
+            {
+                System.out.println(c.getExprRepr().getExpr());
+            }
+
+
             /*
             if this script is main script, then execute every statement in the main method.
              */
             if (script.isMainScript())
             {
-                // if the first main method statement is variable statement, then it would be false, if it's expression statement, then it would be true.
+                /*
+                if the first main method statement is variable statement, then it would be false, if it's expression statement, then it would be true.
+                */
                 boolean varOrExpression = false;
 
                 for (Expression expression : DataHandler.getExpressionStatements())
                 {
-                    if (expression.getScope().getLocation().equals("GLOBAL.main") && expression.getScope().getRefIndex() == 0)
+                    if (expression.getScope().getLocation().equals("GLOBAL.main") && expression.getScope().getOrderIndex() == 0)
                     {
                         varOrExpression = true;
                     }

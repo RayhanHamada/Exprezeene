@@ -2,93 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da66eab6-7753-401c-8b32-9b06fa9e94ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/structures/conditionals/ConditionalStatement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/structures/conditionals/ConditionalType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LatestThought" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TesterTexts/rayhan.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TesterTexts/rayhan.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TesterTexts/teks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TesterTexts/teks.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/Exprezeene.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/Exprezeene.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/Exprezeene.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/Exprezeene.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneBaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneLexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneLexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AccmodContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AccmodContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AddExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AndBitWiseExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AndLogicExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ArgumentsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ArgumentsContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ArrayAccessExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$AssignmentExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$BitShiftExprContext.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ClassDefStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ClassDefStatementContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$CondStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$CondStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DefaultValueParameterContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DefaultValueParameterContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DoWhileloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$DoWhileloopContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseIfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseIfStatementContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ElseStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$FloatLiteralContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$FloatLiteralContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForeachloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForeachloopContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ForloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$GlobalScopeStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$GlobalScopeStatementContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IfStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IfStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ImportStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ImportStatementContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InClassStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InClassStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InIfStatementContext.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InMethodStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InMethodStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$InloopStatementContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IntegerLiteralContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$IntegerLiteralContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LiteralContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LiteralContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LoopStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$LoopStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MemberAccessExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodCallExprContext.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodDefStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MethodDefStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ModifierContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ModifierContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$MultExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstExprContext.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ObjInstStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$OrBitWiseExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$OrLogicExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ParameterContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ParameterContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ParameterVarContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ParameterVarContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PostFixExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PreFixExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimaryContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimaryContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimaryExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimitiveTypeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$PrimitiveTypeContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ProgramContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ProgramContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ReferenceTypeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$ReferenceTypeContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$RelationalExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$UserDefinedTypeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$UserDefinedTypeContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarAssignStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarAssignStatementContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarAssignStatementContext.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarConstContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarConstContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarDeclStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarDeclStatementContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarInitStatementContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$VarInitStatementContext.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$WhileloopContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$WhileloopContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser$XorBitWiseExprContext.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneParser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Exprezeene/core/listener/ExprezeeneVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/listener/Exprezeene.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/Exprezeene.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/Exprezeene.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/Exprezeene.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/ExprezeeneBaseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/ExprezeeneBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/ExprezeeneLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/ExprezeeneListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/ExprezeeneParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/listener/ExprezeeneVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/listener/ExprezeeneVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/runtime/Execution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/runtime/Execution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/runtime/RunStage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/runtime/RunStage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/runtime/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/runtime/DataHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/runtime/ScriptEvaluator2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/runtime/ScriptEvaluator2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/runtime/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/runtime/Tester.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/structures/class_/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/class_/Class.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/structures/conditionals/ConditionalStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/conditionals/ConditionalStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/structures/method/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/method/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/structures/namespace/NameSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/namespace/NameSpace.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/structures/structure_comp/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/structure_comp/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/structures/structure_comp/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/structure_comp/Scope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/structures/structure_comp/ScopeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/structure_comp/ScopeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/structures/structure_comp/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/structure_comp/scope/Scope.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/structures/structure_comp/ScopeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/structure_comp/scope/ScopeType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/structures/variable/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/structures/variable/Variable.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -100,11 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TesterTexts/teks.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -112,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/runtime/ScriptEvaluator2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="57" column="103" selection-start-line="57" selection-start-column="103" selection-end-line="57" selection-end-column="103" />
+            <state relative-caret-position="224">
+              <caret line="84" column="61" selection-start-line="84" selection-start-column="61" selection-end-line="84" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,65 +79,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="970" lean-forward="true" selection-start-line="970" selection-end-line="970" />
+            <state relative-caret-position="289">
+              <caret line="1036" column="145" selection-start-line="1036" selection-start-column="145" selection-end-line="1036" selection-end-column="145" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#37344#37345#0" expanded="true" />
+                <element signature="e#37374#37375#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/runtime/DataHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/structures/structure_comp/Scope.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-              <folding>
-                <element signature="e#971#972#0" expanded="true" />
-                <element signature="e#1002#1003#0" expanded="true" />
-                <element signature="e#1042#1043#0" expanded="true" />
-                <element signature="e#1074#1075#0" expanded="true" />
-                <element signature="e#1117#1118#0" expanded="true" />
-                <element signature="e#1149#1150#0" expanded="true" />
-                <element signature="e#1185#1186#0" expanded="true" />
-                <element signature="e#1216#1217#0" expanded="true" />
-                <element signature="e#1259#1260#0" expanded="true" />
-                <element signature="e#1285#1286#0" expanded="true" />
-                <element signature="e#1328#1329#0" expanded="true" />
-                <element signature="e#1361#1362#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/core/structures/conditionals/ConditionalStatement.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-              <folding>
-                <element signature="e#196#197#0" expanded="true" />
-                <element signature="e#235#236#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/structures/conditionals/ConditionalType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/structures/structure_comp/ScopeType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -199,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grammar/Exprezeene.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
+            <state relative-caret-position="3121">
+              <caret line="298" column="33" selection-start-line="298" selection-start-column="33" selection-end-line="298" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -227,35 +142,35 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>import</find>
-      <find>enterFuncIdent</find>
-      <find>exitClass</find>
-      <find>EXCEPTION</find>
-      <find>exitFunc</find>
-      <find>inmain</find>
-      <find>enterFunc</find>
-      <find>exitVar</find>
-      <find>exitVarDecl</find>
-      <find>new Variabe</find>
-      <find>inMainMethod</find>
-      <find>enterfunc</find>
       <find>exitMethodDef</find>
       <find>enterMethodDe</find>
       <find>expr</find>
       <find>#.+Expr</find>
       <find>\</find>
-      <find>varDecl</find>
       <find>BaseLis</find>
       <find>inMethod</find>
       <find>Base</find>
       <find>varInit</find>
-      <find>expressionState</find>
       <find>namespaceDef</find>
       <find>nameSpaceDef</find>
       <find>inloopStatement</find>
-      <find>namespaceIden</find>
       <find>varDeclSat</find>
       <find>inMethodStatement</find>
+      <find>location +=</find>
+      <find>ifSta</find>
+      <find>ifState</find>
+      <find>ifExpr</find>
+      <find>expressionState</find>
+      <find>int a</find>
+      <find>ScriptEvaluator2.canRun = false</find>
+      <find>ScriptEvaluator2.canRun = false;</find>
+      <find>ifStatemen</find>
+      <find>expressionStatement</find>
+      <find>varDecl</find>
+      <find>curRefIndex</find>
+      <find>namespaceIden</find>
+      <find>enterNamespace</find>
+      <find>enterNamespaceIden</find>
       <find>ifStatement</find>
     </findStrings>
     <replaceStrings>
@@ -263,6 +178,7 @@
       <replace>ScriptEvaluator2.canRun</replace>
       <replace>ERROR</replace>
       <replace>/</replace>
+      <replace>curOrderIndex</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -282,7 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/core/structures/ScopeType.java" />
         <option value="$PROJECT_DIR$/catatan.txt" />
         <option value="$PROJECT_DIR$/devlog" />
         <option value="$PROJECT_DIR$/src/core/structures/ImportedScript.java" />
@@ -316,23 +231,24 @@
         <option value="$PROJECT_DIR$/src/core/runtime/BaseListener.java" />
         <option value="$PROJECT_DIR$/src/core/structures/structure_comp/OrderEvaluatableStatement.java" />
         <option value="$PROJECT_DIR$/src/core/structures/structure_comp/OrderedEvaluatableStatement.java" />
-        <option value="$PROJECT_DIR$/src/core/runtime/DataHandler.java" />
         <option value="$PROJECT_DIR$/src/core/structures/variable/Variable.java" />
         <option value="$PROJECT_DIR$/TesterTexts/rayhan.txt" />
-        <option value="$PROJECT_DIR$/src/core/runtime/ScriptEvaluator2.java" />
         <option value="$PROJECT_DIR$/src/core/structures/structure_comp/Expression.java" />
         <option value="$PROJECT_DIR$/src/core/runtime/RunStage.java" />
         <option value="$PROJECT_DIR$/src/core/runtime/Execution.java" />
-        <option value="$PROJECT_DIR$/src/core/runtime/Tester.java" />
-        <option value="$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseVisitor.java" />
-        <option value="$PROJECT_DIR$/src/core/structures/structure_comp/ScopeType.java" />
-        <option value="$PROJECT_DIR$/TesterTexts/teks.txt" />
-        <option value="$PROJECT_DIR$/grammar/Exprezeene.g4" />
-        <option value="$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseListener.java" />
-        <option value="$PROJECT_DIR$/src/core/structures/structure_comp/Scope.java" />
         <option value="$PROJECT_DIR$/src/core/structures/conditionals/IfStatement.java" />
         <option value="$PROJECT_DIR$/src/core/structures/conditionals/ConditionalType.java" />
+        <option value="$PROJECT_DIR$/LatestThought" />
+        <option value="$PROJECT_DIR$/src/core/runtime/DataHandler.java" />
         <option value="$PROJECT_DIR$/src/core/structures/conditionals/ConditionalStatement.java" />
+        <option value="$PROJECT_DIR$/grammar/Exprezeene.g4" />
+        <option value="$PROJECT_DIR$/src/core/structures/structure_comp/Scope.java" />
+        <option value="$PROJECT_DIR$/src/core/structures/structure_comp/ScopeType.java" />
+        <option value="$PROJECT_DIR$/src/core/runtime/Tester.java" />
+        <option value="$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseVisitor.java" />
+        <option value="$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseListener.java" />
+        <option value="$PROJECT_DIR$/src/core/runtime/ScriptEvaluator2.java" />
+        <option value="$PROJECT_DIR$/TesterTexts/teks.txt" />
       </list>
     </option>
   </component>
@@ -354,6 +270,33 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
+              <item name="grammar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -398,13 +341,6 @@
               <item name="Exprezeene" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="core" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="listener" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Exprezeene" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="core" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="notifier" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -440,34 +376,23 @@
             <path>
               <item name="Exprezeene" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="Exprezeene" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="core" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="structures" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="structure_comp" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="Exprezeene" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="core" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="structures" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="variable" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Exprezeene" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="Exprezeene" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="TesterTexts" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
-              <item name="grammar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Exprezeene" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Exprezeene" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -481,7 +406,7 @@
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/gen-visitor" value="true" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/output-dir" value="D:\RayhanHamada\CodingStuff\Project\Exprezeene\src" />
     <property name="$PROJECT_DIR$/grammar/Exprezeene.g4::/package" value="core.listener" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551378589591" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551461107733" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last.edited.regexp" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
@@ -764,7 +689,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551336521279</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="working on conditional statement">
+      <created>1551378641365</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1551378641365</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -779,9 +711,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="1959" y="16" width="229" height="706" id="Project" order="0" visible="true" weight="0.15704697" />
+      <window_info active="true" content_ui="combo" x="1959" y="16" width="229" height="706" id="Project" order="0" visible="true" weight="0.16107382" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -790,7 +721,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" x="563" y="356" width="410" height="111" id="Run" order="2" sideWeight="0.49731544" weight="0.35410765" />
+      <window_info anchor="bottom" x="563" y="356" width="410" height="111" id="Run" order="2" sideWeight="0.49731544" visible="true" weight="0.35410765" />
       <window_info anchor="bottom" x="2065" y="318" width="840" height="470" id="Debug" order="3" type="WINDOWED" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -798,7 +729,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49932885" weight="0.3753541" />
       <window_info anchor="bottom" id="Tool Output" order="8" weight="0.17705382" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5026846" side_tool="true" visible="true" weight="0.15439093" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5026846" side_tool="true" weight="0.15439093" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" weight="0.3796034" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.22096318" />
       <window_info anchor="bottom" id="ConsoleMavenPlugin" order="13" />
@@ -904,7 +835,8 @@
     <MESSAGE value="fixing variable initialization being scanned twice" />
     <MESSAGE value="remove EXCEPTION from NotifierType and assume all &quot;error&quot; are error and program should stop when encounter one." />
     <MESSAGE value="adding Expression statement for in-function statement" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding Expression statement for in-function statement" />
+    <MESSAGE value="working on conditional statement" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on conditional statement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -931,7 +863,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/core/listener/ExprezeeneBaseVisitor.java" />
     <entry file="file://$PROJECT_DIR$/src/core/structures/PrimitiveType.java" />
     <entry file="file://$PROJECT_DIR$/src/core/structures/_Integer.java" />
     <entry file="file://$PROJECT_DIR$/src/core/datatype/DataType.java" />
@@ -1032,16 +963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/notifier/Notifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/structures/class_/Class.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1051,16 +972,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/todo.txt" />
     <entry file="file://$PROJECT_DIR$/src/core/structures/structure_comp/OrderedEvaluatableStatement.java" />
-    <entry file="file://$PROJECT_DIR$/src/core/runtime/DataHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="61" column="36" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TesterTexts/rayhan.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1090,6 +1001,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/structures/conditionals/ConditionalType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LatestThought">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/runtime/Execution.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1106,32 +1031,74 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="181" column="5" selection-start-line="181" selection-start-column="5" selection-end-line="181" selection-end-column="5" />
+        <state relative-caret-position="405">
+          <caret line="179" selection-start-line="179" selection-end-line="179" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/structures/structure_comp/ScopeType.java">
+    <entry file="file://$PROJECT_DIR$/src/core/notifier/Notifier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        <state relative-caret-position="255">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TesterTexts/teks.txt">
+    <entry file="file://$PROJECT_DIR$/src/core/structures/structure_comp/scope/ScopeType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/structures/structure_comp/scope/Scope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/structures/conditionals/ConditionalStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/runtime/DataHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="1036" column="145" selection-start-line="1036" selection-start-column="145" selection-end-line="1036" selection-end-column="145" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#37344#37345#0" expanded="true" />
+            <element signature="e#37374#37375#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/runtime/ScriptEvaluator2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="57" column="103" selection-start-line="57" selection-start-column="103" selection-end-line="57" selection-end-column="103" />
+        <state relative-caret-position="224">
+          <caret line="84" column="61" selection-start-line="84" selection-start-column="61" selection-end-line="84" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1140,57 +1107,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grammar/Exprezeene.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
+        <state relative-caret-position="3121">
+          <caret line="298" column="33" selection-start-line="298" selection-start-column="33" selection-end-line="298" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/runtime/antlrgenerated/BaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="970" lean-forward="true" selection-start-line="970" selection-end-line="970" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/structures/structure_comp/Scope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-          <folding>
-            <element signature="e#971#972#0" expanded="true" />
-            <element signature="e#1002#1003#0" expanded="true" />
-            <element signature="e#1042#1043#0" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1117#1118#0" expanded="true" />
-            <element signature="e#1149#1150#0" expanded="true" />
-            <element signature="e#1185#1186#0" expanded="true" />
-            <element signature="e#1216#1217#0" expanded="true" />
-            <element signature="e#1259#1260#0" expanded="true" />
-            <element signature="e#1285#1286#0" expanded="true" />
-            <element signature="e#1328#1329#0" expanded="true" />
-            <element signature="e#1361#1362#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/structures/conditionals/ConditionalType.java">
+    <entry file="file://$PROJECT_DIR$/TesterTexts/teks.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/structures/conditionals/ConditionalStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding>
-            <element signature="e#196#197#0" expanded="true" />
-            <element signature="e#235#236#0" expanded="true" />
-          </folding>
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>

@@ -10,9 +10,13 @@ import core.runtime.Script;
 import core.runtime.ScriptEvaluator2;
 import core.structures.class_.Class;
 
+import core.structures.conditionals.ConditionalStatement;
+import core.structures.conditionals.ConditionalType;
+import core.structures.namespace.NameSpace;
 import core.structures.structure_comp.AccessModifier;
-import core.structures.structure_comp.Scope;
-import core.structures.structure_comp.ScopeType;
+import core.structures.structure_comp.Expression;
+import core.structures.structure_comp.scope.Scope;
+import core.structures.structure_comp.scope.ScopeType;
 import core.structures.variable.Variable;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -31,7 +35,6 @@ public class BaseListener implements ExprezeeneListener{
     public static int currentRow = 0, currentLine = 0;
     private RunStage runStage;
     private Stack<Scope> scopeStack;
-    private boolean inMainMethodScope = false;
 
     //for current Variable
     private String varIdentifier = null;
@@ -174,9 +177,39 @@ public class BaseListener implements ExprezeeneListener{
 
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
+            System.out.println("ketemu statement ekspresi");
+            /*
+            get current line and current row of the statement
+             */
             currentLine = ctx.start.getLine();
             currentRow = ctx.start.getCharPositionInLine();
 
+            /*
+            * get the expression string and store it to data handler
+            * */
+            int a = ctx.expr().start.getStartIndex();
+            int b = ctx.expr().stop.getStopIndex();
+            Interval interval = new Interval(a, b);
+            CharStream input = ctx.expr().start.getInputStream();
+
+
+            if (input.getText(interval).matches(".*[A-Za-z_][A-Za-z0-9_]*$"))
+            {
+                Notifier.report("\"" + input.getText(interval) + "\" is not a valid statement", currentScript.getScriptName(), NotifierType.ERROR);
+            }
+            else
+            {
+                DataHandler.getExpressionStatements().add(new Expression(input.getText(interval), scopeStack.peek()));
+                /*
+                remove the last Scope element in the scopeStack, then instantiate a new Scope with same properties as the removed scope have.
+                */
+
+                int curOrderIndex = scopeStack.peek().getOrderIndex();
+                ScopeType st = scopeStack.peek().getScopeType();
+                scopeStack.pop();
+                scopeStack.add(new Scope(location, st, curOrderIndex));
+                scopeStack.peek().incrementOrderIndex();
+            }
 
         }
     }
@@ -309,6 +342,10 @@ public class BaseListener implements ExprezeeneListener{
 
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
+            System.out.println("ketemu namespace");
+
+            DataHandler.getNameSpaces().add(new NameSpace(ctx.getText(), scopeStack.peek()));
+
             /*
             adding namespace identifier into location
             */
@@ -341,7 +378,6 @@ public class BaseListener implements ExprezeeneListener{
         {
             popScope();
             inNamespace = isStillNameSpaceScope();
-            System.out.println("namespace in " + scopeStack.peek().getScopeName());
         }
     }
 
@@ -452,7 +488,7 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     if (!ctx.modifier().getText().equals(""))
                     {
-                        ScriptEvaluator2.canRun = false;
+                        
                         Notifier.report("a namespace variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
@@ -476,7 +512,7 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     if (!ctx.modifier().getText().equals(""))
                     {
-                        ScriptEvaluator2.canRun = false;
+                        
                         Notifier.report("a global variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
@@ -523,6 +559,7 @@ public class BaseListener implements ExprezeeneListener{
                     (applied for global method and in-class method).
                     below for global scope
                     */
+
                     if (inMethodScope && isSameIdentifier && isSameScopeDirection && variable.getScope().getScopeType().equals(ScopeType.METHOD_SCOPE))
                     {
                         Notifier.report("2 local variable with same identifier is detected in method scope.", currentScript.getScriptName(), NotifierType.ERROR);
@@ -581,11 +618,6 @@ public class BaseListener implements ExprezeeneListener{
 
                 DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, false, scopeStack.peek()));
 
-                /*
-                incrementing the ref index
-                 */
-                scopeStack.peek().incrementRefIndex();
-
             }
 
             /*
@@ -593,10 +625,15 @@ public class BaseListener implements ExprezeeneListener{
             this is because to prevent (idk, java behaviour maybe ??) to assume that the assigned scope when instantiated a variable is a reference to the next
             variable instance's scope too. the result of this behaviour is every variable declared in same scope would have same refIndex, and it is wrong.
              */
-            int curRefIndex = scopeStack.peek().getRefIndex();
+            int curOrderIndex = scopeStack.peek().getOrderIndex();
             ScopeType st = scopeStack.peek().getScopeType();
             scopeStack.pop();
-            scopeStack.add(new Scope(location, st, curRefIndex));
+            scopeStack.add(new Scope(location, st, curOrderIndex));
+
+            /*
+            incrementing the ref index
+            */
+            scopeStack.peek().incrementOrderIndex();
 
             resetVariable();
         }
@@ -670,7 +707,7 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     if (!ctx.modifier().getText().equals(""))
                     {
-                        ScriptEvaluator2.canRun = false;
+                        
                         Notifier.report("a namespace variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
@@ -693,7 +730,6 @@ public class BaseListener implements ExprezeeneListener{
                 {
                     if (!ctx.modifier().getText().equals(""))
                     {
-                        ScriptEvaluator2.canRun = false;
                         Notifier.report("a global variable can't have any modifier.", currentScript.getScriptName(), NotifierType.ERROR);
                         return;
                     }
@@ -805,17 +841,16 @@ public class BaseListener implements ExprezeeneListener{
             varValue = input.getText(interval);
             DataHandler.getVariables().add(new Variable(varIdentifier, varAccessModifier, varDataType, _staticVariable, _constVariable, scopeStack.peek(), varValue));
 
-            scopeStack.peek().incrementRefIndex();
-
             /*
             remove the last Scope element in the scopeStack, then instantiate a new Scope with same properties as the removed scope have.
             this is because to prevent (idk, java behaviour maybe ??) to assume that the assigned scope when instantiated a variable is a reference to the next
             variable instance's scope too. the result of this behaviour is every variable declared in same scope would have same refIndex, and it is wrong.
              */
-            int curRefIndex = scopeStack.peek().getRefIndex();
+            int curOrderIndex = scopeStack.peek().getOrderIndex();
             ScopeType st = scopeStack.peek().getScopeType();
             scopeStack.pop();
-            scopeStack.add(new Scope(location, st, curRefIndex));
+            scopeStack.add(new Scope(location, st, curOrderIndex));
+            scopeStack.peek().incrementOrderIndex();
 
             resetVariable();
         }
@@ -826,14 +861,6 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void exitVarConst(ExprezeeneParser.VarConstContext ctx) {
-
-    }
-
-    public void enterVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx) {
-
-    }
-
-    public void exitVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx) {
 
     }
 
@@ -966,8 +993,7 @@ public class BaseListener implements ExprezeeneListener{
 
         if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
         {
-            currentLine = ctx.start.getLine();
-            currentRow = ctx.start.getCharPositionInLine();
+
 
 
         }
@@ -987,6 +1013,33 @@ public class BaseListener implements ExprezeeneListener{
 
     public void exitElseStatement(ExprezeeneParser.ElseStatementContext ctx) {
 
+    }
+
+    public void enterIfExpr(ExprezeeneParser.IfExprContext ctx) {
+
+    }
+
+    public void exitIfExpr(ExprezeeneParser.IfExprContext ctx) {
+
+        if (ScriptEvaluator2.canRun && runStage.equals(RunStage.SCANNING_NON_PREPROCESSOR_STATEMENT))
+        {
+
+            System.out.println("ketemu if statement");
+
+            /*
+            * getting expression string
+            * */
+            int a = ctx.start.getStartIndex();
+            int b = ctx.stop.getStopIndex();
+            Interval interval = new Interval(a, b);
+            CharStream input = ctx.start.getInputStream();
+
+            DataHandler.getConditionalStatements().add(new ConditionalStatement(input.getText(interval), ConditionalType.IF, scopeStack.peek()));
+            // format for if statement's scope name : if$refIndex
+            location += ".if$" + scopeStack.peek().getOrderIndex();
+            scopeStack.add(new Scope(location, ScopeType.METHOD_SCOPE));
+
+        }
     }
 
     public void enterLoopStatement(ExprezeeneParser.LoopStatementContext ctx) {
@@ -1034,7 +1087,7 @@ public class BaseListener implements ExprezeeneListener{
     }
 
     public void visitErrorNode(ErrorNode errorNode) {
-
+        System.exit(1);
     }
 
     public void enterEveryRule(ParserRuleContext parserRuleContext) {

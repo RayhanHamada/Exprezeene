@@ -1,7 +1,6 @@
 package core.structures.namespace;
 
-import core.structures.structure_comp.Scope;
-import core.structures.structure_comp.ScopeType;
+import core.structures.structure_comp.scope.Scope;
 
 public class NameSpace {
 

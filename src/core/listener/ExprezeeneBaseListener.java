@@ -364,18 +364,6 @@ public class ExprezeeneBaseListener implements ExprezeeneListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterVarIdentifier(ExprezeeneParser.VarIdentifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -527,6 +515,18 @@ public class ExprezeeneBaseListener implements ExprezeeneListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitElseStatement(ExprezeeneParser.ElseStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIfExpr(ExprezeeneParser.IfExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfExpr(ExprezeeneParser.IfExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

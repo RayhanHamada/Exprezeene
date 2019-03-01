@@ -1,10 +1,9 @@
 
-func genius()
+
+func me()
 {
-
+    if (true && true && new Angka())
     {
-        var a as int;
-    }
 
-    var a as int;
+    }
 }

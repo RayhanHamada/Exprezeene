@@ -129,10 +129,6 @@ public class BaseVisitor implements ExprezeeneVisitor {
         return null;
     }
 
-    public Object visitVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx) {
-        return null;
-    }
-
     public Object visitVarIdentifier(ExprezeeneParser.VarIdentifierContext ctx) {
         return null;
     }
@@ -178,6 +174,10 @@ public class BaseVisitor implements ExprezeeneVisitor {
     }
 
     public Object visitElseStatement(ExprezeeneParser.ElseStatementContext ctx) {
+        return null;
+    }
+
+    public Object visitIfExpr(ExprezeeneParser.IfExprContext ctx) {
         return null;
     }
 

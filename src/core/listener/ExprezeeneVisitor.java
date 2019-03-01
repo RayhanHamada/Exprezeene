@@ -185,12 +185,6 @@ public interface ExprezeeneVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExprezeeneParser#varAssignStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link ExprezeeneParser#varIdentifier}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -268,6 +262,12 @@ public interface ExprezeeneVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitElseStatement(ExprezeeneParser.ElseStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprezeeneParser#ifExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfExpr(ExprezeeneParser.IfExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExprezeeneParser#loopStatement}.
 	 * @param ctx the parse tree

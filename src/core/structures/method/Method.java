@@ -1,8 +1,8 @@
 package core.structures.method;
 
 import core.structures.structure_comp.AccessModifier;
-import core.structures.structure_comp.Scope;
-import core.structures.structure_comp.ScopeType;
+import core.structures.structure_comp.scope.Scope;
+import core.structures.structure_comp.scope.ScopeType;
 
 public class Method {
 

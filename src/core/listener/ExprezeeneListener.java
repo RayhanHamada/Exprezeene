@@ -298,16 +298,6 @@ public interface ExprezeeneListener extends ParseTreeListener {
 	 */
 	void exitVarInitStatement(ExprezeeneParser.VarInitStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExprezeeneParser#varAssignStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ExprezeeneParser#varAssignStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitVarAssignStatement(ExprezeeneParser.VarAssignStatementContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ExprezeeneParser#varIdentifier}.
 	 * @param ctx the parse tree
 	 */
@@ -437,6 +427,16 @@ public interface ExprezeeneListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitElseStatement(ExprezeeneParser.ElseStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExprezeeneParser#ifExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfExpr(ExprezeeneParser.IfExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExprezeeneParser#ifExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfExpr(ExprezeeneParser.IfExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ExprezeeneParser#loopStatement}.
 	 * @param ctx the parse tree

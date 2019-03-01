@@ -254,10 +254,6 @@ varInitStatement
     : modifier varConst varIdentifier AS dataType '=' (expr)
     ;
 
-varAssignStatement
-    : <assoc=right> expr operator=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=') expr
-    ;
-
 varIdentifier
     : identifier
     ;
@@ -310,15 +306,19 @@ condStatement
     ;
 
 ifStatement
-    : IF '(' expr ')' '{' inMethodStatement* '}'
+    : IF '(' ifExpr')' '{' inMethodStatement* '}'
     ;
 
 elseIfStatement
-    : ELSE IF '(' expr ')' '{' inMethodStatement* '}'
+    : ELSE IF '(' ifExpr')' '{' inMethodStatement* '}'
     ;
 
 elseStatement
     : ELSE '{' inMethodStatement* '}'
+    ;
+
+ifExpr
+    : expr
     ;
 
 loopStatement

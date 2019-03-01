@@ -1,10 +1,6 @@
 package core.structures.structure_comp;
 
-import core.listener.ExprezeeneLexer;
-import core.listener.ExprezeeneParser;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
+import core.structures.structure_comp.scope.Scope;
 
 import java.util.ArrayList;
 

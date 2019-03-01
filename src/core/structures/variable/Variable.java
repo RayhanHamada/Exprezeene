@@ -1,6 +1,7 @@
 package core.structures.variable;
 
 import core.structures.structure_comp.*;
+import core.structures.structure_comp.scope.Scope;
 
 public class Variable {
 

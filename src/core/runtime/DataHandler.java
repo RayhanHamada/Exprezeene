@@ -1,6 +1,7 @@
 package core.runtime;
 
 import core.structures.class_.Class;
+import core.structures.conditionals.ConditionalStatement;
 import core.structures.method.Method;
 import core.structures.namespace.NameSpace;
 import core.structures.structure_comp.Expression;
@@ -17,6 +18,7 @@ public class DataHandler {
     private static ArrayList<Class> classes = new ArrayList<>();
     private static ArrayList<NameSpace> nameSpaces = new ArrayList<>();
     private static ArrayList<Expression> expressionStatements = new ArrayList<>();
+    private static ArrayList<ConditionalStatement> conditionalStatements = new ArrayList<>();
 
 
     private ArrayList<File> importedScript = new ArrayList<>();
@@ -60,6 +62,11 @@ public class DataHandler {
     public static ArrayList<Expression> getExpressionStatements()
     {
         return expressionStatements;
+    }
+
+    public static ArrayList<ConditionalStatement> getConditionalStatements()
+    {
+        return conditionalStatements;
     }
 
 

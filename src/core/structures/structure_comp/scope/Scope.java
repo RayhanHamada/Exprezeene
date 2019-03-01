@@ -1,4 +1,4 @@
-package core.structures.structure_comp;
+package core.structures.structure_comp.scope;
 
 public class Scope {
 
@@ -9,7 +9,7 @@ public class Scope {
     /*
     special for variable, to avoid forward reference, just make sure they could be used in good sequence of existence.
      */
-    private int refIndex;
+    private int orderIndex;
 
     /*
     for class, namespace, and method
@@ -19,16 +19,16 @@ public class Scope {
         this.location = location;
         this.scopeType = scopeType;
         this.scopeName = location.replaceAll("[^\\.]+\\.", "");
-        this.refIndex = 0;
+        this.orderIndex = 0;
     }
 
     /*
     for variable statement and expression statement
      */
-    public Scope(String location, ScopeType scopeType, int refIndex)
+    public Scope(String location, ScopeType scopeType, int orderIndex)
     {
         this(location, scopeType);
-        this.refIndex = refIndex;
+        this.orderIndex = orderIndex;
     }
 
     public String getLocation()
@@ -46,19 +46,19 @@ public class Scope {
         return scopeType;
     }
 
-    public int getRefIndex()
+    public int getOrderIndex()
     {
-        return refIndex;
+        return orderIndex;
     }
 
-    public void incrementRefIndex()
+    public void incrementOrderIndex()
     {
-        refIndex++;
+        orderIndex++;
     }
 
-    public void setRefIndexToZero()
+    public void setOrderIndexToZero()
     {
-        this.refIndex = 0;
+        this.orderIndex = 0;
     }
 
 }
